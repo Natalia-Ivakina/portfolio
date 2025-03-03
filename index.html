@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Natalia Ivakina</title>
     <link rel="stylesheet" href="style/styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body id="wrapper">
     <nav>
@@ -12,19 +13,124 @@
         <a href="#projects">Projects</a>
         <a href="#contacts">Contacts</a>
     </nav>
-    <header>Header</header>
-    <hr>
-    <div id="projects">
-        <div>
-            <a href="https://play.google.com/store/apps/details?id=com.binary_calc&pcampaignid=web_share">Binary Cat</a>
+    <div id="switch-button">
+        <button id="toggleButton" >Switch to Facts</button>
+    </div>
+    <div id="info">
+        <div id="info-content">
+            <div id="skills">
+                <p class="projects-header-text">Skills & Tools</p>
+                <div class="skills-icons">
+                    <img src="src/dashicons--html.svg" alt="html"/>
+                    <img src="src/devicon--flutter.svg" alt="flutter"/>
+                    <img src="src/devicon--intellij.svg" alt="intellij"/>
+                    <img src="src/devicon--jira-wordmark.svg" alt="jira"/>
+                    <img src="src/devicon--kotlin.svg" alt="kotlin"/>
+                    <img src="src/devicon--mongodb-wordmark.svg" alt="mongodb"/>
+                    <img src="src/devicon--nodejs.svg" alt="node"/>
+                    <img src="src/devicon--vscode-wordmark.svg" alt="vscode"/>
+                    <img src="src/devicon--webstorm.svg" alt="storm"/>
+                    <img src="src/logos--javascript.svg" alt="js"/>
+                    <img src="src/logos--mysql.svg" alt="msql"/>
+                    <img src="src/logos--visual-studio.svg" alt="vs"/>
+                    <img src="src/fluent-mdl2--git-hub-logo.svg" alt="git"/>
+                    <img src="src/mdi--angular.svg" alt="angular"/>
+                    <img src="src/skill-icons--css.svg" alt="css"/>
+                    <img src="src/skill-icons--swift.svg" alt="swift"/>
+                    <img src="src/teenyicons--c-sharp-solid.svg" alt="c#"/>
+                </div>
+            </div>
+            <div id="facts">
+                <p class="projects-header-text">Behind the Scene</p>
+                <div class="facts-text">
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                    <p>Behind the Scene</p>
+                </div>
+            </div>
         </div>
-        <div>
-            <a href="https://nataiva.com/">Website portfolio</a>
+
+        <div class="photo">
+            <img src="src/M_P.png" alt="casual" id="image1">
+            <img src="src/M_Orig_1.png" alt="formal" id="image2">
+        </div>
+    </div>
+<!--        <div class="photo">-->
+<!--            <img src="src/M_Orig_1.png" alt="formal" id="image4">-->
+<!--            <img src="src/M_P_R.png" alt="casual" id="image3">-->
+<!--        </div>-->
+
+    <h2 class="projects-header-text"> Projects </h2>
+    <div id="projects">
+        <div class="project-card">
+            <div class="project-card-content">
+                <div class="project-img">
+                    <div class="project-card-inner">
+                        <div class="project-card-front">
+                            <img src="src/4.png" alt="cat">
+                            <span class="tooltip">Click for video</span>
+                        </div>
+                        <div class="project-card-back">
+                            <img src="src/4.png" alt="cat">
+                        </div>
+                    </div>
+                </div>
+                <div class="project-desc-text">
+                    <p>This application offers:</p>
+                    <ul>
+                        <li>Arithmetic operations with binary numbers</li>
+                        <li>Conversion of binary and decimal numbers</li>
+                        <li>Easy customization of the color palette</li>
+                    </ul>
+                    <p>Developed with Flutter (using Dart) in VS Code</p>
+                </div>
+            </div>
+            <div class="project-link">
+                <a href="https://play.google.com/store/apps/details?id=com.binary_calc&pcampaignid=web_share">Binary Cat Google play</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-card-content">
+                <div class="project-img">
+                    <div class="project-card-inner">
+                        <div class="project-card-front">
+                            <img src="src/alex.jpg" alt="alex">
+                            <span class="tooltip">Click for video</span>
+                        </div>
+                        <div class="project-card-back">
+                            <img src="src/alex.jpg" alt="alex">
+                        </div>
+                    </div>
+                </div>
+                <div class="project-desc-text">
+                    <p>The website allows the admin to:</p>
+                    <ul>
+                        <li>Add and delete YouTube videos</li>
+                        <li>Change the order of videos</li>
+                        <li>Set the number of videos per page</li>
+                        <li>Edit text on pages</li>
+                    </ul>
+                    <p>Developed with React (using JavaScript) in WebStorm</p>
+                </div>
+            </div>
+            <div class="project-link">
+                <a href="https://nataiva.com/">Motion Designer Website</a>
+            </div>
         </div>
     </div>
     <div id="contacts">
-        <a href=""><img class="icon"  src="src/flowbite--linkedin-solid.svg" alt="link"></a>
-        <a href=""><img class="icon" src="src/fluent-mdl2--git-hub-logo.svg" alt="git"></a>
+        <a href="www.linkedin.com/in/ivnata"><img class="icon"  src="src/flowbite--linkedin-solid.svg" alt="link"></a>
+        <a href="https://github.com/Natalia-Ivakina"><img class="icon" src="src/fluent-mdl2--git-hub-logo.svg" alt="git"></a>
         <a href=""><img class="icon" src="src/ix--e-mail.svg" alt="mail"></a>
     </div>
     <footer >
