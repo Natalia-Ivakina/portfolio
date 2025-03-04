@@ -434,24 +434,77 @@ footer p {
 
 /* ____________________________ */
 @media (max-width: 768px) {
-    .photo {
-        display: none;
+    body{
+        width: 100%;
+    }
+
+    #main-content{
+        /*margin: 1rem;*/
+        max-width: 95%;
+    }
+
+    #info{
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
     }
 
     #info-content{
         width: 100%;
+        padding: 0;
+        margin: 0;
     }
+
+    .skills-icons {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 0.3fr));
+        gap: 0.5rem;
+        height: 100%;
+        width: 75%;
+    }
+
+    .photo {
+        display: none;
+    }
+
 
     .facts{
         width: 25rem;
     }
 
     #projects {
+        width: 95%;
+        display: grid;
         grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0;
+        margin: auto;
     }
 
     .project-card {
         width: 100%;
+    }
+
+    .project-card-content p {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .project-desc-text{
+        text-align: center;
+    }
+
+    .project-desc-text ul li {
+        margin: 0;
+    }
+
+    .project-desc-text p {
+        margin: 0;
+        font-size: 0.8rem;
+    }
+
+    .project-card-inner {
+        margin: 1rem 0 0 0;
     }
 }
 
