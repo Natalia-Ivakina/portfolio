@@ -440,11 +440,13 @@ footer p {
 
     #main-content{
         /*margin: 1rem;*/
-        max-width: 95%;
+        width: 95%;
+        padding: 0;
+        margin: 0 auto;
     }
 
     #info{
-        max-width: 100%;
+        width: 100%;
         padding: 0;
         margin: 0;
     }
@@ -485,12 +487,12 @@ footer p {
         width: 100%;
     }
 
-    .project-card-content p {
+    .project-card-content{
         display: grid;
         grid-template-columns: 1fr;
     }
 
-    .project-desc-text{
+    .project-desc-text p{
         text-align: center;
     }
 
