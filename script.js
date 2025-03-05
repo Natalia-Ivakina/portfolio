@@ -1,9 +1,17 @@
 /**
- * click on project
+ * clicker on project
  */
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', () => {
-        card.querySelector('.project-card-inner').classList.toggle('flipped');
+        const inner = card.querySelector('.project-card-inner');
+        const iframe = card.querySelector('.project-card-back iframe');
+
+        inner.classList.toggle('flipped');
+
+        // drop src
+        if (!inner.classList.contains('flipped') && iframe) {
+            iframe.src = iframe.src;
+        }
     });
 });
 
