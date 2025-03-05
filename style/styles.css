@@ -21,15 +21,21 @@ html {
 }
 
 body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
     font-family: var(--font), serif;
     background-color: var(--bg-color);
     color: var(--text-color);
+}
+
+#wrapper{
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     justify-content: center;
+    min-height: 100vh;
+    max-width: 1200px;
     margin: 0 auto;
-    width: 100%;
 }
 /*_________________________________________________*/
 nav {
@@ -57,8 +63,8 @@ nav a:hover{
 }
 
 .icon {
-    width: 30px;
-    height: 30px;
+    width: 1.5rem;
+    height: 1.5rem;
     transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
     opacity: 0.8;
 }
@@ -67,7 +73,7 @@ nav a:hover{
     transform: scale(1.2);
     opacity: 1;
 }
-
+/*_________________________________________________*/
 .dev-text{
     text-align: center;
     font-size: 0.9rem;
@@ -83,18 +89,16 @@ nav a:hover{
 /*_________________________________________________*/
 #main-content{
     background: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: var(--radiust);
     margin: 1rem auto;
     width: 100%;
-    max-width: 1200px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radiust);
 }
-
+/*_________________________________________________*/
 #switch-button{
     display: flex;
     justify-content: center;
     margin-top: 1rem;
-
 }
 
 #toggleButton {
@@ -158,17 +162,20 @@ nav a:hover{
 :not(.active) .right {
     opacity: 0.3;
 }
-
 /*_______________________________________________*/
 #info {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
     width: 100%;
-    max-width: 1200px;
-    height: 600px;
+    height: 50vh;
+    min-height: 600px;
+    position: relative;
 }
 
 #info-content {
     display: flex;
+    flex-wrap: wrap;
     width: 50%;
     height: 100%;
     overflow: hidden;
@@ -176,63 +183,57 @@ nav a:hover{
 }
 
 #skills, #facts {
+    width: 100%;
+    height: 100%;
     position: absolute;
     transition: opacity 2s ease;
-    height: 100%;
-    padding: 20px;;
+    padding: 20px;
 }
 
 #skills {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     visibility: visible;
     opacity: 1;
-    height: 600px;
-    width: 600px;
 }
 
-.skill {
+.skill-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.skills-icons {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px;
-    justify-content: center;
-    align-content: center;
+    text-align: center;
     height: 100%;
 }
 
-.skills-icons img {
+.skill-container img {
+    display: block;
+    margin: 0 auto;
     width: 50px;
     height: 50px;
     object-fit: contain;
     transition: transform 0.3s ease;
 }
 
-.skills-icons img:hover {
+.skill-container img:hover {
     transform: scale(1.2);
 }
 
-.skill span{
+.skill-container span{
     font-family: 'Fira Code', monospace;
 }
 
 #facts {
     display: flex;
+    flex-direction: column;
     visibility: hidden;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
 }
 
-.facts {
+.fact-container {
     display: flex;
     flex-direction: column;
     margin: 0.5rem 0 1rem 0;
     padding: 0.2rem;
-    width: 35rem;
+    width: 100%;
     text-align: center;
     border-radius: var(--radiust);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -240,7 +241,7 @@ nav a:hover{
     transition: transform 0.3s ease;
 }
 
-.facts:hover {
+.fact-container:hover {
     transform: translateY(-5px);
 }
 
@@ -286,7 +287,6 @@ nav a:hover{
     clip-path: inset(0 0 0 0);
     opacity: 1;
 }
-
 /*_________________________________________________*/
 .project-link  a {
     text-decoration: none;
@@ -392,7 +392,7 @@ nav a:hover{
 .project-desc-text p {
     margin-top: 0.9rem;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .project-card-front:hover .tooltip, .project-card-back:hover .tooltip {
@@ -431,60 +431,18 @@ footer p {
     margin: 0;
     opacity: 0.8;
 }
-
 /* ____________________________ */
-@media (max-width: 768px) {
-    body{
-        width: 100%;
-    }
-
-    #main-content{
-        /*margin: 1rem;*/
-        width: 95%;
-        padding: 0;
-        margin: 0 auto;
-    }
+@media (max-width: 950px) {
 
     #info{
-        width: 100%;
+        min-height: 650px;
         padding: 0;
         margin: 0;
-    }
-
-    #info-content{
-        width: 100%;
-        padding: 0;
-        margin: 0;
-    }
-
-    .skills-icons {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 0.3fr));
-        gap: 0.5rem;
-        height: 100%;
-        width: 75%;
-    }
-
-    .photo {
-        display: none;
-    }
-
-
-    .facts{
-        width: 25rem;
-    }
-
-    #projects {
-        width: 95%;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 0;
-        margin: auto;
     }
 
     .project-card {
         width: 100%;
+        margin-bottom: 1rem;
     }
 
     .project-card-content{
@@ -507,8 +465,95 @@ footer p {
 
     .project-card-inner {
         margin: 1rem 0 0 0;
+        padding: 0.1rem;
+    }
+
+    .project-link a{
+        font-size: 1rem;
     }
 }
+
+@media (max-width: 700px) {
+    #main-content{
+        width: 90%;
+    }
+
+    .left, .right{
+        font-size: 1rem;
+        padding: 0.3rem;
+    }
+
+    #info-content{
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    #skills {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .skill-container img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .skill-container span {
+        font-size: 0.8rem;
+    }
+
+    .fact-text {
+        font-size: 0.8rem;
+    }
+
+    .code-text {
+        font-size: 0.7rem;
+    }
+
+    .photo {
+        display: none;
+    }
+
+    #projects {
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 0;
+        margin: auto;
+    }
+
+    .project-link a{
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 300px) {
+    #info{
+       min-height: 750px;
+    }
+
+    .project-link  a {
+        text-decoration: underline;
+        color: blue;
+        font-size: 0.8rem;
+        padding: 0.1rem;
+        background: white;
+        box-shadow: none;
+        background: none;
+        border-radius: 0;
+    }
+
+    .project-img{
+        display: none;
+    }
+
+    footer, nav a{
+        font-size: 0.6rem;
+    }
+}
+
 
 
 
