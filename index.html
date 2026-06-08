@@ -1,15 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Natalia Ivakina</title>
+    <title>Natalia Ivakina | Frontend Developer</title>
+    <meta
+      name="description"
+      content="Frontend Developer based in Moncton, Canada. Portfolio of web projects, React applications and UI development."
+    />
+    <meta
+      name="keywords"
+      content="frontend developer, React developer, web developer, Moncton Canada, portfolio, JavaScript, UI developer"
+    />
+
+    <meta name="author" content="Natalia Ivakina" />
     <link rel="stylesheet" href="style/styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <script src="script.js" defer></script>
+    <script src="js/switch_photo.js" defer></script>
+    <script src="js/gototop_button.js" defer></script>
   </head>
   <body>
     <nav>
@@ -127,18 +138,21 @@
               </div>
               <div class="fact-container">
                 <span class="code-text">&lt;/Hobby&gt;</span>
-                <span class="fact-text">My hobby is lampworking.</span>
+                <span class="fact-text"
+                  >I work with glass lampworking as a creative hobby.</span
+                >
               </div>
               <div class="fact-container" style="background-color: #f7f7f7">
                 <span class="code-text">&lt;/Free time&gt;</span>
                 <span class="fact-text"
-                  >My favorite game is "Zelda: Tears of the Kingdom".</span
+                  >One of my favorite games is Zelda: Tears of the
+                  Kingdom.</span
                 >
               </div>
               <div class="fact-container">
                 <span class="code-text">&lt;/Experience&gt;</span>
                 <span class="fact-text"
-                  >I have experience as a software tester.</span
+                  >I have experience in software testing and QA.</span
                 >
               </div>
               <div class="fact-container" style="background-color: #f7f7f7">
@@ -161,7 +175,7 @@
               <div class="fact-container">
                 <span class="code-text">&lt;/Funny&gt;</span>
                 <span class="fact-text"
-                  >I had a driver's license in 3 countries.</span
+                  >I held a driving license in three countries.</span
                 >
               </div>
             </div>
@@ -174,164 +188,300 @@
       </div>
       <h2 class="projects-header-text">Projects</h2>
       <div id="projects">
-        <div class="project-card">
-          <div class="project-link">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.binary_calc&pcampaignid=web_share"
-            >
-              Binary Cat Mobile App ⬈
-            </a>
-          </div>
-          <div class="project-card-content">
-            <div class="project-img">
-              <div class="project-card-inner">
-                <div class="project-card-front">
-                  <img src="src/4.png" alt="cat" />
-                  <div class="play-icon">
-                    <svg viewBox="0 0 24 24" fill="#000" width="68" height="48">
-                      <path d="M5 3l14 9-14 9z" />
-                    </svg>
+        <div class="projects-row">
+          <div class="project-card">
+            <div class="project-link">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.binary_calc&pcampaignid=web_share"
+                target="_blank"
+              >
+                Binary Cat Mobile App ⬈
+              </a>
+            </div>
+            <p class="project-summary">
+              A mobile application designed to help users understand and
+              practice binary number operations.
+            </p>
+            <div class="project-card-content">
+              <div class="project-img">
+                <div class="project-card-inner">
+                  <div class="project-card-front">
+                    <img src="src/4.png" alt="cat" />
                   </div>
                 </div>
-                <div class="project-card-back">
-                  <iframe
-                    src="https://www.youtube.com/embed/RHLzsnX4KGE?autoplay=1&mute=1&controls=1"
-                    allow="accelerometer;
-                            autoplay;
-                            clipboard-write;
-                            encrypted-media;
-                            gyroscope;
-                            picture-in-picture"
-                    allowfullscreen
-                  >
-                  </iframe>
-                </div>
+              </div>
+              <div class="project-desc-text">
+                <p>Key features:</p>
+                <ul>
+                  <li>Binary arithmetic operation</li>
+                  <li>Customizable theme color palette</li>
+                </ul>
+                <p>Tech stack:</p>
+                <ul>
+                  <li>Flutter</li>
+                  <li>Dart</li>
+                  <li>UI/UX design in Figma</li>
+                  <li>Published on Google Play</li>
+                </ul>
+                <p>Role:</p>
+                <ul>
+                  <li>
+                    Full-stack Developer (<a
+                      href="https://www.youtube.com/watch?v=RHLzsnX4KGE"
+                      target="_blank"
+                      >Video</a
+                    >)
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="project-desc-text">
-              <p>This application offers:</p>
-              <ul>
-                <li>Operations with binary numbers</li>
-                <li>Color palette customization</li>
-              </ul>
-              <p>Built with:</p>
-              <ul>
-                <li>Figma (design)</li>
-                <li>Dart, Flutter(frontend)</li>
-                <li>Dart, Flutter(backend)</li>
-                <li>Published on Google Play</li>
-              </ul>
-              <p>My role:</p>
-              <ul>
-                <li>Full-cycle Developer</li>
-              </ul>
+          </div>
+          <div class="project-card">
+            <div class="project-link">
+              <a href="https://akialex.com/" target="_blank">
+                Motion Designer Web App ⬈</a
+              >
+            </div>
+            <p class="project-summary">
+              Web platform for motion designers with video management system.
+            </p>
+            <div class="project-card-content">
+              <div class="project-img">
+                <div class="project-card-inner">
+                  <div class="project-card-front">
+                    <img src="src/AkiAlex.jpg" alt="alex" />
+                  </div>
+                </div>
+              </div>
+              <div class="project-desc-text">
+                <p>Key features:</p>
+                <ul>
+                  <li>Full CRUD system for managing video content</li>
+                  <li>Dynamic UI customization</li>
+                </ul>
+                <p>Tech stack:</p>
+                <ul>
+                  <li>React (frontend)</li>
+                  <li>Node.js + Express (backend)</li>
+                  <li>REST API with JSON-based data flow</li>
+                  <li>Deployed on Digital Ocean</li>
+                </ul>
+                <p>Role:</p>
+                <ul>
+                  <li>
+                    Full-stack Developer (<a
+                      href="https://www.youtube.com/watch?v=Oy9qg0M_Obs"
+                      target="_blank"
+                      >Video</a
+                    >)
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        <div class="project-card">
-          <div class="project-link">
-            <a href="https://akialex.com/"> Motion Designer Web App ⬈</a>
-          </div>
-          <div class="project-card-content">
-            <div class="project-img">
-              <div class="project-card-inner">
-                <div class="project-card-front">
-                  <img src="src/alex.jpg" alt="alex" />
-                  <div class="play-icon">
-                    <svg viewBox="0 0 24 24" fill="#000" width="68" height="48">
-                      <path d="M5 3l14 9-14 9z" />
-                    </svg>
+        <div class="projects-row">
+          <div class="project-card">
+            <div class="project-link">
+              <a href="https://bedoresgallery.com/" target="_blank">
+                Art Gallery Service ⬈</a
+              >
+            </div>
+            <p class="project-summary">
+              An online art gallery platform built on Shopify with custom
+              frontend modifications.
+            </p>
+            <div class="project-card-content">
+              <div class="project-img">
+                <div class="project-card-inner">
+                  <div class="project-card-front">
+                    <img src="src/Bedores-Gallery.jpg" alt="alex" />
                   </div>
                 </div>
-                <div class="project-card-back">
-                  <iframe
-                    src="https://www.youtube.com/embed/Oy9qg0M_Obs??autoplay=1&mute=1&controls=1"
-                    allow="accelerometer;
-                            autoplay;
-                            clipboard-write;
-                            encrypted-media;
-                            gyroscope;
-                            picture-in-picture"
-                    allowfullscreen
-                  >
-                  </iframe>
-                </div>
+              </div>
+              <div class="project-desc-text">
+                <p>Key features:</p>
+                <ul>
+                  <li>Admin-oriented content workflows</li>
+                  <li>Integrated user account management system</li>
+                  <li>Custom interactive UI components, including filters</li>
+                  <li>Fully custom theme implementation</li>
+                </ul>
+                <p>Tech stack:</p>
+                <ul>
+                  <li>Shopify</li>
+                  <li>Liquid templating</li>
+                  <li>HTML, CSS, JavaScript</li>
+                </ul>
+                <p>Role:</p>
+                <ul>
+                  <li>Frontend Developer & Content Engineer</li>
+                </ul>
+                <p class="project-status">Currently in active development</p>
               </div>
             </div>
-            <div class="project-desc-text">
-              <p>This application offers:</p>
-              <ul>
-                <li>Page customization features</li>
-                <li>Full CRUD operations for videos</li>
-              </ul>
-              <p>Built with:</p>
-              <ul>
-                <li>React (frontend)</li>
-                <li>Node.js + Express (backend)</li>
-                <li>REST API + JSON for data</li>
-                <li>Deployed on DigitalOcean</li>
-              </ul>
-              <p>My role:</p>
-              <ul>
-                <li>Full-cycle Developer</li>
-              </ul>
+          </div>
+          <div class="project-card">
+            <div class="project-link">
+              <a href="https://ivamage.com/" target="_blank">
+                Info Art Website ⬈</a
+              >
+            </div>
+            <p class="project-summary">
+              A content-driven informational website focused on SEO
+              optimization.
+            </p>
+            <div class="project-card-content">
+              <div class="project-img">
+                <div class="project-card-inner">
+                  <div class="project-card-front">
+                    <img src="src/IvaMage.jpg" alt="alex" />
+                  </div>
+                </div>
+              </div>
+              <div class="project-desc-text">
+                <p>Key features:</p>
+                <ul>
+                  <li>SEO-optimized informational pages</li>
+                  <li>External traffic redirection to e-commerce store</li>
+                  <li>Animated background effects</li>
+                </ul>
+                <p>Tech stack:</p>
+                <ul>
+                  <li>HTML, CSS, JavaScript</li>
+                  <li>Deployed on DigitalOcean</li>
+                </ul>
+                <p>Role:</p>
+                <ul>
+                  <li>Full-stack Developer</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        <div class="project-card">
-          <div class="project-link">
-            <a href="https://staging.arcondor.io/"> Golf Course Management ⬈</a>
-          </div>
-          <div class="project-card-content">
-            <div class="project-img">
-              <div class="project-card-inner">
-                <div class="project-card-front">
-                  <img src="src/golf.jpg" alt="alex" />
-                  <div class="play-icon">
-                    <svg viewBox="0 0 24 24" fill="#000" width="68" height="48">
-                      <path d="M5 3l14 9-14 9z" />
-                    </svg>
+        <div class="projects-row">
+          <div class="project-card">
+            <div class="project-link">
+              <a
+                href="https://www.youtube.com/watch?v=gBV9CulLpPs"
+                target="_blank"
+              >
+                Golf Course Management ⬈</a
+              >
+            </div>
+            <p class="project-summary">
+              A management system for golf course operations focused on data
+              visualization.
+            </p>
+            <div class="project-card-content">
+              <div class="project-img">
+                <div class="project-card-inner">
+                  <div class="project-card-front">
+                    <img src="src/golf.jpg" alt="alex" />
                   </div>
                 </div>
-                <div class="project-card-back">
-                  <iframe
-                    src="https://www.youtube.com/embed/gBV9CulLpPs??autoplay=1&mute=1&controls=1"
-                    allow="accelerometer;
-                            autoplay;
-                            clipboard-write;
-                            encrypted-media;
-                            gyroscope;
-                            picture-in-picture"
-                    allowfullscreen
-                  >
-                  </iframe>
-                </div>
+              </div>
+              <div class="project-desc-text">
+                <p>Key features:</p>
+                <ul>
+                  <li>Full CRUD functionality for managing course records</li>
+                  <li>Statistical data visualization</li>
+                </ul>
+                <p>Tech stack:</p>
+                <ul>
+                  <li>Angular (frontend)</li>
+                  <li>Node.js + Express (backend)</li>
+                  <li>REST API + MySQL for data</li>
+                  <li>Hosted on HostPapa</li>
+                </ul>
+                <p>Role:</p>
+                <ul>
+                  <li>
+                    Database Developer (<a
+                      href="https://www.youtube.com/watch?v=gBV9CulLpPs"
+                      target="_blank"
+                      >Video</a
+                    >)
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="project-desc-text">
-              <p>This application offers:</p>
-              <ul>
-                <li>View statistical data</li>
-                <li>Full CRUD operations for all records</li>
-              </ul>
-              <p>Built with:</p>
-              <ul>
-                <li>Angular (frontend)</li>
-                <li>Node.js + Express (backend)</li>
-                <li>REST API + MySQL for data</li>
-                <li>Deployed on a HostPapa</li>
-              </ul>
-              <p>My role:</p>
-              <ul>
-                <li>Database Developer</li>
-              </ul>
+          </div>
+          <div class="project-card">
+            <div class="project-link">
+              <a
+                href="https://envisionit-consulting-copy.yolasite.com/"
+                target="_blank"
+              >
+                Business Website (Yola) ⬈</a
+              >
+            </div>
+            <p class="project-summary">
+              A corporate information website designed to present business
+              services.
+            </p>
+            <div class="project-card-content">
+              <div class="project-img">
+                <div class="project-card-inner">
+                  <div class="project-card-front">
+                    <img src="src/EnvisionConsulting.jpg" alt="alex" />
+                  </div>
+                </div>
+              </div>
+              <div class="project-desc-text">
+                <p>Key features:</p>
+                <ul>
+                  <li>Responsive informational layout</li>
+                  <li>Submission form integration</li>
+                  <li>Clear content structure</li>
+                </ul>
+                <p>Tech stack:</p>
+                <ul>
+                  <li>HTML, CSS, JavaScript</li>
+                  <li>Yola website builder platform</li>
+                </ul>
+                <p>Role:</p>
+                <ul>
+                  <li>Web Developer</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <button id="scrollTopBtn" onclick="scrollToTop()">
+        <svg
+          fill="none"
+          height="20"
+          viewBox="0 0 20 20"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 13l6-6 6 6"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+          ></path>
+          <path
+            d="M4 18l6-6 6 6"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+          ></path>
+        </svg>
+      </button>
     </div>
     <footer>
-      <p>Design and Development by Natalia Ivakina © ~ 2025</p>
+      <p>
+        Development by<a
+          href="https://www.linkedin.com/in/ivnata"
+          target="_blank"
+          >Natalia Ivakina</a
+        >© ~ 2025
+      </p>
     </footer>
   </body>
 </html>
