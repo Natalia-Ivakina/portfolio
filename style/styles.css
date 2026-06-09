@@ -8,10 +8,10 @@ html {
   --bg-color: #def2f1b0;
   --text-color: #333;
   --accent-color: #4caf50;
-  --gradient-start: #dee5d4;
+  --gradient-start: #bfe0d2;
   --gradient-end: #f7f7f7;
   --font: "Poppins", sans-serif;
-  --radiust: 12px;
+  --radiust: 8px;
 }
 
 * {
@@ -37,6 +37,7 @@ body {
   max-width: 1400px;
   margin: 0 auto;
 }
+
 /*_NAV_____________________________________________*/
 nav {
   display: flex;
@@ -57,7 +58,7 @@ nav a {
   padding: 6px 10px;
   background-color: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.093);
-  border-radius: 8px;
+  border-radius: var(--radiust);
   letter-spacing: 1px;
   font-size: 1em;
   opacity: 0.8;
@@ -100,6 +101,8 @@ nav i {
 
 /*_________________________________________________*/
 #main-content {
+  display: flex;
+  flex-direction: column;
   background: #c3d9e4;
   margin: 1rem auto;
   width: 100%;
@@ -120,7 +123,8 @@ nav i {
   display: inline-block;
   width: 200px;
   height: 40px;
-  border: none;
+  border: 1px solid #33333314;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: var(--radiust);
   cursor: pointer;
   overflow: hidden;
@@ -143,6 +147,7 @@ nav i {
   left: 0;
   background: var(--gradient-start);
   opacity: 1;
+  border-right: 1px dotted #33333314;
   transition: color 0.4s ease;
 }
 
@@ -184,15 +189,14 @@ nav i {
   justify-content: center;
   width: 100%;
   height: 50vh;
-  min-height: 600px;
+  min-height: 700px;
   position: relative;
 }
 
 #info-content {
   display: flex;
-  flex-wrap: wrap;
-  width: 50%;
-  height: 100%;
+  flex: 1 1 500px;
+  min-width: 300px;
   overflow: hidden;
   position: relative;
 }
@@ -202,6 +206,7 @@ nav i {
   width: 100%;
   height: 100%;
   position: absolute;
+  left: 0;
   transition: opacity 2s ease;
   padding: 20px;
 }
@@ -352,21 +357,23 @@ nav i {
 }
 
 .project-link a {
+  display: inline-block;
   text-decoration: none;
-  color: var(--text-color);
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
-  padding: 0.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   background: rgba(255, 255, 255, 0.236);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radiust);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   white-space: nowrap;
+  color: var(--text-color);
+  font-size: 1.15rem;
+  padding: 10px 14px;
+  font-weight: 600;
+  transition: transform 0.3s ease;
 }
 
 .project-link a:hover {
-  color: var(--accent-color);
+  transform: scale(1.1);
 }
 
 .project-card-content {
@@ -396,7 +403,6 @@ nav i {
   color: var(--text-color);
   line-height: 1.6;
   text-align: left;
-  /* border: 1px black solid; */
 }
 
 .project-desc-text ul {
@@ -409,7 +415,6 @@ nav i {
 }
 
 .project-desc-text p {
-  /* margin-top: 0.9rem; */
   font-weight: bold;
   font-size: 0.8rem;
 }
@@ -421,22 +426,16 @@ nav i {
   left: auto;
   right: 20px;
   margin: auto;
-  padding: 0;
-  z-index: 9999;
+  padding: 16px 18px;
+  z-index: 10;
   display: none;
   background: #9c9c9cbf;
   border: none;
-  border-radius: 10px;
-  width: 50px;
-  height: 50px;
+  border-radius: var(--radiust);
   cursor: pointer;
   color: #ebebeb;
+  font-size: 18px;
   transition: all 0.1s ease;
-}
-
-#scrollTopBtn svg {
-  position: relative;
-  top: -4px;
 }
 
 #scrollTopBtn:hover {
@@ -457,6 +456,10 @@ footer a {
 
 footer a {
   text-decoration: none;
+}
+
+footer a:hover {
+  color: rgba(255, 255, 255, 1);
 }
 
 @media (max-width: 1500px) {
@@ -488,16 +491,6 @@ footer a {
 
 /*MEDIUM_________________________________________________*/
 @media (max-width: 1080px) {
-  #info {
-    min-height: 650px;
-    padding: 0;
-    margin: 0;
-  }
-
-  .project-desc-text p {
-    text-align: center;
-  }
-
   .project-desc-text ul li {
     margin: 0;
   }
