@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
-
+* {
+  box-sizing: border-box;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -103,6 +105,8 @@ nav i {
 #main-content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: #c3d9e4;
   margin: 1rem auto;
   width: 100%;
@@ -112,15 +116,10 @@ nav i {
 }
 
 /*SWITCHER_________________________________________________*/
-#switch-button {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
 #toggleButton {
   position: relative;
   display: inline-block;
+  margin-top: 1rem;
   width: 200px;
   height: 40px;
   border: 1px solid #33333314;
@@ -190,40 +189,58 @@ nav i {
   width: 100%;
   height: 50vh;
   min-height: 700px;
-  position: relative;
+  margin-top: 1em;
 }
 
-#info-content {
-  display: flex;
-  flex: 1 1 500px;
-  min-width: 300px;
-  overflow: hidden;
+#panels {
+  position: relative;
+  flex: 1;
+  background-color: #d1e1e9e4;
+  margin: 2em 0 2em 2em;
+  border-radius: var(--radiust);
   position: relative;
 }
 
 #skills,
 #facts {
-  width: 100%;
-  height: 100%;
   position: absolute;
-  left: 0;
-  transition: opacity 2s ease;
-  padding: 20px;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s;
+}
+
+[data-state="skills"] #skills,
+[data-state="facts"] #facts {
+  opacity: 1;
+  visibility: visible;
 }
 
 #skills {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  visibility: visible;
-  opacity: 1;
+  gap: 10px;
 }
 
 .skill-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5em;
   gap: 10px;
   text-align: center;
-  height: 100%;
+  border-radius: var(--radiust);
+
+  background: rgba(255, 255, 255, 0.455);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.skill-container:hover {
+  transform: translateY(-5px);
 }
 
 .skill-container img {
@@ -235,10 +252,6 @@ nav i {
   transition: transform 0.3s ease;
 }
 
-.skill-container img:hover {
-  transform: scale(1.2);
-}
-
 .skill-container span {
   font-family: "Fira Code", monospace;
 }
@@ -246,19 +259,21 @@ nav i {
 #facts {
   display: flex;
   flex-direction: column;
-  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 }
 
 .fact-container {
   display: flex;
   flex-direction: column;
-  margin: 0.5rem 0 1rem 0;
+  gap: 0.5em;
   padding: 0.2rem;
-  width: 100%;
+  width: 90%;
   text-align: center;
   border-radius: var(--radiust);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.455);
   transition: transform 0.3s ease;
 }
 
@@ -302,21 +317,17 @@ nav i {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition:
-    opacity 1s ease,
-    clip-path 1s ease;
-  transform: translateX(70px);
-}
-
-#image1 {
-  z-index: 1;
   opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition:
+    opacity 2s ease,
+    clip-path 2s ease;
 }
 
-#image2 {
-  z-index: 2;
-  clip-path: inset(0 0 0 0);
+[data-state="skills"] #image2,
+[data-state="facts"] #image1 {
   opacity: 1;
+  clip-path: inset(0 0 0 0);
 }
 
 /*PROJECTS_________________________________________________*/
@@ -487,6 +498,16 @@ footer a:hover {
     width: 350px;
     height: 350px;
   }
+
+  #info {
+    height: 50vh;
+    min-height: 900px;
+  }
+
+  #skills {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
 }
 
 /*MEDIUM_________________________________________________*/
@@ -511,9 +532,28 @@ footer a:hover {
     width: 250px;
     height: 250px;
   }
+  #panels {
+    margin: 1em;
+  }
 }
 
 /*SMALL_________________________________________________*/
+@media (max-width: 850px) {
+  .photo {
+    display: none;
+  }
+
+  #panels {
+    margin: 2em;
+  }
+
+  #skills {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+  }
+}
+
+/*SMALL2_________________________________________________*/
 @media (max-width: 700px) {
   nav {
     gap: 0.7rem;
@@ -539,15 +579,9 @@ footer a:hover {
     padding: 0.3rem;
   }
 
-  #info-content {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-
   #skills {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
   }
 
   .skill-container img {
@@ -562,10 +596,6 @@ footer a:hover {
 
   .code-text {
     font-size: 0.7rem;
-  }
-
-  .photo {
-    display: none;
   }
 
   .projects-row {
