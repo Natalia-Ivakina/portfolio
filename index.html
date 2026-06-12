@@ -1,35 +1,43 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <title>Natalia Ivakina | Full stack Developer</title>
+
+    <!-- Meta -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Natalia Ivakina | Full-stack Developer</title>
     <meta
       name="description"
-      content="Frontend Developer based in Moncton, Canada. Portfolio of web projects, React applications and UI development."
+      content="Full stack Developer based in Moncton, Canada. Portfolio of web projects, React applications and UI development."
     />
     <meta
       name="keywords"
       content="frontend developer, React developer, web developer, Moncton Canada, portfolio, JavaScript, UI developer"
     />
+    <meta name="author" content="Natalia Ivakina | Full stack" />
 
-    <meta name="author" content="Natalia Ivakina" />
+    <!-- Link -->
     <link rel="icon" href="/src/Logo.ico" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="style/styles.css" />
+    <link rel="stylesheet" href="style/styles.css?v=2" />
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Scripts -->
     <script src="js/switch_photo.js" defer></script>
     <script src="js/gototop_button.js" defer></script>
+    <script src="js/scroll_hint_button.js" defer></script>
   </head>
+
   <body>
+    <!-- Nav -->
     <nav>
-      <a id="mobile-nav" href="src/NI_Resume.pdf" download
+      <a href="src/NI_Resume.pdf" download
         >CV <i class="fa-solid fa-file-arrow-down"></i
       ></a>
       <a href="https://www.linkedin.com/in/ivnata"
@@ -42,9 +50,12 @@
         ><i class="fa-solid fa-envelope"></i
       ></a>
     </nav>
+
+    <!-- Content -->
     <div id="wrapper">
       <h2 class="projects-header-text">Natalia Ivakina</h2>
       <h2 class="dev-text">&lt;full stack developer/&gt;</h2>
+
       <div id="main-content" data-state="skills">
         <button id="toggleButton" class="switch-button">
           <span class="left projects-header-text">Skills</span>
@@ -206,13 +217,18 @@
             </div>
           </div>
           <div class="photo">
-            <!-- <img src="src/M_P.png" alt="casual" id="image1" />
-            <img src="src/M_Orig_1.png" alt="formal" id="image2" /> -->
             <img src="src/4M_P 1.png" alt="casual" id="image1" />
             <img src="src/4M_Orig_1 1.png" alt="formal" id="image2" />
           </div>
         </div>
       </div>
+
+      <!-- Scroll hint-->
+      <div class="scroll-hint">
+        <i class="fa-solid fa-angles-down"></i>
+      </div>
+
+      <!-- Projects -->
       <h2 class="projects-header-text">Projects</h2>
       <div id="projects">
         <div class="projects-row">
@@ -481,10 +497,14 @@
           </div>
         </div>
       </div>
+
+      <!-- Go to top -->
       <button id="scrollTopBtn" onclick="scrollToTop()">
         <i class="fa-solid fa-angles-up"></i>
       </button>
     </div>
+
+    <!-- Footer -->
     <footer>
       <p>
         © 2025 <i class="fa-solid fa-code"></i> Development by
