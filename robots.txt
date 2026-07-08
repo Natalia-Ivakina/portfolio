@@ -1,0 +1,8 @@
+User-agent: *
+
+Allow: /
+
+Sitemap: https://nataiva.com/sitemap.xml
+
+# AI documentation
+LLM: https://nataiva.com/llms.txt

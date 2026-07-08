@@ -79,13 +79,23 @@ nav i {
 }
 
 /*_________________________________________________*/
-.projects-header-text {
+.projects-header-text,
+.location-text {
   text-align: center;
+  line-height: 1.5;
+}
+
+.projects-header-text {
+  font-size: 1.5rem;
+}
+
+.location-text {
+  font-size: 0.9rem;
 }
 
 .dev-text {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   letter-spacing: 1px;
   font-family: "Fira Code", monospace;
   font-weight: bold;
@@ -102,6 +112,7 @@ nav i {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  line-height: 1.5;
 }
 
 /*_________________________________________________*/

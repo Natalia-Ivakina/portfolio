@@ -1,0 +1,135 @@
+# Natalia Ivakina – Full Stack Developer
+
+> Portfolio of Natalia Ivakina, Full Stack Developer based in Moncton, New Brunswick, Canada.
+
+## About
+
+Natalia Ivakina is a Full Stack Developer specializing in web and mobile application development. Her experience includes React, Flutter, Angular, Node.js, Shopify customization, REST APIs, SQL databases, and UI development.
+
+She also has a background in software testing (QA) and urban planning.
+
+## Skills
+
+- React
+- Flutter
+- Angular
+- JavaScript
+- TypeScript
+- Node.js
+- Express
+- HTML
+- CSS
+- Shopify
+- Liquid
+- C#
+- SQL
+- MongoDB
+- MySQL
+- REST API
+- Git
+- GitHub
+
+## Projects
+
+### Binary Cat Mobile App
+
+Educational Android application for learning binary arithmetic.
+
+Technologies:
+- Flutter
+- Dart
+- Google Play
+
+https://play.google.com/store/apps/details?id=com.binary_calc
+
+---
+
+### Motion Designer Platform
+
+Web application for managing motion design portfolios and videos.
+
+Technologies:
+- React
+- Node.js
+- Express
+- REST API
+
+https://akialex.com/
+
+---
+
+### Bedores Gallery
+
+Custom Shopify art gallery platform.
+
+Technologies:
+- Shopify
+- Liquid
+- HTML
+- CSS
+- JavaScript
+
+https://bedoresgallery.com/
+
+---
+
+### Jewellery Art Website
+
+SEO-focused website for handcrafted crystal jewellery.
+
+Technologies:
+- HTML
+- CSS
+- JavaScript
+
+https://ivamage.com/
+
+---
+
+### Golf Course Management
+
+Management platform with data visualization.
+
+Technologies:
+- Angular
+- Node.js
+- MySQL
+
+https://www.youtube.com/watch?v=gBV9CulLpPs
+
+## Contact
+
+LinkedIn:
+https://www.linkedin.com/in/ivnata
+
+GitHub:
+https://github.com/Natalia-Ivakina
+
+Email:
+ivanatalca@gmail.com
+
+## License
+
+Copyright © Natalia Ivakina.
+
+## Expertise
+
+- Full Stack Development
+- Frontend Development
+- Mobile App Development
+- Shopify Theme Development
+- REST API Development
+- UI Development
+- SEO Optimization
+- Technical Documentation
+
+## Topics
+
+- React Development
+- Flutter Development
+- Shopify Customization
+- JavaScript
+- Node.js
+- Mobile Applications
+- Web Development
+- Software Engineering

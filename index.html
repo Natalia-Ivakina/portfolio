@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Natalia Ivakina | Full stack Developer</title>
+    <title>Natalia Ivakina | Full stack Developer, NB, Canada</title>
 
     <!-- Meta -->
     <meta charset="UTF-8" />
@@ -14,7 +14,25 @@
       name="keywords"
       content="frontend developer, React developer, web developer, Moncton Canada, portfolio, JavaScript, UI developer"
     />
-    <meta name="author" content="Natalia Ivakina | Full stack" />
+    <meta name="author" content="Natalia Ivakina | Full stack developer" />
+
+    <!-- Open Graph / Twitter Card  -->
+    <meta
+      property="og:title"
+      content="Natalia Ivakina | Full Stack Developer"
+    />
+    <meta
+      property="og:description"
+      content="Full stack Developer based in Moncton, Canada. Portfolio of web and mobile projects."
+    />
+    <meta
+      property="og:image"
+      content="https://nataiva.com/src/Binary%20cat%20app%20logo.png"
+    />
+    <meta property="og:url" content="https://nataiva.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_CA" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Link -->
     <link rel="icon" href="/src/Logo.ico" />
@@ -27,11 +45,116 @@
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="canonical" href="https://nataiva.com/" />
 
     <!-- Scripts -->
     <script src="js/switch_photo.js" defer></script>
     <script src="js/gototop_button.js" defer></script>
     <script src="js/scroll_hint_button.js" defer></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://nataiva.com/#person",
+            "name": "Natalia Ivakina",
+            "jobTitle": "Full Stack Developer",
+            "url": "https://nataiva.com/",
+            "image": "https://nataiva.com/src/4M_Orig_1%201.png",
+            "email": "mailto:ivanatalca@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Moncton",
+              "addressRegion": "NB",
+              "addressCountry": "CA"
+            },
+            "sameAs": [
+              "https://github.com/Natalia-Ivakina",
+              "https://www.linkedin.com/in/ivnata"
+            ],
+            "knowsAbout": [
+              "React",
+              "Flutter",
+              "Angular",
+              "JavaScript",
+              "Node.js",
+              "Shopify",
+              "Liquid",
+              "REST API",
+              "C#",
+              "SQL",
+              "MongoDB",
+              "MySQL",
+              "HTML",
+              "CSS"
+            ]
+          },
+
+          {
+            "@type": "WebSite",
+            "@id": "https://nataiva.com/#website",
+            "url": "https://nataiva.com/",
+            "name": "Natalia Ivakina Portfolio",
+            "author": { "@id": "https://nataiva.com/#person" },
+            "inLanguage": "en"
+          },
+
+          {
+            "@type": "WebPage",
+            "@id": "https://nataiva.com/#webpage",
+            "url": "https://nataiva.com/",
+            "name": "Natalia Ivakina | Full Stack Developer, NB, Canada",
+            "description": "Portfolio of web, mobile and Shopify projects by Full Stack Developer Natalia Ivakina, based in Moncton, NB, Canada.",
+            "isPartOf": { "@id": "https://nataiva.com/#website" },
+            "about": { "@id": "https://nataiva.com/#person" }
+          },
+
+          {
+            "@type": "ItemList",
+            "name": "Portfolio Projects",
+            "itemListElement": [
+              {
+                "@type": "SoftwareApplication",
+                "position": 1,
+                "name": "Binary Cat Mobile App",
+                "url": "https://play.google.com/store/apps/details?id=com.binary_calc",
+                "description": "Mobile app for practicing binary number operations, built with Flutter and Dart."
+              },
+              {
+                "@type": "WebApplication",
+                "position": 2,
+                "name": "Motion Designer Web App",
+                "url": "https://akialex.com/",
+                "description": "Web platform for a motion designer with a video content management system, built with React and Node.js."
+              },
+              {
+                "@type": "WebSite",
+                "position": 3,
+                "name": "Bedores Gallery",
+                "url": "https://bedoresgallery.com/",
+                "description": "Online art gallery platform built on Shopify with custom admin workflows and components."
+              },
+              {
+                "@type": "WebSite",
+                "position": 4,
+                "name": "Jewellery Art Website",
+                "url": "https://ivamage.com/",
+                "description": "Content-driven informational website for handcrafted crystal jewellery, focused on SEO optimization."
+              },
+              {
+                "@type": "SoftwareApplication",
+                "position": 5,
+                "name": "Golf Course Management",
+                "url": "https://www.youtube.com/watch?v=gBV9CulLpPs",
+                "description": "Management system for golf course operations with data visualization, built with Angular and MySQL."
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
 
   <body>
@@ -43,21 +166,24 @@
       <a href="src/NI_Resume.pdf" download
         >CV <i class="fa-solid fa-file-arrow-down"></i
       ></a>
-      <a href="https://www.linkedin.com/in/ivnata"
+      <a href="https://www.linkedin.com/in/ivnata" target="_blank"
         ><i class="fa-brands fa-linkedin"></i
       ></a>
-      <a href="https://github.com/Natalia-Ivakina"
+      <a href="https://github.com/Natalia-Ivakina" target="_blank"
         ><i class="fa-brands fa-square-github"></i
       ></a>
-      <a href="mailto:ivanatalca@gmail.com"
+      <a href="mailto:ivanatalca@gmail.com" target="_blank"
         ><i class="fa-solid fa-envelope"></i
       ></a>
     </nav>
 
     <!-- Content -->
     <div id="wrapper">
-      <h2 class="projects-header-text">Natalia Ivakina</h2>
+      <h1 class="projects-header-text">Natalia Ivakina</h1>
       <h2 class="dev-text">&lt;Full stack developer/&gt;</h2>
+      <p class="location-text">
+        <i class="fa-solid fa-location-dot"></i> Moncton, NB, Canada
+      </p>
 
       <div id="main-content" data-state="skills">
         <button id="toggleButton" class="switch-button">
@@ -114,22 +240,22 @@
               </div>
 
               <div class="skill-container">
-                <img src="src/cib--react.svg" alt="vscode" />
+                <img src="src/cib--react.svg" alt="react" />
                 <span>React</span>
               </div>
 
               <div class="skill-container">
-                <img src="src/fontisto--java.svg" alt="vscode" />
+                <img src="src/fontisto--java.svg" alt="java" />
                 <span>Java</span>
               </div>
 
               <div class="skill-container">
-                <img src="src/arcticons--sqlite-editor.svg" alt="vscode" />
+                <img src="src/arcticons--sqlite-editor.svg" alt="sqlite" />
                 <span>SQL</span>
               </div>
 
               <div class="skill-container">
-                <img src="src/logos--mysql.svg" alt="msql" />
+                <img src="src/logos--mysql.svg" alt="mysql" />
                 <span>MySQL</span>
               </div>
 
@@ -278,7 +404,7 @@
                     class="video-btn"
                     href="https://www.youtube.com/watch?v=RHLzsnX4KGE"
                     target="_blank"
-                    >▶ Demo</a
+                    >▶ Video</a
                   >
                 </div>
               </div>
@@ -326,7 +452,7 @@
                     class="video-btn"
                     href="https://www.youtube.com/watch?v=Oy9qg0M_Obs"
                     target="_blank"
-                    >▶ Demo</a
+                    >▶ Video</a
                   >
                 </div>
               </div>
@@ -351,7 +477,10 @@
               modifications.
             </p>
             <div class="project-card-content">
-              <img src="src/Bedores Gallery.jpg" alt="Bedores Gallery" />
+              <img
+                src="src/Bedores Gallery.jpg"
+                alt="Shopify Art Gallery E-commerce Website Development"
+              />
               <div class="project-desc-text">
                 <div>
                   <div class="desc-label">Key features</div>
@@ -440,7 +569,10 @@
               visualization.
             </p>
             <div class="project-card-content">
-              <img src="src/golf.jpg" alt="Golf" />
+              <img
+                src="src/golf.jpg"
+                alt="Angular and MySQL Golf Course Management Dashboard"
+              />
               <div class="project-desc-text">
                 <div>
                   <div class="desc-label">Key features</div>
@@ -465,7 +597,7 @@
                     class="video-btn"
                     href="https://www.youtube.com/watch?v=gBV9CulLpPs"
                     target="_blank"
-                    >▶ Demo</a
+                    >▶ Video</a
                   >
                 </div>
               </div>
@@ -489,7 +621,10 @@
               services.
             </p>
             <div class="project-card-content">
-              <img src="src/EnvisionConsulting.jpg" alt="EnvisionConsulting" />
+              <img
+                src="src/EnvisionConsulting.jpg"
+                alt="EnvisionIT Consulting business website screenshot"
+              />
               <div class="project-desc-text">
                 <div>
                   <div class="desc-label">Key features</div>
@@ -524,7 +659,7 @@
     <!-- Footer -->
     <footer>
       <p>
-        © 2025 <i class="fa-solid fa-code"></i> Development by
+        © 2025-2026 <i class="fa-solid fa-code"></i> Development by
         <a href="https://www.linkedin.com/in/ivnata" target="_blank">
           Natalia Ivakina <i class="fa-solid fa-up-right-from-square"></i>
         </a>
