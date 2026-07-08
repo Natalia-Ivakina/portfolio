@@ -116,14 +116,21 @@
             "name": "Portfolio Projects",
             "itemListElement": [
               {
-                "@type": "SoftwareApplication",
+                "@type": "MobileApplication",
                 "position": 1,
                 "name": "Binary Cat Mobile App",
                 "url": "https://play.google.com/store/apps/details?id=com.binary_calc",
+                "applicationCategory": "EducationalApplication",
+                "operatingSystem": "Android",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "CAD"
+                },
                 "description": "Mobile app for practicing binary number operations, built with Flutter and Dart."
               },
               {
-                "@type": "WebApplication",
+                "@type": "WebSite",
                 "position": 2,
                 "name": "Motion Designer Web App",
                 "url": "https://akialex.com/",
@@ -144,7 +151,7 @@
                 "description": "Content-driven informational website for handcrafted crystal jewellery, focused on SEO optimization."
               },
               {
-                "@type": "SoftwareApplication",
+                "@type": "WebSite",
                 "position": 5,
                 "name": "Golf Course Management",
                 "url": "https://www.youtube.com/watch?v=gBV9CulLpPs",
@@ -163,22 +170,30 @@
       <a href="#projects" id="nav-projects"
         >Projects <i class="fa-solid fa-folder-open"></i
       ></a>
-      <a href="src/NI_Resume.pdf" download
-        >CV <i class="fa-solid fa-file-arrow-down"></i
-      ></a>
-      <a href="https://www.linkedin.com/in/ivnata" target="_blank"
-        ><i class="fa-brands fa-linkedin"></i
-      ></a>
-      <a href="https://github.com/Natalia-Ivakina" target="_blank"
-        ><i class="fa-brands fa-square-github"></i
-      ></a>
-      <a href="mailto:ivanatalca@gmail.com" target="_blank"
-        ><i class="fa-solid fa-envelope"></i
-      ></a>
+      <a href="src/NI_Resume.pdf" download aria-label="Download resume">
+        <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+      </a>
+      <a
+        href="https://www.linkedin.com/in/ivnata"
+        target="_blank"
+        aria-label="LinkedIn profile"
+      >
+        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+      </a>
+      <a
+        href="https://github.com/Natalia-Ivakina"
+        target="_blank"
+        aria-label="GitHub profile"
+      >
+        <i class="fa-brands fa-square-github" aria-hidden="true"></i>
+      </a>
+      <a href="mailto:ivanatalca@gmail.com" aria-label="Send email">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      </a>
     </nav>
 
     <!-- Content -->
-    <div id="wrapper">
+    <main id="wrapper">
       <h1 class="projects-header-text">Natalia Ivakina</h1>
       <h2 class="dev-text">&lt;Full stack developer/&gt;</h2>
       <p class="location-text">
@@ -346,8 +361,8 @@
             </div>
           </div>
           <div class="photo">
-            <img src="src/4M_P 1.png" alt="casual" id="image1" />
-            <img src="src/4M_Orig_1 1.png" alt="formal" id="image2" />
+            <img src="src/4M_P 1.webp" alt="casual" id="image1" />
+            <img src="src/4M_Orig_1 1.webp" alt="formal" id="image2" />
           </div>
         </div>
       </div>
@@ -654,7 +669,7 @@
       <button id="scrollTopBtn" onclick="scrollToTop()">
         <i class="fa-solid fa-angles-up"></i>
       </button>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
