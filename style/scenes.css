@@ -1,0 +1,496 @@
+/* ========================================================================== 
+   1. БАЗОВАЯ ТЕМА
+   Все переменные изолированы внутри .ns-stories, поэтому компонент можно
+   вставить в существующую страницу без переименования её глобальных цветов.
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ns-stories {
+  --ns-bg: light-dark(#e8f2ee, #1e4239);
+  --ns-paper: light-dark(#f8fcfa, #20372f);
+  --ns-text: light-dark(#214438, #e5f5ed);
+  --ns-muted: light-dark(#597368, #b2ccc0);
+  --ns-line: light-dark(#b9d0c4, #4a6b5c);
+  --ns-green: light-dark(#257353, #98e4b9);
+  --ns-blue: light-dark(#385eab, #b2c9ff);
+  --ns-orange: light-dark(#965220, #ecc095);
+
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--ns-bg);
+  color: var(--ns-text);
+}
+
+.ns-stories * { box-sizing: border-box; }
+.ns-stories button { color: inherit; font: inherit; }
+.ns-stories pre,
+.ns-stories code {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  font-family: Consolas, "SFMono-Regular", monospace;
+}
+.ns-stories pre { margin: 0; }
+.ns-muted { color: var(--ns-muted); }
+
+/* ========================================================================== 
+   2. ОБЩАЯ КОМПОНОВКА
+   Слева находятся группы навыков, справа — одна активная демонстрация.
+   ========================================================================== */
+.ns-layout {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px;
+}
+
+.ns-rail {display: flex; flex-direction: column; justify-content: center; gap: 1.1em; position: relative; z-index: 10; }
+.ns-rail p { margin: 0 0 15px; color: var(--ns-muted); }
+
+.ns-skill {
+  display: block;
+  width: 100%;
+  padding: 17px 10px;
+  cursor: pointer;
+  text-align: left;
+  border: 1px solid var(--ns-line);
+  border-radius: 4px;
+  background: transparent;
+  transition: all .3s ease;
+}
+
+.code-text {
+  font-family: "Fira Code", monospace;
+  font-size: 1em;
+  font-weight: bold;
+  display: inline-block;
+  background: linear-gradient(
+    20deg,
+    #4caf50,
+    #4caf50,
+    #7c85bd,
+    #4caf50,
+    #ba5f7e,
+    #4caf50
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ns-skill b { float: right; color: var(--ns-green); font-weight: 400; }
+.ns-skill small { display: block; margin-top: 7px; color: var(--ns-muted); }
+.ns-skill:hover,
+.ns-skill:focus-visible,
+.ns-skill[aria-pressed="true"] { background: var(--ns-paper); }
+
+.ns-stage {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--ns-line);
+  border-radius: 12px;
+  background: var(--ns-paper);
+}
+.ns-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 20px;
+  border-bottom: 1px solid var(--ns-line);
+  color: var(--ns-muted);
+}
+.ns-pane { display: none; position: relative; min-height: 530px; padding: 20px; }
+.ns-pane.ns-active { display: block; }
+.ns-step { margin-bottom: 12px; color: var(--ns-green); }
+
+/* Блок кода всегда расположен рядом с визуальным результатом. */
+.ns-codebox {
+  position: relative;
+  min-height: 94px;
+  padding: 13px 14px;
+  border-left: 3px solid var(--ns-green);
+  background: var(--ns-bg);
+}
+.ns-codebox small { display: block; margin-bottom: 7px; color: var(--ns-muted); }
+
+/* ========================================================================== 
+   3. INTERFACES: CSS-ГЛУБИНА + REACT-КАРТОЧКИ
+   data-ui меняется от 0 до 3 в JavaScript. Каждый уровень включает только
+   своё визуальное изменение, поэтому зритель видит связь кода и результата.
+   ========================================================================== */
+
+.ns-ui-canvas { min-height: 320px; margin: 14px 0 16px; padding: 12px; perspective: 1200px; }
+.ns-ui-sheet {
+  padding: 19px;
+  transform-style: preserve-3d;
+  border: 1px solid var(--ns-line);
+  border-radius: 10px;
+  background: var(--ns-bg);
+  transition: transform 1.4s ease;
+}
+.ns-ui-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 112px;
+  gap: 14px;
+  align-items: center;
+}
+.ns-ui-title { transition: transform 1.4s ease; }
+.ns-ui-title h1 { margin: 8px 0 12px; font-size: 1.5rem; font-weight: 500; }
+.ns-portrait {
+  width: 112px;
+  height: 145px;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border-radius: 0;
+  transition: transform 1.4s ease, border-radius 1.4s ease;
+}
+.ns-code-under {
+  display: block;
+  margin-top: 12px;
+  padding-top: 9px;
+  opacity: .25;
+  border-top: 1px dashed var(--ns-line);
+  color: var(--ns-green);
+  transition: opacity .6s ease;
+}
+.ns-code-under.ns-on { opacity: 1; }
+.ns-ui-cards { display: flex; gap: 8px; margin-top: 22px; transform-style: preserve-3d; }
+.ns-ui-card {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 8px;
+  border: 1px solid var(--ns-line);
+  border-radius: 7px;
+  background: var(--ns-paper);
+  transition: transform 1.4s ease;
+}
+.ns-ui-card small { display: block; margin-top: 5px; color: var(--ns-muted); }
+
+[data-ui="1"] .ns-ui-sheet,
+[data-ui="2"] .ns-ui-sheet,
+[data-ui="3"] .ns-ui-sheet { transform: rotateY(-13deg) rotateX(8deg) scale(.94); }
+[data-ui="2"] .ns-portrait,
+[data-ui="3"] .ns-portrait { transform: translateZ(65px); border-radius: 65px 65px 12px 12px; }
+[data-ui="3"] .ns-ui-card { transform: translateZ(55px) translateY(5px); }
+[data-ui="3"] .ns-ui-card:nth-child(2) { transition-delay: .15s; }
+[data-ui="3"] .ns-ui-card:nth-child(3) { transition-delay: .3s; }
+
+/* ========================================================================== 
+   4. DATA: ХАОС → СЕТКА → SQL-СОРТИРОВКА
+   Координаты строк заданы CSS-переменными. JavaScript сначала выстраивает их
+   в таблицы, затем показывает количество записей в каждой группе.
+   ========================================================================== */
+
+.ns-db-board { position: relative; height: 300px; margin-top: 22px; }
+.ns-rule {
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--ns-line);
+  transition: transform 1.3s ease;
+}
+.ns-rule-h { left: 0; width: 100%; height: 1px; }
+.ns-rule-v { top: 0; width: 1px; height: 252px; transform: scaleY(0); transform-origin: top; }
+.ns-db-board.ns-ruled .ns-rule { transform: scale(1); }
+.ns-db-head {
+  display: grid;
+  grid-template-columns: 15% 53% 32%;
+  align-items: center;
+  height: 44px;
+  opacity: 0;
+  color: var(--ns-muted);
+  font-family: Consolas, monospace;
+  transition: opacity .8s ease;
+}
+.ns-db-head span { padding-left: 10px; }
+.ns-db-board.ns-ruled .ns-db-head { opacity: 1; }
+.ns-db-row {
+  position: absolute;
+  top: var(--mess-y);
+  left: var(--mess-x);
+  display: grid;
+  grid-template-columns: 15% 53% 32%;
+  align-items: center;
+  width: 90%;
+  height: 52px;
+  transform: rotate(var(--tilt));
+  border: 1px solid var(--ns-line);
+  border-radius: 6px;
+  background: var(--ns-bg);
+  box-shadow: 0 4px 12px #0000000b;
+  transition: top 1.5s cubic-bezier(.2,.8,.2,1), left 1.5s ease,
+              transform 1.5s ease, width 1.5s ease, border-radius 1s ease;
+}
+.ns-db-row span { overflow: hidden; padding: 8px 10px; text-overflow: ellipsis; white-space: nowrap; }
+.ns-db-row span:first-child { color: var(--row-color); font-family: Consolas, monospace; }
+.ns-db-board.ns-filled .ns-db-row {
+  top: calc(44px + var(--slot) * 52px);
+  left: 0;
+  width: 100%;
+  transform: rotate(0);
+  border-color: transparent;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.ns-db-board.ns-sorted .ns-db-row {
+  background: color-mix(in srgb, var(--row-color) 9%, var(--ns-paper));
+}
+.ns-db-note { position: absolute; bottom: 0; color: var(--ns-muted); }
+
+/* ========================================================================== 
+   5. COMMERCE & APIs: ФАЙЛЫ → НОРМАЛИЗАЦИЯ → API → SHOPIFY
+   ========================================================================== */
+
+.ns-commerce-area { position: relative; min-height: 285px; margin-top: 24px; }
+.ns-files { display: flex; justify-content: center; gap: 14px; }
+.ns-file {
+  padding: 17px;
+  transform: rotate(-7deg);
+  border: 1px solid var(--ns-line);
+  border-radius: 5px;
+  background: var(--ns-bg);
+  transition: transform 1s ease;
+}
+.ns-file:nth-child(2) { transform: rotate(8deg); }
+.ns-clean .ns-file { transform: rotate(0); }
+.ns-pipeline-line { position: relative; width: 2px; height: 48px; margin: 0 auto; background: var(--ns-line); }
+.ns-pipeline-line::after {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 4px;
+  height: 14px;
+  opacity: 0;
+  background: var(--ns-green);
+  content: "";
+}
+.ns-clean .ns-pipeline-line::after { animation: ns-down 1.2s 2; }
+@keyframes ns-down { from { top: 0; opacity: 1; } to { top: 100%; opacity: 0; } }
+.ns-normalized {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid var(--ns-line);
+  border-radius: 7px;
+  background: var(--ns-bg);
+  font-family: Consolas, monospace;
+}
+.ns-store { display: flex; gap: 10px; margin-top: 24px; opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
+.ns-published .ns-store { opacity: 1; transform: translateY(0); }
+.ns-product { flex: 1; padding: 16px 10px; border: 1px solid var(--ns-line); border-radius: 8px; background: var(--ns-paper); }
+.ns-product strong { display: block; margin-top: 12px; color: var(--ns-green); font-weight: 500; }
+
+/* ========================================================================== 
+   6. MOBILE: RESPONSIVE WEB → ОБОЛОЧКА ТЕЛЕФОНА → FLUTTER
+   ========================================================================== */
+
+.ns-phone-area { position: relative; display: flex; justify-content: center; align-items: center; min-height: 360px; margin-top: 16px; }
+.ns-phone {
+  position: relative;
+  width: 100%;
+  max-width: 470px;
+  padding: 16px;
+  border: 1px solid var(--ns-line);
+  border-radius: 9px;
+  background: var(--ns-bg);
+  transition: width 1.6s ease, border-radius 1.6s ease, border-width 1.6s ease, padding 1.6s ease;
+}
+.ns-phone.ns-shell { width: 244px; padding: 14px 12px 25px; border: 6px solid var(--ns-text); border-radius: 32px; }
+.ns-statusbar { display: flex; justify-content: space-between; max-height: 0; padding: 0 3px 14px; opacity: 0; transition: opacity 1s ease, max-height 1s ease; }
+.ns-shell .ns-statusbar { max-height: 45px; opacity: 1; }
+.ns-island { width: 65px; height: 16px; border-radius: 20px; background: var(--ns-text); }
+.ns-battery { display: inline-block; width: 20px; height: 10px; border: 1px solid currentColor; border-radius: 2px; background: linear-gradient(to right, currentColor 80%, transparent 80%); }
+.ns-phone h2 { margin: 10px 0 16px; font-size: 1.25rem; font-weight: 500; }
+.ns-phone-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+.ns-phone-cards div { padding: 13px 8px; border: 1px solid var(--ns-line); border-radius: 7px; background: var(--ns-paper); }
+.ns-phone-cards small { display: block; margin-top: 7px; color: var(--ns-muted); }
+.ns-shell .ns-phone-cards { grid-template-columns: 1fr; }
+.ns-appbar { display: flex; justify-content: space-around; margin-top: 15px; padding-top: 13px; opacity: 0; transform: translateY(10px); border-top: 1px solid var(--ns-line); transition: opacity 1s ease, transform 1s ease; }
+.ns-native .ns-appbar { opacity: 1; transform: translateY(0); }
+.ns-homebar { position: absolute; bottom: 7px; left: 50%; width: 70px; height: 4px; opacity: 0; transform: translateX(-50%); border-radius: 4px; background: var(--ns-text); transition: opacity 1s ease; }
+.ns-shell .ns-homebar { opacity: 1; }
+.ns-notification { position: absolute; right: 7px; bottom: 72px; left: 7px; z-index: 2; padding: 13px; opacity: 0; transform: translateY(-20px); border: 1px solid var(--ns-green); border-radius: 12px; background: var(--ns-paper); box-shadow: 0 8px 20px #00000018; transition: opacity .8s ease, transform .8s ease; }
+.ns-notify .ns-notification { opacity: 1; transform: translateY(0); }
+
+/* ========================================================================== 
+   7. DEPLOYMENT: GIT → GITHUB → LINUX/NGINX → LIVE
+   Это намеренно упрощённая, но логически связная схема публикации.
+   ========================================================================== */
+
+.ns-dev-area { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-content: start; min-height: 305px; margin-top: 20px; }
+.ns-git { grid-column: 1 / -1; position: relative; padding: 14px 16px 22px; border: 1px solid var(--ns-line); border-radius: 8px; }
+.ns-git-caption { display: flex; justify-content: space-between; color: var(--ns-muted); }
+.ns-branches { position: relative; height: 80px; margin-top: 8px; }
+.ns-mainline { position: absolute; top: 60px; left: 5%; width: 90%; height: 2px; background: var(--ns-line); }
+.ns-branchline { position: absolute; top: 15px; right: 20%; left: 25%; height: 46px; transform: scaleX(0); transform-origin: left; border: 2px solid var(--ns-green); border-bottom: 0; border-radius: 25px 25px 0 0; transition: transform 1.2s ease; }
+.ns-commit { position: absolute; top: 53px; width: 16px; height: 16px; border: 2px solid var(--ns-line); border-radius: 50%; background: var(--ns-paper); }
+.ns-commit-feature { top: 8px; left: 53%; opacity: 0; border-color: var(--ns-green); transition: opacity 1s ease; }
+.ns-feature-tag { position: absolute; top: 33px; left: 39%; opacity: 0; color: var(--ns-green); font-family: Consolas, monospace; transition: opacity 1s ease; }
+.ns-git.ns-branched .ns-branchline { transform: scaleX(1); }
+.ns-git.ns-branched .ns-commit-feature,
+.ns-git.ns-branched .ns-feature-tag { opacity: 1; }
+.ns-git.ns-merged .ns-commit-final { border-color: var(--ns-green); background: var(--ns-green); }
+.ns-server { position: relative; padding: 16px; border: 1px solid var(--ns-line); border-radius: 8px; }
+.ns-server-label { margin-bottom: 14px; color: var(--ns-muted); }
+.ns-rack { display: flex; justify-content: space-between; align-items: center; height: 28px; margin-top: 6px; padding: 0 10px; border: 1px solid var(--ns-line); border-radius: 4px; }
+.ns-led { width: 7px; height: 7px; border-radius: 50%; background: var(--ns-line); transition: background .6s ease, box-shadow .6s ease; }
+.ns-server.ns-online .ns-led { background: var(--ns-green); box-shadow: 0 0 8px var(--ns-green); }
+.ns-server.ns-online .ns-rack:nth-child(3) .ns-led { transition-delay: .3s; }
+.ns-server.ns-online .ns-rack:nth-child(4) .ns-led { transition-delay: .6s; }
+.ns-packet { position: absolute; top: 50%; right: -12px; width: 18px; height: 10px; opacity: 0; background: var(--ns-green); }
+.ns-online .ns-packet { animation: ns-packet 1s 2; }
+@keyframes ns-packet { from { opacity: 1; transform: translateX(-70px); } to { opacity: 0; transform: translateX(90px); } }
+.ns-live-site { overflow: hidden; opacity: .35; transform: scale(.9); border: 1px solid var(--ns-line); border-radius: 8px; transition: opacity 1.2s ease, transform 1.2s ease; }
+.ns-live-site.ns-live { opacity: 1; transform: scale(1); }
+.ns-url { padding: 10px; overflow-wrap: anywhere; border-bottom: 1px solid var(--ns-line); background: var(--ns-bg); }
+.ns-live-content { padding: 20px 12px; }
+.ns-live-content strong { display: block; margin-bottom: 12px; font-weight: 500; }
+.ns-live-indicator { color: var(--ns-green); }
+
+/* ========================================================================== 
+   8. АДАПТИВНОСТЬ И ДОСТУПНОСТЬ
+   На узком экране меню превращается в сетку кнопок, а сцена идёт ниже.
+   ========================================================================== */
+
+@media (max-width: 720px) {
+  .ns-layout { grid-template-columns: 1fr; gap: 16px; padding: 15px; }
+  .ns-rail { display: flex;flex-direction: row; flex-wrap: wrap; gap: 6px; }
+  .ns-rail p { width: 100%; margin-bottom: 5px; }
+  .ns-skill { flex: 1 1 140px; width: auto; min-height: 62px; padding: 12px; border: 1px solid var(--ns-line); }
+  .ns-skill small { display: none; }
+  .ns-top, .ns-foot { padding: 16px; }
+  .ns-head { flex-wrap: wrap; padding: 14px; }
+  .ns-pane { padding: 15px; }
+  .ns-codebox { min-height: 112px; padding: 10px; }
+  .ns-ui-canvas { padding: 0; }
+  .ns-ui-sheet { padding: 12px; }
+  .ns-ui-hero { grid-template-columns: 1fr 78px; }
+  .ns-portrait { width: 78px; height: 115px; }
+  .ns-ui-cards { flex-direction: column; }
+  .ns-ui-card small { display: none; }
+  .ns-db-row span, .ns-db-head span { padding-right: 5px; padding-left: 5px; }
+  .ns-dev-area { gap: 9px; }
+  .ns-server { padding: 10px; }
+  .ns-rack { padding: 0 6px; }
+  .ns-live-content { padding: 14px 9px; }
+}
+
+/* Пользователь с отключённой анимацией сразу получает конечные состояния. */
+/* =====================================================================
+   9. КОМПОЗИЦИЯ V2 — возвращаем единую сцену из первого прототипа.
+   Один терминал снизу; 3D подписи не занимают место в сетке страницы.
+   ===================================================================== */
+.ns-stories { border-radius:16px; }
+.ns-layout { grid-template-columns:215px minmax(0,1fr); gap:28px; padding:26px; }
+.ns-stage { overflow:visible; border:0; background:transparent; }
+.ns-head { padding:0 4px 14px; border:0; }
+.ns-phase { font-size:.8rem; }
+.ns-pane { min-height:420px; padding:0; }
+.ns-step { display:none; }
+.ns-codebox { min-height:132px; margin:18px 0 0; padding:16px 18px; border:1px solid var(--ns-line); border-radius:9px; background:var(--ns-paper); }
+.ns-code { font-size:.82rem; line-height:1.5; }
+.ns-codebox small { font-size:.75rem; letter-spacing:.03em; }
+.ns-skill { padding:18px 10px; transition:transform .3s,background .3s; }
+.ns-skill[aria-pressed="true"] { transform:translateX(4px); }
+.ns-foot { padding:14px 26px; font-size:.8rem; }
+.ns-ui-canvas { perspective:1000px; min-height:420px; padding:0; margin:0; display:flex; align-items:center; }
+.ns-ui-sheet { position:relative; width:100%; padding:26px; background:var(--ns-paper); transform-style:preserve-3d; transition:transform 1.6s cubic-bezier(.2,.8,.2,1); }
+.ns-ui-hero { grid-template-columns:minmax(0,1fr) 130px; margin:10px 0 30px; transform-style:preserve-3d; }
+.ns-ui-title { transform-style:preserve-3d; }
+.ns-ui-title h1 { font-size:1.8rem; line-height:1.12; }
+.ns-role { color:var(--ns-muted); font-size:.9rem; line-height:1.55; }
+.ns-portrait { width:130px; height:174px; border-radius:75px 75px 12px 12px; background:var(--ns-bg); }
+.ns-ui-hero > div:last-child { transform-style:preserve-3d; }
+.ns-code-under { display:none; }
+.ns-ui-cards { margin-top:0; gap:10px; }
+.ns-ui-card { padding:14px 12px; min-height:110px; background:var(--ns-bg); font-size:.9rem; }
+.ns-number { display:block; font-family:monospace; color:var(--ns-green); margin-bottom:16px; }
+.ns-ui-card small { font-size:.75rem; margin-top:8px; }
+.ns-depth-plane { position:absolute; inset:0; border:1px dashed var(--ns-green); border-radius:12px; opacity:0; transform:translateZ(-45px) scale(1.04); transition:opacity 1s; pointer-events:none; }
+.ns-depth-plane span { position:absolute; left:10px; top:8px; font:12px monospace; color:var(--ns-green); }
+[data-ui="1"] .ns-ui-sheet,[data-ui="2"] .ns-ui-sheet,[data-ui="3"] .ns-ui-sheet { transform:rotateX(12deg) rotateY(-17deg) scale(.86); }
+[data-ui="1"] .ns-depth-plane,[data-ui="2"] .ns-depth-plane,[data-ui="3"] .ns-depth-plane { opacity:1; }
+[data-ui="1"] .ns-ui-title,[data-ui="2"] .ns-ui-title,[data-ui="3"] .ns-ui-title { transform:translateZ(75px) translateY(-12px); }
+[data-ui="2"] .ns-portrait,[data-ui="3"] .ns-portrait { transform:translateZ(120px) translateY(-8px); }
+[data-ui="3"] .ns-ui-card { transform:translateZ(55px) translateY(12px); }
+
+/* Данные: цвет задаётся типом, а не случайно; всего 12 отдельных записей. */
+.ns-db-board { height:420px; margin:0; position:relative; overflow:hidden; border:1px solid var(--ns-line); background:var(--ns-paper); border-radius:12px; }
+[data-group="web"] { --group:var(--ns-green); }
+[data-group="mobile"] { --group:var(--ns-blue); }
+[data-group="data"] { --group:var(--ns-orange); }
+.ns-db-group { position:absolute; top:30px; left:calc(4% + var(--col)*31%); width:29%; height:322px; border:1px solid var(--ns-line); border-radius:8px; opacity:0; transform:translateY(8px); transition:opacity 1s,transform 1s; }
+.ns-group-title { height:48px; padding:15px 12px 12px; color:var(--group); font-family:monospace; }
+.ns-group-fields { height:38px; display:grid; grid-template-columns:30% 70%; padding:7px 10px; border-top:1px solid var(--ns-line); color:var(--ns-muted); font:12px monospace; }
+.ns-grid-rule { position:absolute; left:0; right:0; height:1px; background:var(--ns-line); transform:scaleX(0); transform-origin:left; transition:transform 1.3s; }
+.ns-db-group:after { content:''; position:absolute; top:48px; bottom:26px; left:30%; width:1px; background:var(--ns-line); transform:scaleY(0); transform-origin:top; transition:transform 1.3s; }
+.ns-ruled .ns-db-group { opacity:1; transform:none; }
+.ns-ruled .ns-grid-rule { transform:scaleX(1); }
+.ns-ruled .ns-db-group:after { transform:scaleY(1); }
+.ns-group-count { position:absolute; bottom:0; height:26px; padding:5px 10px; width:100%; color:var(--group); font:12px monospace; opacity:0; transition:opacity .8s; }
+.ns-sorted .ns-group-count { opacity:1; }
+.ns-db-row { width:29%; height:34px; grid-template-columns:30% 70%; background:var(--ns-paper); border-color:var(--group); font:12px monospace; box-shadow:0 4px 12px #0000000c; }
+.ns-db-row span { padding:5px 7px; }
+.ns-db-row span:first-child { color:var(--group); }
+.ns-db-board.ns-filled .ns-db-row { left:calc(4% + var(--col)*31%); top:calc(116px + var(--slot)*34px); width:29%; background:color-mix(in srgb,var(--group) 7%,var(--ns-paper)); }
+.ns-db-board.ns-filled .ns-db-row { border-bottom:1px solid var(--ns-line); }
+.ns-db-board.ns-filled .ns-db-row span:first-child { border-right:1px solid var(--ns-line); height:100%; display:flex; align-items:center; }
+.ns-db-note { left:22px; bottom:18px; font:12px monospace; }
+[data-mode="db"] .ns-db-row { animation:ns-record-fall .8s backwards; animation-delay:var(--fall-delay); }
+@keyframes ns-record-fall { from { opacity:0; top:-45px; transform:rotate(-25deg); } to { opacity:1; } }
+
+/* Все вспомогательные сцены используют одну высоту и одинаковые отступы. */
+.ns-commerce-area,.ns-dev-area,.ns-phone-area { min-height:420px; margin-top:0; }
+.ns-commerce-area { display:flex; flex-direction:column; justify-content:center; padding:30px 24px; background:var(--ns-paper); border:1px solid var(--ns-line); border-radius:12px; }
+.ns-store { gap:8px; }
+.ns-product { font-size:.88rem; background:var(--ns-bg); }
+.ns-dev-area { align-content:center; padding:20px; background:var(--ns-paper); border:1px solid var(--ns-line); border-radius:12px; }
+.ns-git { border:0; padding:8px 0 22px; }
+.ns-url { font-size:.8rem; }
+.ns-phone-area { padding:0 20px; }
+.ns-phone { max-width:500px; background:var(--ns-paper); }
+.ns-phone.ns-shell { width:254px; box-shadow:0 10px 25px #00000012; }
+.ns-phone-cards div { background:var(--ns-bg); }
+.ns-phone-cards small { font-size:.75rem; }
+.ns-appbar { font-size:.8rem; }
+.ns-notification { font-size:.82rem; bottom:62px; }
+
+@media(max-width:720px) {
+  .ns-layout { grid-template-columns:1fr; padding:18px; gap:22px; }
+  .ns-head { padding-top:0; }
+  .ns-pane,.ns-ui-canvas { min-height:400px; }
+  .ns-ui-sheet { padding:18px; }
+  .ns-ui-hero { grid-template-columns:1fr 90px; gap:10px; margin-bottom:22px; }
+  .ns-portrait { width:90px; height:140px; }
+  .ns-ui-title h1 { font-size:1.35rem; }
+  .ns-role { font-size:.8rem; }
+  .ns-ui-cards { flex-direction:column; }
+  .ns-ui-card { min-height:0; display:flex; align-items:center; gap:12px; padding:12px; }
+  .ns-number { margin:0; }
+  .ns-ui-card small { display:none; }
+  .ns-skill { flex-basis:130px; }
+  .ns-codebox { min-height:146px; padding:14px; }
+  .ns-db-row { font-size:11px; }
+  .ns-group-fields,.ns-group-count { font-size:11px; padding-left:5px; padding-right:4px; }
+  .ns-db-row span { padding-left:4px; padding-right:2px; }
+  .ns-group-title { padding-left:6px; font-size:12px; }
+  .ns-commerce-area { padding:24px 14px; }
+  .ns-file { padding:14px 10px; }
+  .ns-dev-area { padding:12px; }
+  .ns-live-content { font-size:.8rem; }
+  .ns-foot { font-size:.75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ns-stories *,
+  .ns-stories *::before,
+  .ns-stories *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

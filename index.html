@@ -1,6 +1,21 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-P7NFCNCYEN"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-P7NFCNCYEN");
+    </script>
+
     <title>Natalia Ivakina | Full stack Developer, NB, Canada</title>
 
     <!-- Meta -->
@@ -41,6 +56,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
     <link rel="stylesheet" href="style/styles.css?v=2" />
+    <link rel="stylesheet" href="style/scenes.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -167,203 +183,288 @@
   <body>
     <!-- Nav -->
     <nav>
-      <a href="#projects" id="nav-projects"
-        >Projects <i class="fa-solid fa-folder-open"></i
-      ></a>
-      <a href="src/NI_Resume.pdf" download aria-label="Download resume">
-        <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-      </a>
-      <a
-        href="https://www.linkedin.com/in/ivnata"
-        target="_blank"
-        aria-label="LinkedIn profile"
-      >
-        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
-      </a>
-      <a
-        href="https://github.com/Natalia-Ivakina"
-        target="_blank"
-        aria-label="GitHub profile"
-      >
-        <i class="fa-brands fa-square-github" aria-hidden="true"></i>
-      </a>
-      <a href="mailto:ivanatalca@gmail.com" aria-label="Send email">
-        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-      </a>
+      <div id="nav-banner-text">
+        <h1 class="projects-header-text" style="margin: 0;">Natalia Ivakina</h1>
+        <h2 class="dev-text">&lt;Full stack developer/&gt;</h2>
+        <p class="location-text">
+          <i class="fa-solid fa-location-dot"></i> Moncton, NB, Canada
+        </p>
+      </div>
+      <div class="nav-actions">
+        <a
+          class="mobile-hidden"
+          href="src/NI_Resume.pdf"
+          download
+          aria-label="Download resume"
+        >
+          CV<i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/ivnata"
+          target="_blank"
+          aria-label="LinkedIn profile"
+        >
+          <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a
+          class="mobile-hidden"
+          href="https://github.com/Natalia-Ivakina"
+          target="_blank"
+          aria-label="GitHub profile"
+        >
+          <i class="fa-brands fa-square-github" aria-hidden="true"></i>
+        </a>
+        <a href="mailto:ivanatalca@gmail.com" aria-label="Send email">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
     </nav>
 
     <!-- Content -->
     <main id="wrapper">
-      <h1 class="projects-header-text">Natalia Ivakina</h1>
-      <h2 class="dev-text">&lt;Full stack developer/&gt;</h2>
-      <p class="location-text">
-        <i class="fa-solid fa-location-dot"></i> Moncton, NB, Canada
-      </p>
+      <h2 class="projects-header-text">Demonstrations</h2>
+      <div id="ns-stories" class="ns-stories">
+        <div class="ns-layout">
+          <aside class="ns-rail" aria-label="Skill groups">
+            <button
+              type="button"
+              class="ns-skill"
+              data-mode="ui"
+              aria-pressed="false"
+            >
+              <span class="code-text">Interfaces <b aria-hidden="true">↗</span></code-text></b>
+              <small>CSS / JavaScript / React</small>
+            </button>
 
-      <div id="main-content" data-state="skills">
-        <button id="toggleButton" class="switch-button">
-          <span class="left projects-header-text">Skills</span>
-          <span class="right projects-header-text">Facts</span>
-        </button>
+            <button
+              type="button"
+              class="ns-skill"
+              data-mode="db"
+              aria-pressed="false"
+            >
+              <span class="code-text">Data &amp; databases <b aria-hidden="true">↗</span></b>
+              <small>SQL / Data modelling</small>
+            </button>
 
-        <div id="info">
-          <div id="panels">
-            <div id="skills">
-              <div class="skill-container">
-                <img src="src/dashicons--html.svg" alt="html" />
-                <span>HTML</span>
-              </div>
+            <button
+              type="button"
+              class="ns-skill"
+              data-mode="commerce"
+              aria-pressed="false"
+            >
+              <span class="code-text">Commerce &amp; APIs <b aria-hidden="true">↗</span></b>
+              <small>Node.js / REST / Shopify</small>
+            </button>
 
-              <div class="skill-container">
-                <img src="src/skill-icons--css.svg" alt="css" />
-                <span>CSS</span>
-              </div>
+            <button
+              type="button"
+              class="ns-skill"
+              data-mode="mobile"
+              aria-pressed="false"
+            >
+              <span class="code-text">Mobile experiences <b aria-hidden="true">↗</span></b>
+              <small>Responsive web / Flutter</small>
+            </button>
 
-              <div class="skill-container">
-                <img src="src/logos--javascript.svg" alt="js" />
-                <span>JavaScript</span>
-              </div>
+            <button
+              type="button"
+              class="ns-skill"
+              data-mode="deploy"
+              aria-pressed="false"
+            >
+              <span class="code-text">From code to live <b aria-hidden="true">↗</span></b>
+              <small>GitHub / Linux / nginx</small>
+            </button>
+          </aside>
 
-              <div class="skill-container">
-                <img src="src/devicon--flutter.svg" alt="flutter" />
-                <span>Flutter</span>
-              </div>
+          <!-- Scenes -->
+          <section class="ns-stage" aria-label="Skill demonstration">
+            <!-- 1:  -->
+            <section class="ns-pane ns-active" data-pane="ui" data-ui="0">
+              <div class="ns-step">Interfaces / build in layers</div>
 
-              <div class="skill-container">
-                <img src="src/devicon--kotlin.svg" alt="kotlin" />
-                <span>Kotlin</span>
-              </div>
+              <div class="ns-ui-canvas">
+                <div class="ns-ui-sheet">
+                  <div class="ns-depth-plane" aria-hidden="true">
+                    <span>layout · z: −45</span>
+                  </div>
+                  <div class="ns-ui-hero">
+                    <div class="ns-ui-title">
+                      <span class="ns-muted">&lt;developer /&gt;</span>
+                      <h1>Thoughtful code.<br />Useful things.</h1>
+                      <p class="ns-role">
+                        Websites, applications<br />and the data behind them.
+                      </p>
+                      <code class="ns-code-under" data-snippet="layout"
+                        >.scene { perspective: 1200px; }</code
+                      >
+                    </div>
 
-              <div class="skill-container">
-                <img src="src/skill-icons--swift.svg" alt="swift" />
-                <span>Swift</span>
-              </div>
+                    <div>
+                      <img
+                        class="ns-portrait"
+                        src="src/4M_P 1.webp"
+                        alt="Natalia Ivakina"
+                      />
+                      <code class="ns-code-under" data-snippet="portrait"
+                        >border-radius:<br />65px 65px 12px 12px;</code
+                      >
+                    </div>
+                  </div>
 
-              <div class="skill-container">
-                <img src="src/teenyicons--c-sharp-solid.svg" alt="c#" />
-                <span>C#</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/devicon--nodejs.svg" alt="node" />
-                <span>Node.js</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/mdi--angular.svg" alt="angular" />
-                <span>Angular</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/cib--react.svg" alt="react" />
-                <span>React</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/fontisto--java.svg" alt="java" />
-                <span>Java</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/arcticons--sqlite-editor.svg" alt="sqlite" />
-                <span>SQL</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/logos--mysql.svg" alt="mysql" />
-                <span>MySQL</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/devicon--mongodb-wordmark.svg" alt="mongodb" />
-                <span>MongoDB</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/mdi--github.svg" alt="git" />
-                <span>GitHub</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/logos--jira.svg" alt="jira" />
-                <span>Jira</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/devicon--vscode-wordmark.svg" alt="vscode" />
-                <span>VSCode</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/logos--visual-studio.svg" alt="vs" />
-                <span>Visual Studio</span>
-              </div>
-
-              <div class="skill-container">
-                <img src="src/devicon--webstorm.svg" alt="storm" />
-                <span>WebStorm</span>
+                  <!-- Cards -->
+                  <div class="ns-ui-cards">
+                    <article class="ns-ui-card">
+                      <span class="ns-number">01</span>Art gallery<small
+                        >Shopify · Liquid</small
+                      >
+                    </article>
+                    <article class="ns-ui-card">
+                      <span class="ns-number">02</span>Binary Cat<small
+                        >Flutter · Dart</small
+                      >
+                    </article>
+                    <article class="ns-ui-card">
+                      <span class="ns-number">03</span>Motion portfolio<small
+                        >React · Node.js</small
+                      >
+                    </article>
+                  </div>
+                  <code class="ns-code-under" data-snippet="cards"
+                    >projects.map(project =&gt; &lt;ProjectCard /&gt;)</code
+                  >
+                </div>
               </div>
 
-              <div class="skill-container">
-                <img src="src/devicon--intellij.svg" alt="intellij" />
-                <span>IntelliJ</span>
+              <div class="ns-codebox">
+                <small class="ns-language">CSS / waiting for an action</small>
+                <pre class="ns-code">Hover over Interfaces</pre>
               </div>
-            </div>
-            <div id="facts">
-              <div class="fact-container" style="background-color: #f7f7f7">
-                <span class="code-text">&lt;/Occupation&gt;</span>
-                <span class="fact-text"
-                  >Web and mobile development is my second profession.</span
-                >
+            </section>
+
+            <!-- 2:  SQL. -->
+            <section class="ns-pane" data-pane="db">
+              <div class="ns-step">Data / from scattered to structured</div>
+              <div class="ns-codebox">
+                <small class="ns-language">CSS</small>
+                <pre class="ns-code"></pre>
               </div>
-              <div class="fact-container">
-                <span class="code-text">&lt;/Hobby&gt;</span>
-                <span class="fact-text"
-                  >I work with glass lampworking as a creative hobby.</span
-                >
+              <div class="ns-db-board">
+                <div class="ns-db-note">12 records · projects</div>
               </div>
-              <div class="fact-container" style="background-color: #f7f7f7">
-                <span class="code-text">&lt;/Free time&gt;</span>
-                <span class="fact-text"
-                  >One of my favorite games is Zelda: Tears of the
-                  Kingdom.</span
-                >
+            </section>
+
+            <!-- 3: входные файлы очищаются, уходят в API и становятся карточками Shopify. -->
+            <section class="ns-pane" data-pane="commerce">
+              <div class="ns-step">Commerce / files → API → storefront</div>
+              <div class="ns-codebox">
+                <small class="ns-language">JavaScript / Node.js</small>
+                <pre class="ns-code"></pre>
               </div>
-              <div class="fact-container">
-                <span class="code-text">&lt;/Experience&gt;</span>
-                <span class="fact-text"
-                  >I have experience in software testing and QA.</span
-                >
+
+              <div class="ns-commerce-area">
+                <div class="ns-files">
+                  <div class="ns-file">catalog.csv</div>
+                  <div class="ns-file">stock.xlsx</div>
+                </div>
+                <div class="ns-pipeline-line" aria-hidden="true"></div>
+                <div class="ns-normalized">" Lamp " · "25.00"</div>
+                <div class="ns-store">
+                  <article class="ns-product">
+                    Lamp<strong>$25.00</strong>
+                  </article>
+                  <article class="ns-product">
+                    Print<strong>$40.00</strong>
+                  </article>
+                  <article class="ns-product">
+                    Vase<strong>$18.00</strong>
+                  </article>
+                </div>
               </div>
-              <div class="fact-container" style="background-color: #f7f7f7">
-                <span class="code-text">&lt;/Travel&gt;</span>
-                <span class="fact-text"
-                  >I lived in Japan for a month and a half and in Mexico for 4
-                  months.</span
-                >
+            </section>
+
+            <!-- СЦЕНА 4: веб-страница сжимается в телефон и получает элементы Flutter. -->
+            <section class="ns-pane" data-pane="mobile">
+              <div class="ns-step">Mobile / screen → app → interaction</div>
+              <div class="ns-codebox">
+                <small class="ns-language">CSS / responsive layout</small>
+                <pre class="ns-code"></pre>
               </div>
-              <div class="fact-container">
-                <span class="code-text">&lt;/Coffee&gt;</span>
-                <span class="fact-text">I drink a lot of coffee.</span>
+
+              <div class="ns-phone-area">
+                <div class="ns-phone">
+                  <div class="ns-statusbar">
+                    <span>9:41</span><span class="ns-island"></span>
+                    <span class="ns-battery" aria-label="Заряд батареи"></span>
+                  </div>
+                  <h2>My projects</h2>
+                  <div class="ns-phone-cards">
+                    <div>Art gallery<small>Shopify storefront</small></div>
+                    <div>Binary Cat<small>Mobile application</small></div>
+                    <div>Motion portfolio<small>Creative platform</small></div>
+                  </div>
+                  <nav class="ns-appbar" aria-label="Навигация приложения">
+                    <span>Projects</span><span>About</span><span>Contact</span>
+                  </nav>
+                  <div class="ns-notification" role="status">
+                    ✓ Project saved
+                  </div>
+                  <div class="ns-homebar" aria-hidden="true"></div>
+                </div>
               </div>
-              <div class="fact-container" style="background-color: #f7f7f7">
-                <span class="code-text">&lt;/Previous life&gt;</span>
-                <span class="fact-text"
-                  >I have experience in urban planning.</span
-                >
+            </section>
+
+            <!-- СЦЕНА 5: ветка Git проходит merge, сервер обновляется, сайт становится online. -->
+            <section class="ns-pane" data-pane="deploy">
+              <div class="ns-step">Deployment / commit → server → live</div>
+              <div class="ns-codebox">
+                <small class="ns-language">Git / GitHub</small>
+                <pre class="ns-code"></pre>
               </div>
-              <div class="fact-container">
-                <span class="code-text">&lt;/Funny&gt;</span>
-                <span class="fact-text"
-                  >I held a driving license in three countries.</span
-                >
+
+              <div class="ns-dev-area">
+                <div class="ns-git">
+                  <div class="ns-git-caption">
+                    <span>GitHub repository</span><span>main</span>
+                  </div>
+                  <div class="ns-branches" aria-hidden="true">
+                    <div class="ns-mainline"></div>
+                    <div class="ns-branchline"></div>
+                    <span class="ns-commit" style="left: 5%"></span>
+                    <span class="ns-commit" style="left: 25%"></span>
+                    <span class="ns-commit ns-commit-feature"></span>
+                    <span
+                      class="ns-commit ns-commit-final"
+                      style="left: 79%"
+                    ></span>
+                    <span class="ns-feature-tag">feature/skills</span>
+                  </div>
+                </div>
+
+                <div class="ns-server">
+                  <div class="ns-server-label">Linux / nginx</div>
+                  <div class="ns-rack">
+                    <span>app</span><span class="ns-led"></span>
+                  </div>
+                  <div class="ns-rack">
+                    <span>web</span><span class="ns-led"></span>
+                  </div>
+                  <div class="ns-rack">
+                    <span>TLS</span><span class="ns-led"></span>
+                  </div>
+                  <span class="ns-packet" aria-hidden="true"></span>
+                </div>
+
+                <div class="ns-live-site">
+                  <div class="ns-url">https://nataiva.com</div>
+                  <div class="ns-live-content">
+                    <strong>Natalia Ivakina</strong>
+                    <span class="ns-live-indicator">Waiting for deploy…</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="photo">
-            <img src="src/4M_P 1.webp" alt="casual" id="image1" />
-            <img src="src/4M_Orig_1 1.webp" alt="formal" id="image2" />
-          </div>
+            </section>
+          </section>
         </div>
       </div>
 
