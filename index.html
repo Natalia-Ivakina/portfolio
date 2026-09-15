@@ -55,8 +55,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="style/styles.css?v=2" />
-    <link rel="stylesheet" href="style/scenes.css" />
+    <link rel="stylesheet" href="style/nav_projects.css" />
+    <link rel="stylesheet" href="style/skills.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -67,6 +67,7 @@
     <script src="js/switch_photo.js" defer></script>
     <script src="js/gototop_button.js" defer></script>
     <script src="js/scroll_hint_button.js" defer></script>
+    <script src="js/bg-simple.js"></script>
 
     <script type="application/ld+json">
       {
@@ -184,7 +185,7 @@
     <!-- Nav -->
     <nav>
       <div id="nav-banner-text">
-        <h1 class="projects-header-text" style="margin: 0;">Natalia Ivakina</h1>
+        <h1 id="nav-name-text" style="margin: 0">Natalia Ivakina</h1>
         <h2 class="dev-text">&lt;Full stack developer/&gt;</h2>
         <p class="location-text">
           <i class="fa-solid fa-location-dot"></i> Moncton, NB, Canada
@@ -222,64 +223,82 @@
 
     <!-- Content -->
     <main id="wrapper">
-      <h2 class="projects-header-text">Demonstrations</h2>
       <div id="ns-stories" class="ns-stories">
-        <div class="ns-layout">
-          <aside class="ns-rail" aria-label="Skill groups">
+        <h2 class="skills-header-text">Demonstrations</h2>
+        <div class="ns-stories-layout">
+          <aside class="ns-stories-side-menu" aria-label="Skill groups">
             <button
               type="button"
-              class="ns-skill"
+              class="ns-skill-button"
               data-mode="ui"
               aria-pressed="false"
             >
-              <span class="code-text">Interfaces <b aria-hidden="true">↗</span></code-text></b>
+              <span class="code-text"
+                ><i aria-hidden="true" class="fa-solid fa-display"></i>
+                Interfaces
+              </span>
               <small>CSS / JavaScript / React</small>
             </button>
 
             <button
               type="button"
-              class="ns-skill"
-              data-mode="db"
-              aria-pressed="false"
-            >
-              <span class="code-text">Data &amp; databases <b aria-hidden="true">↗</span></b>
-              <small>SQL / Data modelling</small>
-            </button>
-
-            <button
-              type="button"
-              class="ns-skill"
-              data-mode="commerce"
-              aria-pressed="false"
-            >
-              <span class="code-text">Commerce &amp; APIs <b aria-hidden="true">↗</span></b>
-              <small>Node.js / REST / Shopify</small>
-            </button>
-
-            <button
-              type="button"
-              class="ns-skill"
+              class="ns-skill-button"
               data-mode="mobile"
               aria-pressed="false"
             >
-              <span class="code-text">Mobile experiences <b aria-hidden="true">↗</span></b>
+              <span class="code-text">
+                <i
+                  aria-hidden="true"
+                  class="fa-solid fa-mobile-screen-button"
+                ></i>
+                Mobile experiences
+              </span>
               <small>Responsive web / Flutter</small>
             </button>
 
             <button
               type="button"
-              class="ns-skill"
+              class="ns-skill-button"
+              data-mode="db"
+              aria-pressed="false"
+            >
+              <span class="code-text">
+                <i aria-hidden="true" class="fa-solid fa-database"></i>
+                Data &amp; databases
+              </span>
+              <small>SQL / Data modelling</small>
+            </button>
+
+            <button
+              type="button"
+              class="ns-skill-button"
+              data-mode="commerce"
+              aria-pressed="false"
+            >
+              <span class="code-text">
+                <i aria-hidden="true" class="fa-solid fa-store"></i>
+                Commerce &amp; APIs
+              </span>
+              <small>Node.js / REST / Shopify</small>
+            </button>
+
+            <button
+              type="button"
+              class="ns-skill-button"
               data-mode="deploy"
               aria-pressed="false"
             >
-              <span class="code-text">From code to live <b aria-hidden="true">↗</span></b>
+              <span class="code-text">
+                <i aria-hidden="true" class="fa-solid fa-globe"></i>
+                From code to live
+              </span>
               <small>GitHub / Linux / nginx</small>
             </button>
           </aside>
 
           <!-- Scenes -->
           <section class="ns-stage" aria-label="Skill demonstration">
-            <!-- 1:  -->
+            <!-- Web  -->
             <section class="ns-pane ns-active" data-pane="ui" data-ui="0">
               <div class="ns-step">Interfaces / build in layers</div>
 
@@ -289,7 +308,7 @@
                     <span>layout · z: −45</span>
                   </div>
                   <div class="ns-ui-hero">
-                    <div class="ns-ui-title">
+                    <div class="ns-ui-title glass-scene1">
                       <span class="ns-muted">&lt;developer /&gt;</span>
                       <h1>Thoughtful code.<br />Useful things.</h1>
                       <p class="ns-role">
@@ -302,7 +321,7 @@
 
                     <div>
                       <img
-                        class="ns-portrait"
+                        class="ns-portrait glass-scene1"
                         src="src/4M_P 1.webp"
                         alt="Natalia Ivakina"
                       />
@@ -314,17 +333,17 @@
 
                   <!-- Cards -->
                   <div class="ns-ui-cards">
-                    <article class="ns-ui-card">
+                    <article class="ns-ui-card glass-scene1">
                       <span class="ns-number">01</span>Art gallery<small
                         >Shopify · Liquid</small
                       >
                     </article>
-                    <article class="ns-ui-card">
+                    <article class="ns-ui-card glass-scene1">
                       <span class="ns-number">02</span>Binary Cat<small
                         >Flutter · Dart</small
                       >
                     </article>
-                    <article class="ns-ui-card">
+                    <article class="ns-ui-card glass-scene1">
                       <span class="ns-number">03</span>Motion portfolio<small
                         >React · Node.js</small
                       >
@@ -342,7 +361,63 @@
               </div>
             </section>
 
-            <!-- 2:  SQL. -->
+            <!-- Mobile -->
+            <section class="ns-pane" data-pane="mobile">
+              <div class="ns-step">Mobile / screen → app → interaction</div>
+              <div class="ns-codebox">
+                <small class="ns-language">CSS / responsive layout</small>
+                <pre class="ns-code"></pre>
+              </div>
+
+              <div class="ns-phone-area">
+                <div class="ns-phone">
+                  <div class="ns-statusbar">
+                    <span>9:41</span><span class="ns-island"></span>
+                    <span class="ns-battery" aria-label="Battery"></span>
+                  </div>
+
+                  <div>
+                    <div id="mobile-header">
+                      <h2>My projects</h2>
+                      <!-- <div class="ns-portrait-wrapper">
+                        <img
+                          class="ns-portrait-mobile"
+                          src="src/4M_P 1.webp"
+                          alt="Natalia Ivakina"
+                        />
+                      </div> -->
+                    </div>
+
+                    <div class="ns-phone-cards">
+                      <div>
+                        <div>Art gallery <small>Shopify storefront</small></div>
+                        <div><img src="src/4M_P 1.webp"></img></div>
+                      </div>
+                      <div>
+                        <div>Binary Cat <small>Mobile application</small></div>
+                        <div><img src="src/Binary cat app logo.png"></img></div>
+                      </div>
+                      <div >
+                        <div > Motion portfolio<small>Creative platform</small></div>
+                        <div><img src="src/logoalex.png"></img></div>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div class="ns-appbar" aria-label="App nav">
+                    <span>Projects</span><span>About</span><span>Contacts</span>
+                  </div>
+
+                  <div class="ns-notification glass-scene1" role="status">
+                    ✓ Project saved
+                  </div>
+
+                  <div class="ns-homebar" aria-hidden="true"></div>
+                </div>
+              </div>
+            </section>
+
+            <!-- SQL -->
             <section class="ns-pane" data-pane="db">
               <div class="ns-step">Data / from scattered to structured</div>
               <div class="ns-codebox">
@@ -354,7 +429,7 @@
               </div>
             </section>
 
-            <!-- 3: входные файлы очищаются, уходят в API и становятся карточками Shopify. -->
+            <!-- API,  Shopify. -->
             <section class="ns-pane" data-pane="commerce">
               <div class="ns-step">Commerce / files → API → storefront</div>
               <div class="ns-codebox">
@@ -383,38 +458,7 @@
               </div>
             </section>
 
-            <!-- СЦЕНА 4: веб-страница сжимается в телефон и получает элементы Flutter. -->
-            <section class="ns-pane" data-pane="mobile">
-              <div class="ns-step">Mobile / screen → app → interaction</div>
-              <div class="ns-codebox">
-                <small class="ns-language">CSS / responsive layout</small>
-                <pre class="ns-code"></pre>
-              </div>
-
-              <div class="ns-phone-area">
-                <div class="ns-phone">
-                  <div class="ns-statusbar">
-                    <span>9:41</span><span class="ns-island"></span>
-                    <span class="ns-battery" aria-label="Заряд батареи"></span>
-                  </div>
-                  <h2>My projects</h2>
-                  <div class="ns-phone-cards">
-                    <div>Art gallery<small>Shopify storefront</small></div>
-                    <div>Binary Cat<small>Mobile application</small></div>
-                    <div>Motion portfolio<small>Creative platform</small></div>
-                  </div>
-                  <nav class="ns-appbar" aria-label="Навигация приложения">
-                    <span>Projects</span><span>About</span><span>Contact</span>
-                  </nav>
-                  <div class="ns-notification" role="status">
-                    ✓ Project saved
-                  </div>
-                  <div class="ns-homebar" aria-hidden="true"></div>
-                </div>
-              </div>
-            </section>
-
-            <!-- СЦЕНА 5: ветка Git проходит merge, сервер обновляется, сайт становится online. -->
+            <!--  Git проходит merge, сервер обновляется, сайт становится online. -->
             <section class="ns-pane" data-pane="deploy">
               <div class="ns-step">Deployment / commit → server → live</div>
               <div class="ns-codebox">
@@ -474,8 +518,8 @@
       </div>
 
       <!-- Projects -->
-      <h2 class="projects-header-text">Projects</h2>
       <div id="projects">
+        <h2 class="projects-header-text">Projects</h2>
         <!-- ROW 1 -->
         <div class="projects-row">
           <!-- Binary Cat -->

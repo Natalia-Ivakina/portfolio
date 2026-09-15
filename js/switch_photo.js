@@ -16,7 +16,7 @@
   const root = document.getElementById("ns-stories");
   if (!root) return;
 
-  const buttons = [...root.querySelectorAll(".ns-skill")];
+  const buttons = [...root.querySelectorAll(".ns-skill-button")];
   const panes = [...root.querySelectorAll(".ns-pane")];
   const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
@@ -199,7 +199,7 @@
   const stages = {
     ui: [
       [
-        "CSS / пространство страницы",
+        "CSS / page space",
         ".scene { perspective: 1000px; }\n.title { transform: translateZ(75px); }",
         () => {
           root.querySelector('[data-pane="ui"]').dataset.ui = "1";
@@ -207,7 +207,7 @@
         },
       ],
       [
-        "CSS / форма портрета",
+        "CSS / image in the foreground",
         ".portrait {\n  transform: translateZ(120px) translateY(-8px);\n}",
         () => {
           root.querySelector('[data-pane="ui"]').dataset.ui = "2";
@@ -215,8 +215,8 @@
         },
       ],
       [
-        "CSS / карточки на переднем плане",
-        ".project {\n  transform: translateZ(55px) translateY(12px);\n}",
+        "CSS / cards in the foreground",
+        ".project {\n  transform: translateZ(100px) translateY(15px);\n}",
         () => {
           root.querySelector('[data-pane="ui"]').dataset.ui = "3";
           get("ui", '[data-snippet="cards"]').classList.add("ns-on");
@@ -289,9 +289,16 @@
 
     mobile: [
       [
-        "CSS / адаптивная компоновка",
+        "CSS / responsive layout",
         "@media (max-width: 600px) {\n  .projects { grid-template-columns: 1fr; }\n}",
         () => get("mobile", ".ns-phone").classList.add("ns-shell"),
+      ],
+      [
+        "CSS / landscape orientation",
+        ".phone { transform: rotate(90deg); }",
+        () => {
+          document.querySelector(".ns-phone").classList.add("ns-shell");
+        },
       ],
       [
         "Dart / Flutter — навигация",

@@ -5,11 +5,55 @@ html {
 }
 
 :root {
-  --bg-color: #def2f1ce;
-  --text-color: #333;
-  --accent-color: #1d578d;
+  /* colors */
+  --color-bg-light: #def2f1ce;
+  --color-bg-dark: #214438;
+  --color-text-dark: #333;
+  --color-text-light: #e5f5ed;
+  --color-accent: #1d578d;
+  --color-green: #4caf50;
+  --color-blue: #3f51b5;
+  --color-pink: #e91e63;
+  --ns-glass-line: #a8dcf096;
+
+  /* projects*/
+  --color-card-bg: #385864;
+  --color-card-border: #9bb3a7;
+  --color-text-primary: #1a3a2e;
+  --color-text-secondary: #010a06;
+  --color-text-tertiary: #1a4030;
+  --color-text-accent: #1a5c3c;
+  --color-text-status: #0f5c38;
+  --color-text-muted: #3f504a;
+
+  /* opacity */
+  --color-white-12: rgba(255, 255, 255, 0.12);
+  --color-white-30: rgba(255, 255, 255, 0.296);
+  --color-white-45: rgba(255, 255, 255, 0.45);
+  --color-white-50: rgba(255, 255, 255, 0.5);
+  --color-white-55: rgba(255, 255, 255, 0.557);
+  --color-white-70: rgba(255, 255, 255, 0.7);
+  --color-white-80: rgba(255, 255, 255, 0.801);
+
+  /* shadows */
+  --color-shadow-light: rgba(0, 0, 0, 0.08);
+  --color-shadow-medium: rgba(0, 0, 0, 0.15);
+  --color-shadow-dark: rgba(0, 0, 0, 0.561);
+  --color-black-025: rgba(0, 0, 0, 0.025);
+  --color-black-020: rgba(0, 0, 0, 0.2);
+  --color-black-040: rgba(0, 0, 0, 0.4);
+
+  --color-status-bg: rgba(200, 255, 220, 0.5);
+  --color-status-border: rgba(30, 160, 80, 0.3);
+
+  --color-nav-bg: #0d2b1628;
+  --color-nav-text: #def2f1b0;
+  --color-scroll-bg: #9c9c9ca3;
+  --color-scroll-text: #ebebeb;
+
   --gradient-start: #bfe0d2;
   --gradient-end: #f7f7f7;
+
   --font: "Poppins", sans-serif;
   --radius: 8px;
 }
@@ -25,8 +69,7 @@ body {
   padding: 0;
   width: 100%;
   font-family: var(--font), serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  color: var(--color-text-dark);
 }
 
 #wrapper {
@@ -39,13 +82,14 @@ nav {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.9rem;
-  background: var(--text-color);
+  padding: 0.7rem 0.9rem;
+  background: var(--color-nav-bg);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 nav::before {
@@ -55,9 +99,6 @@ nav::before {
 
 .nav-actions {
   flex: 1;
-}
-
-.nav-actions {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -68,7 +109,7 @@ nav a {
   text-decoration: none;
   color: white;
   padding: 6px 10px;
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: var(--color-white-12);
   border: 1px solid rgba(255, 255, 255, 0.093);
   border-radius: var(--radius);
   letter-spacing: 1px;
@@ -83,7 +124,7 @@ nav a {
 nav a:hover {
   transform: scale(1.05);
   opacity: 1;
-  background-color: rgba(255, 255, 255, 0.296);
+  background-color: var(--color-white-30);
 }
 
 nav i {
@@ -97,20 +138,25 @@ nav i {
 #nav-banner-text {
   flex-shrink: 0;
   text-align: center;
-  color: #def2f1b0;
+  color: var(--color-nav-text);
 }
 
-.projects-header-text,
+#nav-name-text,
+.location-text,
+.location-text {
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+#nav-name-text {
+  color: #e5f5ed;
+  font-size: 1.5em;
+}
+
 .location-text {
   text-align: center;
   line-height: 1.5;
-}
-
-.projects-header-text {
-  font-size: 1.5rem;
-}
-
-.location-text {
   font-size: 0.9rem;
 }
 
@@ -121,18 +167,7 @@ nav i {
   font-family: "Fira Code", monospace;
   font-weight: bold;
   display: inline-block;
-  background: linear-gradient(
-    20deg,
-    #4caf50,
-    #4caf50,
-    #3f51b5,
-    #4caf50,
-    #e91e63,
-    #4caf50
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #a8dcf0;
   line-height: 1.5;
 }
 
@@ -146,12 +181,12 @@ nav i {
   border-radius: var(--radius);
   padding: 6px 12px 6px 12px;
 
-  color: #ebebeb;
+  color: var(--color-scroll-text);
   font-size: 18px;
   text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.2),
-    0 3px 6px rgba(0, 0, 0, 0.4);
-  background: #9c9c9ca3;
+    0 1px 2px var(--color-black-020),
+    0 3px 6px var(--color-black-040);
+  background: var(--color-scroll-bg);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   animation: bounce 1.6s infinite;
@@ -161,7 +196,7 @@ nav i {
 }
 
 .scroll-hint:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px var(--color-shadow-light);
   transform: scale(1.1);
 }
 
@@ -177,7 +212,13 @@ nav i {
 
 /*PROJECTS_________________________________________________*/
 .projects-header-text {
-  margin: 1em 0 0.5em 0;
+  text-align: center;
+  line-height: 1.5;
+  margin: 1em auto;
+  color: #e5f5ed;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 #projects {
@@ -186,11 +227,15 @@ nav i {
   gap: 2rem;
   align-items: center;
   max-width: 1400px;
-  margin: 1em auto;
-  padding: 1em;
+  margin: 2em auto;
+  padding: 0 1.5em 1.5em;
   scroll-margin-top: 160px;
+
   border-radius: var(--radius);
-  background:#214438;
+  background: #ffffff0d;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border: 1px solid var(--ns-glass-line);
 }
 
 .projects-row {
@@ -211,11 +256,12 @@ nav i {
   min-width: 0;
   max-width: 650px;
   padding: 1em;
-  border: 1px solid #9bb3a7;
+  border: 1px solid var(--ns-glass-line);
   background:
-    radial-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px), #4e8773fe;
+    radial-gradient(var(--color-black-025) 1px, transparent 1px),
+    var(--color-card-bg);
   background-size: 6px 6px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.561);
+  box-shadow: 0 2px 10px var(--color-shadow-dark);
 }
 
 .project-header {
@@ -230,18 +276,18 @@ nav i {
   align-items: center;
   gap: 6px;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--color-white-45);
   border-radius: var(--radius);
-  color: #1a3a2e;
+  color: var(--color-text-primary);
   font-size: 0.95rem;
   padding: 7px 12px;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px var(--color-shadow-light);
   transition: transform 0.1s;
 }
 
 .project-link a:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--color-white-70);
   transform: scale(1.03);
 }
 
@@ -251,10 +297,10 @@ nav i {
 }
 
 .project-summary {
-  color: #010a06;
+  color: var(--color-text-secondary);
   line-height: 1.55;
   margin: 0;
-  border-left: 3px solid #3f504a;
+  border-left: 3px solid var(--color-text-muted);
   padding-left: 10px;
   min-height: 3.2em;
 }
@@ -273,10 +319,10 @@ nav i {
   object-position: center;
   display: block;
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.557);
+  background: var(--color-white-55);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 10px var(--color-shadow-medium);
 }
 
 .project-desc-text {
@@ -286,7 +332,7 @@ nav i {
   flex: 1;
   justify-content: space-between;
   font-size: 0.78rem;
-  color: #1a3a2e;
+  color: var(--color-text-primary);
   line-height: 1.6;
   text-align: left;
 }
@@ -296,7 +342,7 @@ nav i {
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #010a06;
+  color: var(--color-text-secondary);
   opacity: 0.65;
   margin-bottom: 2px;
 }
@@ -311,10 +357,10 @@ nav i {
   font-size: 0.7rem;
   padding: 2px 9px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.5);
-  color: #1a4030;
+  background: var(--color-white-50);
+  color: var(--color-text-tertiary);
   font-weight: 500;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px var(--color-shadow-light);
 }
 
 .project-footer {
@@ -322,13 +368,13 @@ nav i {
   align-items: center;
   justify-content: space-between;
   padding-top: 1rem;
-  border-top: 1px solid #010a0639;;
+  border-top: 1px solid rgba(1, 10, 6, 0.22);
   min-height: 3.2em;
 }
 
 .role-label {
   font-size: 0.72rem;
-  color: #010a06;
+  color: var(--color-text-secondary);
   display: flex;
   align-items: center;
   gap: 5px;
@@ -340,8 +386,8 @@ nav i {
   gap: 5px;
   font-size: 0.72rem;
   font-weight: 600;
-  color: #1a5c3c;
-  background: rgba(255, 255, 255, 0.5);
+  color: var(--color-text-accent);
+  background: var(--color-white-50);
   border-radius: 999px;
   padding: 4px 11px;
   text-decoration: none;
@@ -349,16 +395,16 @@ nav i {
 }
 
 .video-btn:hover {
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--color-white-70);
   transform: scale(1.05);
 }
 
 .status-badge {
   font-size: 0.68rem;
   font-weight: 600;
-  color: #0f5c38;
-  background: rgba(200, 255, 220, 0.5);
-  border: 1px solid rgba(30, 160, 80, 0.3);
+  color: var(--color-text-status);
+  background: var(--color-status-bg);
+  border: 1px solid var(--color-status-border);
   border-radius: 999px;
   padding: 3px 10px;
 }
@@ -379,16 +425,16 @@ nav i {
   z-index: 3;
   border-radius: var(--radius);
 
-  background: #9c9c9ca3;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: var(--color-scroll-bg);
+  box-shadow: 0 4px 12px var(--color-shadow-light);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 
-  color: #ebebeb;
+  color: var(--color-scroll-text);
   font-size: 18px;
   text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.2),
-    0 3px 6px rgba(0, 0, 0, 0.4);
+    0 1px 2px var(--color-black-020),
+    0 3px 6px var(--color-black-040);
 
   transition: all 0.1s ease;
 }
@@ -403,12 +449,16 @@ footer a {
   margin-top: auto;
   text-align: center;
   padding: 1.5em 0;
-  background: var(--text-color);
-  color: rgba(255, 255, 255, 0.801);
+  background: var(--color-nav-bg);
+  color: var(--color-white-80);
   font-size: 0.75rem;
   letter-spacing: 1px;
 }
-
+footer {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 footer a {
   text-decoration: none;
 }
@@ -459,6 +509,7 @@ footer a:hover {
     height: 250px;
   }
 }
+
 /*850px*/
 @media (max-width: 850px) {
   #nav-banner-text {
@@ -474,6 +525,7 @@ footer a:hover {
     height: 250px;
   }
 }
+
 /*700px*/
 @media (max-width: 700px) {
   nav {
@@ -536,6 +588,7 @@ footer a:hover {
     font-size: 0.7rem;
   }
 }
+
 /*300px*/
 @media (max-width: 300px) {
   #nav-projects {
