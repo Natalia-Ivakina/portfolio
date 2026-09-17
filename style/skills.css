@@ -4,6 +4,7 @@
 
 :root {
   font-family: Arial, Helvetica, sans-serif;
+  --ns-height: 490px;
 }
 
 .ns-stories * {
@@ -22,16 +23,14 @@
   --ns-blue: #b2c9ff;
   --ns-orange: #ecc095;
 
-  /* стеклянные слои: чем ближе к зрителю, тем светлее */
-  --glass-back: rgba(255, 255, 255, 0.035); /* подложка сцены */
-  --glass-mid: rgba(13, 12, 12, 0.225); /* лист, корпус телефона */
-  --glass-front: rgba(255, 255, 255, 0.1); /* карточки, плитки */
+  /* glass */
+  --glass-back: rgba(255, 255, 255, 0.035);
+  --glass-mid: rgba(13, 12, 12, 0.225);
+  --glass-front: rgba(255, 255, 255, 0.1);
 
-  /* грани */
   --edge-soft: rgba(168, 220, 240, 0.18);
   --edge-bright: rgba(168, 220, 240, 0.42);
 
-  /* акцент сцены — переопределяется ниже */
   --scene-tint: transparent;
 
   /* shadows */
@@ -301,8 +300,10 @@
   font-weight: 500;
 }
 
+/* ===Mobile=== */
 .ns-statusbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   max-height: 0;
   padding: 0 3px 10px;
@@ -382,6 +383,7 @@
   transform: translateY(0);
 }
 
+/* ===Deploy=== */
 .ns-git-caption {
   display: flex;
   justify-content: space-between;
@@ -465,7 +467,7 @@
 .ns-server {
   position: relative;
   padding: 16px;
-  border: 1px solid var(--ns-line);
+  border: 1px solid var(--ns-glass-line);
   border-radius: 8px;
 }
 
@@ -481,7 +483,7 @@
   height: 28px;
   margin-top: 6px;
   padding: 0 10px;
-  border: 1px solid var(--ns-line);
+  border: 1px solid var(--ns-glass-line);
   border-radius: 4px;
 }
 
@@ -535,7 +537,7 @@
   overflow: hidden;
   opacity: 0.35;
   transform: scale(0.9);
-  border: 1px solid var(--ns-line);
+  border: 1px solid var(--ns-glass-line);
   border-radius: 8px;
   transition:
     opacity 1.2s ease,
@@ -587,7 +589,7 @@
 .ns-pane {
   display: none;
   position: relative;
-  min-height: 420px;
+  min-height: var(--ns-height);
   padding: 0;
 }
 
@@ -643,8 +645,10 @@
   font-size: 0.8rem;
 }
 
+/* ==========WEB ==========*/
+
 .ns-ui-canvas {
-  min-height: 420px;
+  min-height: var(--ns-height);
   margin: 0;
   padding: 0;
   perspective: 1000px;
@@ -653,7 +657,7 @@
 }
 
 .ns-ui-sheet {
-  min-height: 420px;
+  min-height: var(--ns-height);
   padding: 26px;
   transform-style: preserve-3d;
   border: 1px solid var(--ns-glass-line);
@@ -821,9 +825,11 @@
   transform: translateZ(170px) translateY(25px);
 }
 
+/* ==========DATABASE ==========*/
+
 .ns-db-board {
   position: relative;
-  height: 420px;
+  height: var(--ns-height);
   margin-top: 22px;
   margin: 0;
   overflow: hidden;
@@ -1008,9 +1014,10 @@
   }
 }
 
+/* ==========API==========*/
 .ns-commerce-area {
   position: relative;
-  min-height: 420px;
+  min-height: var(--ns-height);
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -1041,16 +1048,17 @@
   font-size: 0.88rem;
 }
 
+/* ========== Deploy==========*/
 .ns-dev-area {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   align-content: center;
-  min-height: 420px;
+  min-height: var(--ns-height);
   margin-top: 0;
   padding: 20px;
-  background: var(--ns-paper);
-  border: 1px solid var(--ns-line);
+  background: var(--glass-mid);
+  border: 1px solid var(--ns-glass-line);
   border-radius: 12px;
 }
 
@@ -1065,22 +1073,37 @@
 .ns-url {
   padding: 10px;
   overflow-wrap: anywhere;
-  border-bottom: 1px solid var(--ns-line);
-  background: var(--ns-bg);
+  border-bottom: 1px solid var(--ns-glass-line);
+  background: var(--glass-front);
   font-size: 0.8rem;
 }
+
+/* ==========MOBILE ==========*/
 
 .ns-phone-area {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 420px;
+  min-height: var(--ns-height);
   margin-top: 0;
   padding: 20px;
   background: var(--glass-mid);
   border: 1px solid var(--ns-glass-line);
   border-radius: 12px;
+}
+
+#nav-mobile-menu {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 1.5em;
+  border-bottom: 1px solid var(--ns-glass-line);
+  padding-bottom: 10px;
+}
+
+#nav-mobile-menu i {
+  display: none;
 }
 
 #mobile-header {
@@ -1090,39 +1113,19 @@
   gap: 12px;
 }
 
-/* #mobile-header h2 {
-  font-size: 1.1em;
-} */
-
-/* .ns-portrait-wrapper {
-  flex-shrink: 0;
-  width: 60px;
-  height: 60px;
-  border-radius: 60px;
-  overflow: hidden;
+#mobile-header h2 {
+  margin: 1em;
 }
-
-.ns-portrait-mobile {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%;
-} */
 
 .ns-phone {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  padding: 16px;
-  border: 1px solid var(--ns-glass-line);
+  max-width: 1000px;
+  padding: 14px 12px 25px;
+  border: 2px solid var(--ns-glass-line);
   border-radius: 9px;
   background: var(--glass-mid);
-  transition:
-    width 1.6s ease,
-    border-radius 1.6s ease,
-    border-width 1.6s ease,
-    padding 1.6s ease;
+  transition: all 2.3s ease;
 }
 
 .ns-phone.ns-shell {
@@ -1133,7 +1136,38 @@
   box-shadow: 0 10px 25px var(--ns-shadow-medium);
 }
 
-.ns-phone-cards > div {
+.ns-phone.ns-shell #nav-mobile-menu {
+  justify-content: left;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ns-phone.ns-shell #nav-mobile-menu span {
+  display: none;
+}
+
+.ns-phone.ns-shell #nav-mobile-menu i {
+  margin-top: 1em;
+  display: block;
+}
+
+.ns-phone.ns-shell #mobile-header h2 {
+  margin: 0 0 1em 0;
+}
+
+.ns-phone-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ns-phone-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ns-phone-cards .ns-phone-cards-row-item {
   padding: 6px;
   border: 1px solid var(--ns-glass-line);
   border-radius: 7px;
@@ -1144,34 +1178,53 @@
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+
+  min-height: 120px;
+
+  transition: all 2.3s ease;
 }
 
-.ns-phone-cards > div > div:first-child {
+.ns-phone-cards > .ns-phone-cards-row-item > div:first-child {
   min-width: 0;
 }
 
-.ns-phone-cards > div > div:last-child {
+.ns-phone-cards > .ns-phone-cards-row-item > div:last-child {
   flex-shrink: 0;
 }
 
 .ns-phone-cards img {
   display: block;
-  width: 50px;
-  height: 50px;
+  width: 90px;
+  height: 90px;
   object-fit: cover;
   border-radius: 5px;
 }
 
-#hidden-ns-phone-card {
+.ns-phone.ns-shell .ns-phone-cards {
   display: block;
-  transition:
-    opacity 0.6s ease,
-    display 0.6s ease;
+  overflow-y: auto;
+  max-height: 250px;
+  padding-right: 6px;
 }
 
-.ns-phone.ns-shell #hidden-ns-phone-card {
-  display: none;
-  opacity: 0;
+.ns-phone.ns-shell .ns-phone-cards {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.431) transparent;
+}
+
+.ns-phone.ns-shell .ns-phone-cards-row {
+  display: contents;
+}
+
+.ns-phone.ns-shell .ns-phone-cards-row-item {
+  width: 100%;
+  margin-bottom: 12px;
+  min-height: 50px;
+}
+
+.ns-phone.ns-shell .ns-phone-cards img {
+  width: 50px;
+  height: 50px;
 }
 
 .ns-phone-cards small {
@@ -1183,7 +1236,7 @@
 
 .ns-appbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 10px;
   padding: 8px 0 0 0;
   width: 100%;
@@ -1202,17 +1255,27 @@
   bottom: 62px;
   left: 7px;
   z-index: 2;
-  padding: 13px;
   opacity: 0;
+
+  padding: 14px 16px;
   transform: translateY(-20px);
-  border: 1px solid var(--ns-glass-line);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  background: var(--ns-paper);
-  box-shadow: 0 8px 20px var(--ns-shadow-dark);
+  background: rgba(200, 200, 200, 0.463);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
   transition:
     opacity 0.8s ease,
     transform 0.8s ease;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000;
+  text-align: center;
 }
 
 /* Big */

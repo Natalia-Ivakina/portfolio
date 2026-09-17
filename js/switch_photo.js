@@ -22,8 +22,7 @@
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
-  // Терминал вынесен из сцены: печать текста больше не меняет её высоту.
-  // Используем одну общую область кода и сохраняем все исходные действия.
+  // terminal
   const sharedCode = root.querySelector(".ns-codebox");
   root.querySelectorAll(".ns-codebox").forEach((box) => {
     if (box !== sharedCode) box.remove();
@@ -226,12 +225,12 @@
 
     db: [
       [
-        "CSS / расчерчиваем таблицу",
+        "CSS / draw table grid",
         ".grid-line {\n  transform: scaleX(1);\n  transition: transform 1.3s;\n}",
         () => databaseBoard.classList.add("ns-ruled"),
       ],
       [
-        "SQL / распределяем записи по типу",
+        "SQL / organize records by type",
         "SELECT id, name, type FROM projects\nORDER BY FIELD(type, 'web', 'mobile', 'data'), id;",
         () => {
           databaseRows.forEach((row, index) => {
@@ -247,7 +246,7 @@
         },
       ],
       [
-        "SQL / считаем записи в каждой группе",
+        "SQL / count records in each group",
         "SELECT type, COUNT(*) AS total\nFROM projects\nGROUP BY type;",
         () => {
           types.forEach(
@@ -294,19 +293,12 @@
         () => get("mobile", ".ns-phone").classList.add("ns-shell"),
       ],
       [
-        "CSS / landscape orientation",
-        ".phone { transform: rotate(90deg); }",
-        () => {
-          document.querySelector(".ns-phone").classList.add("ns-shell");
-        },
-      ],
-      [
-        "Dart / Flutter — навигация",
+        "Dart / Flutter — navigation",
         "NavigationBar(destinations: [\n  projectsTab, aboutTab, contactTab,\n])",
         () => get("mobile", ".ns-phone").classList.add("ns-native"),
       ],
       [
-        "Dart / Flutter — обратная связь",
+        "Dart / Flutter — system feedback",
         'ScaffoldMessenger.of(context).showSnackBar(\n  const SnackBar(content: Text("Project saved")),\n);',
         () => get("mobile", ".ns-phone").classList.add("ns-notify"),
       ],
