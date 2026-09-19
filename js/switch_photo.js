@@ -7,7 +7,6 @@
    3. только после печати включает визуальное действие этого кода;
    4. повторяет процесс при клике, наведении или фокусе с клавиатуры.
 
-   Здесь нет библиотек и сетевых запросов: компонент работает на чистом JS.
    ========================================================================== */
 
 (function initSkillsStories() {
@@ -54,7 +53,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     ДАННЫЕ ДЛЯ SQL-СЦЕНЫ
+     SQL
      Порядок массива намеренно хаотичный. На втором этапе записи получают
      позиции по типу и id; третий этап показывает COUNT(*) каждой группы.
      ------------------------------------------------------------------------ */
@@ -221,6 +220,14 @@
           get("ui", '[data-snippet="cards"]').classList.add("ns-on");
         },
       ],
+      [
+        "CSS / popular web browzers",
+        "#web-logo-bar {\n  transform: translateZ(170px) translateY(25px);\n}",
+        () => {
+          root.querySelector('[data-pane="ui"]').dataset.ui = "4";
+          get("ui", "#web-logo-bar").classList.add("ns-on");
+        },
+      ],
     ],
 
     db: [
@@ -341,6 +348,9 @@
      Обычный hover не перезапускает уже активную сцену. Клик с force=true
      всегда начинает её заново. Каждый шаг получает 3.4 секунды.
      ------------------------------------------------------------------------ */
+  const initialDelays = {
+    mobile: 1000,
+  };
 
   function startScene(nextMode, forceRestart) {
     if (activeMode === nextMode && !forceRestart) return;
@@ -362,12 +372,16 @@
     root.dataset.mode = nextMode;
 
     // В обычном режиме: 3 × 3.4 секунды. Reduced motion сокращает ожидание.
-    const stageDuration = reducedMotion ? 1300 : 3400;
+    const stageDuration = reducedMotion ? 1300 : 3000;
+    const startDelay = reducedMotion ? 0 : initialDelays[nextMode] || 0;
 
     stages[nextMode].forEach(([language, source, action], index) => {
-      later(() => {
-        typeCode(nextMode, language, source, action);
-      }, index * stageDuration);
+      later(
+        () => {
+          typeCode(nextMode, language, source, action);
+        },
+        startDelay + index * stageDuration,
+      );
     });
   }
 
