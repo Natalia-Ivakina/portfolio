@@ -1,14 +1,6 @@
 /* ========================================================================== 
-   NATAIVA — SKILLS IN ACTION
-
-   Что делает этот файл:
-   1. связывает пять кнопок с пятью демонстрационными сценами;
-   2. печатает небольшой осмысленный фрагмент кода;
-   3. только после печати включает визуальное действие этого кода;
-   4. повторяет процесс при клике, наведении или фокусе с клавиатуры.
-
-   ========================================================================== */
-
+  SKILLS IN ACTION
+========================================================================== */
 (function initSkillsStories() {
   "use strict";
 
@@ -53,11 +45,8 @@
   }
 
   /* ------------------------------------------------------------------------
-     SQL
-     Порядок массива намеренно хаотичный. На втором этапе записи получают
-     позиции по типу и id; третий этап показывает COUNT(*) каждой группы.
-     ------------------------------------------------------------------------ */
-
+    SQL - animation
+  ------------------------------------------------------------------------ */
   const types = ["web", "mobile", "data"];
   const records = [
     "web",
@@ -127,7 +116,7 @@
   });
 
   /* ------------------------------------------------------------------------
-     СБРОС СОСТОЯНИЙ
+     Clear
      Нужен, чтобы повторный клик действительно проигрывал сцену с начала.
      ------------------------------------------------------------------------ */
 
@@ -146,20 +135,21 @@
     get("commerce", ".ns-commerce-area").className = "ns-commerce-area";
     get("commerce", ".ns-normalized").textContent = '" Lamp " · "25.00"';
 
+    // mobile
     get("mobile", ".ns-phone").className = "ns-phone";
 
+    // deploy
     get("deploy", ".ns-git").className = "ns-git";
+    get("deploy", ".ns-preview-site").className = "ns-preview-site";
     get("deploy", ".ns-server").className = "ns-server";
     get("deploy", ".ns-live-site").className = "ns-live-site";
-    get("deploy", ".ns-live-indicator").textContent = "Waiting for deploy…";
+
+    get("deploy", ".ns-live-indicator").textContent = "Not published";
   }
 
   /* ------------------------------------------------------------------------
-     ЭФФЕКТ ПЕЧАТИ КОДА
-     Код читается до визуального действия. При prefers-reduced-motion текст и
-     результат появляются сразу, без заставляющей ждать анимации.
-     ------------------------------------------------------------------------ */
-
+    Codebox
+  ------------------------------------------------------------------------ */
   function typeCode(paneName, language, source, afterTyping) {
     const languageLabel = get(paneName, ".ns-language");
     const codeElement = get(paneName, ".ns-code");
@@ -177,7 +167,7 @@
     codeElement.textContent = "";
 
     typingInterval = window.setInterval(() => {
-      // Длинный код печатается чуть быстрее, но всё равно остаётся читаемым.
+      // long code line
       visibleCharacters += Math.max(1, Math.ceil(source.length / 22));
       codeElement.textContent = source.slice(0, visibleCharacters);
 
@@ -189,11 +179,8 @@
   }
 
   /* ------------------------------------------------------------------------
-     СЦЕНАРИИ
-     Каждая сцена содержит ровно три понятных шага:
-       [подпись языка, показываемый код, визуальное действие после кода].
+     Scenes
      ------------------------------------------------------------------------ */
-
   const stages = {
     ui: [
       [
@@ -229,7 +216,6 @@
         },
       ],
     ],
-
     db: [
       [
         "CSS / draw table grid",
@@ -266,7 +252,6 @@
         },
       ],
     ],
-
     commerce: [
       [
         "JavaScript / очищаем поля",
@@ -292,7 +277,6 @@
           get("commerce", ".ns-commerce-area").classList.add("ns-published"),
       ],
     ],
-
     mobile: [
       [
         "CSS / responsive layout",
@@ -310,46 +294,72 @@
         () => get("mobile", ".ns-phone").classList.add("ns-notify"),
       ],
     ],
-
     deploy: [
       [
-        "Git / создаём ветку и коммит",
-        'git switch -c feature/skills\ngit add .\ngit commit -m "Add live skills"',
-        () => get("deploy", ".ns-git").classList.add("ns-branched"),
-      ],
-      [
-        "GitHub / объединяем и отправляем",
-        "git switch main\ngit merge feature/skills\ngit push origin main",
-        () => get("deploy", ".ns-git").classList.add("ns-merged"),
-      ],
-      [
-        "Linux / проверяем и применяем nginx",
-        "ssh deploy@server\ngit -C /var/www/nataiva pull --ff-only\nsudo nginx -t && sudo systemctl reload nginx",
+        "dev@Portfolio:~$ _",
+        "> node server.js\n> npm start\n> git push origin main",
         () => {
+          get("deploy", ".ns-git").classList.add("ns-ready");
+          get("deploy", ".ns-preview-site").classList.add("ns-ready");
+        },
+      ],
+      [
+        "root@Portfolio:~# _",
+        "> npm run build\n> pm2 start server.js --name portfolio\n> certbot --nginx -d nataiva.com",
+        () => {
+          resetDeployCards();
+          get("deploy", ".ns-git").classList.add("ns-ready", "ns-publishing");
           get("deploy", ".ns-server").classList.add("ns-online");
+        },
+      ],
+      [
+        "root@Portfolio:~# _",
+        "> curl -I https://nataiva.com\n> pm2 status\n> systemctl status nginx",
+        () => {
+          resetDeployCards();
+          get("deploy", ".ns-git").classList.add(
+            "ns-ready",
+            "ns-publishing",
+            "ns-live-step",
+          );
           get("deploy", ".ns-live-site").classList.add("ns-live");
-          get("deploy", ".ns-live-indicator").textContent = "● HTTPS · online";
+          get("deploy", ".ns-live-indicator").textContent = "● Online · public";
+        },
+      ],
+      [
+        "root@Portfolio:~# _",
+        "> pm2 restart portfolio\n> pm2 logs portfolio\n> uptime -p",
+        () => {
+          get("deploy", ".ns-git").classList.add(
+            "ns-ready",
+            "ns-publishing",
+            "ns-live-step",
+            "ns-maintenance",
+          );
+
+          get("deploy", ".ns-live-site").classList.add(
+            "ns-live",
+            "ns-supported",
+          );
         },
       ],
     ],
   };
 
   const finishedMessages = {
-    ui: "Layout · portrait · projects — три уровня глубины",
+    ui: "Layout → portrait → project cards → layered depth.",
     db: "12 records → web: 6 · mobile: 4 · data: 2",
     commerce: "Очистка данных → API → товарные карточки Shopify.",
-    mobile:
-      "Адаптивная страница → навигация Flutter → понятная обратная связь.",
-    deploy: "Ветка → merge / push → Linux-сервер. Упрощённая схема публикации.",
+    mobile: "Responsive layout → mobile navigation → user feedback.",
+    deploy: "Ready website → publishing setup → live website.",
   };
 
   /* ------------------------------------------------------------------------
-     ЗАПУСК СЦЕНЫ
-     Обычный hover не перезапускает уже активную сцену. Клик с force=true
-     всегда начинает её заново. Каждый шаг получает 3.4 секунды.
-     ------------------------------------------------------------------------ */
+    Start scene
+  ------------------------------------------------------------------------ */
+  //mobile delay
   const initialDelays = {
-    mobile: 1000,
+    mobile: 1500,
   };
 
   function startScene(nextMode, forceRestart) {
@@ -371,7 +381,7 @@
     });
     root.dataset.mode = nextMode;
 
-    // В обычном режиме: 3 × 3.4 секунды. Reduced motion сокращает ожидание.
+    // 3 × 3000. Reduced motion.
     const stageDuration = reducedMotion ? 1300 : 3000;
     const startDelay = reducedMotion ? 0 : initialDelays[nextMode] || 0;
 
@@ -383,6 +393,13 @@
         startDelay + index * stageDuration,
       );
     });
+  }
+
+  /* reset Deploy Cards */
+  function resetDeployCards() {
+    get("deploy", ".ns-preview-site").classList.remove("ns-ready");
+    get("deploy", ".ns-server").classList.remove("ns-online");
+    get("deploy", ".ns-live-site").classList.remove("ns-live", "ns-supported");
   }
 
   /* ------------------------------------------------------------------------

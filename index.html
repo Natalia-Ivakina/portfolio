@@ -235,9 +235,9 @@
             >
               <span class="code-text"
                 ><i aria-hidden="true" class="fa-solid fa-display"></i>
-                Interfaces
+                Web Interfaces
               </span>
-              <small>CSS / JavaScript / React</small>
+              <small>HTML / CSS / JS / React / Angular</small>
             </button>
 
             <button
@@ -251,7 +251,7 @@
                   aria-hidden="true"
                   class="fa-solid fa-mobile-screen-button"
                 ></i>
-                Mobile experiences
+                Mobile Experience
               </span>
               <small>Responsive web / Flutter</small>
             </button>
@@ -290,7 +290,7 @@
             >
               <span class="code-text">
                 <i aria-hidden="true" class="fa-solid fa-globe"></i>
-                From code to live
+                Launch &amp; Support
               </span>
               <small>GitHub / Linux / nginx</small>
             </button>
@@ -370,7 +370,7 @@
                     </div>
                     <div class="web-logo-bar-item" style="--index: 4">  
                       <i aria-hidden="true" class="fa-brands fa-opera"></i>                 
-                    </div>             
+                    </div>                               
                   </div>
                 </div>         
                 
@@ -493,55 +493,130 @@
 
             <!--  Git -->
             <section class="ns-pane" data-pane="deploy">
-              <div class="ns-step">Deployment / commit → server → live</div>
-              <div class="ns-codebox">
-                <small class="ns-language">Git / GitHub</small>
-                <pre class="ns-code"></pre>
-              </div>
-
               <div class="ns-dev-area">
+                <!-- Timeline -->
                 <div class="ns-git">
+
                   <div class="ns-git-caption">
-                    <span>Development</span><span>Deployment</span>
+                    <span>Ready</span>
+                    <span>Publishing</span>
+                    <span>Live</span>
+                    <span>Maintenance</span>
                   </div>
-                  <div class="ns-branches" aria-hidden="true">
-                    <div class="ns-mainline"></div>
-                    <div class="ns-branchline"></div>
-                    <span class="ns-commit" style="left: 5%"></span>
-                    <span class="ns-commit" style="left: 25%"></span>
-                    <span class="ns-commit ns-commit-feature"></span>
-                    <span
-                      class="ns-commit ns-commit-final"
-                      style="left: 79%"
-                    ></span>
-                    <span class="ns-feature-tag">Version Control</span>
+
+                  <div class="ns-launch-timeline" aria-hidden="true">
+                    <div class="ns-launch-line"></div>
+                    <div class="ns-launch-progress"></div>
+
+                    <span class="ns-launch-dot ns-launch-ready"></span>
+                    <span class="ns-launch-dot ns-launch-publishing"></span>
+                    <span class="ns-launch-dot ns-launch-live"></span>
+                    <span class="ns-launch-dot ns-launch-maintenance"></span>
                   </div>
                 </div>
 
+                <!-- 1. Finished website -->
+                <div class="ns-preview-site">
+                  <div class="ns-url">
+                    localhost:3000
+                  </div>
+
+                  <div class="ns-preview-content">
+                    <div class="ns-preview-browser">
+                      <div class="ns-preview-browser-bar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+
+                      <div class="ns-preview-page">
+                        <strong>Portfolio</strong>                       
+                         <div class="ns-preview-hero">
+                          <img src="src/black_pixel_cat_running.gif" class="ns-cat-run" alt="" />
+                          <div class="ns-progress-track">
+                            <div class="ns-progress-fill"></div>
+                          </div>
+                        </div>
+                        <div class="ns-preview-columns">
+                          <span>Home</span>
+                          <span>Arts</span>
+                          <span>About</span>
+                        </div>
+                      </div>
+
+                    </div>
+                    <span class="ns-preview-status">
+                      Development complete
+                    </span>
+
+                  </div>
+                </div>
+
+                <!-- 2. Publishing -->
                 <div class="ns-server">
-                  <div class="ns-server-label">Linux / nginx</div>
-                  <div class="ns-rack">
-                    <span>app</span><span class="ns-led"></span>
-                  </div>
-                  <div class="ns-rack">
-                    <span>web</span><span class="ns-led"></span>
-                  </div>
-                  <div class="ns-rack">
-                    <span>TLS</span><span class="ns-led"></span>
+                  <div class="ns-url">root@Portfolio:~# _</div>
+                  <div id="ns-server-actions">
+                    <div class="ns-rack">
+                      <span>Pull code <small>> Already up to date</small></span>
+                      <span class="ns-led"></span>
+                    </div>
+                    <div class="ns-rack">
+                      <span>Build site <small>> built in 1.24s</small></span>
+                      <span class="ns-led"></span>
+                    </div>
+                    <div class="ns-rack">
+                      <span>Domain <small>> nataiva.com → 203.0.113.10</small></span>
+                      <span class="ns-led"></span>
+                    </div>
+                    <div class="ns-rack">
+                      <span>SSL <small>> HTTPS enabled</small></span>
+                      <span class="ns-led"></span>
+                    </div>
                   </div>
                   <span class="ns-packet" aria-hidden="true"></span>
                 </div>
 
+                <!-- 3. Public website -->
                 <div class="ns-live-site">
-                  <div class="ns-url">https://nataiva.com</div>
+                  <div class="ns-url">
+                    https://nataiva.com
+                  </div>
                   <div class="ns-live-content">
-                    <strong>Natalia Ivakina</strong>
-                    <span class="ns-live-indicator">Waiting for deploy…</span>
+                    <div class="ns-live-person">
+                      <div class="ns-live-avatar">
+                        <i class="fa-solid fa-globe ns-avatar-globe"></i>
+                        <img class="ns-avatar-photo" src="src/4M_P 1.webp" alt="Natalia Ivakina" />
+                      </div>
+
+                      <div class="ns-live-text">
+                        <div class="ns-text-live">
+                          <strong>Web developer</strong>
+                          <span class="ns-live-indicator">Not published</span>
+                        </div>                    
+                      </div>
+                    </div>
+
+                    <div class="ns-live-lock" aria-hidden="true">
+                    <i class="fa-solid fa-lock ns-lock-closed"></i>
+                    <i class="fa-solid fa-lock-open ns-lock-open"></i>
+                  </div>
+
+                    <div class="ns-site-users" aria-hidden="true">
+                      <i class="fa-solid fa-user"></i>
+                      <i class="fa-solid fa-user"></i>
+                      <i class="fa-solid fa-user"></i>
+                      <span>Visitors</span>
+                    </div>
+
+                    <div class="ns-support-items">
+                      <span><i class="fa-solid fa-rotate"></i>Updated</span>
+                      <span><i class="fa-solid fa-list"></i>No Errors</span>
+                      <span><i class="fa-solid fa-clock"></i>Up 6 weeks</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </div>              
             </section>
-
           </section>
         </div>
       </div>
