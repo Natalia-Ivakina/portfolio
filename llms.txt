@@ -1,6 +1,6 @@
 # Natalia Ivakina Portfolio
 
-Official portfolio of Natalia Ivakina, a Full Stack Developer based in Moncton, New Brunswick, Canada. Specializes in web and mobile application development, Shopify customization, and SEO optimization.
+Official portfolio of Natalia Ivakina, a Web Developer based in Moncton, New Brunswick, Canada. Specializes in web and mobile application development, Shopify customization, and SEO optimization.
 
 - **Primary Website:** [nataiva.com](https://nataiva.com/)
 

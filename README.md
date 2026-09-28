@@ -1,6 +1,6 @@
 # Personal Portfolio | Natalia Ivakina
 
-Personal portfolio website of Natalia Ivakina, a Full Stack Developer based in Moncton, NB, Canada.
+Personal portfolio website of Natalia Ivakina, a Web Developer based in Moncton, NB, Canada.
 
 **Link:** [nataiva.com](https://nataiva.com)
 

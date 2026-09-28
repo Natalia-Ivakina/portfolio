@@ -1,0 +1,103 @@
+/*=== Backend === */
+.ns-backend-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  min-height: var(--ns-height);
+  padding: 30px 24px;
+  border: 1px solid var(--ns-glass-line);
+  background: var(--glass-mid);
+  border-radius: 12px;
+}
+
+.ns-backend-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--ns-muted);
+}
+
+.ns-backend-node i {
+  font-size: 2rem;
+  color: var(--ns-green);
+}
+
+.ns-hamster-wheel {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ns-coming-soon {
+  position: absolute;
+  inset: 0;
+  animation: ns-coming-spin 10s linear infinite;
+}
+
+.ns-coming-soon span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  transform-origin: 0 0;
+}
+
+/* letters*/
+.ns-coming-soon span:nth-child(1) {
+  transform: rotate(0deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(2) {
+  transform: rotate(30deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(3) {
+  transform: rotate(60deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(4) {
+  transform: rotate(90deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(5) {
+  transform: rotate(120deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(6) {
+  transform: rotate(150deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(7) {
+  color: var(--ns-green);
+  transform: rotate(180deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(8) {
+  transform: rotate(210deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(9) {
+  transform: rotate(240deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(10) {
+  transform: rotate(270deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(11) {
+  transform: rotate(300deg) translateY(-48px);
+}
+.ns-coming-soon span:nth-child(12) {
+  color: var(--ns-green);
+  transform: rotate(330deg) translateY(-48px);
+}
+
+.ns-hamster {
+  position: relative;
+  z-index: 2;
+  font-size: 1.6rem;
+}
+
+@keyframes ns-coming-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

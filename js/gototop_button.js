@@ -1,6 +1,6 @@
 /**
- * Shows the "Back to Top" button after scrolling down
- * and smoothly scrolls the page to the top when clicked.
+ * Shows the "Back to Top"
+ * and smoothly scrolls the page
  */
 window.addEventListener("scroll", function () {
   const btn = document.getElementById("scrollTopBtn");

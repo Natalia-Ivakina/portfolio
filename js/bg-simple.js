@@ -1,3 +1,4 @@
+//background
 (function () {
   const LINE_HEIGHT = 17;
   const FONT_SIZE = 12;

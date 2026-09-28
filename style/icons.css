@@ -1,0 +1,35 @@
+/* =========== Browsers  =========== */
+.chromebrowser-icon {
+  -webkit-mask-image: url("/src/browsers/chrome.svg");
+  mask-image: url("/src/browsers/chrome.svg");
+}
+
+.firefoxbrowser-icon {
+  -webkit-mask-image: url("/src/browsers/firefox.svg");
+  mask-image: url("/src/browsers/firefox.svg");
+}
+
+.internet-explorer-icon {
+  -webkit-mask-image: url("/src/browsers/internet-explorer.svg");
+  mask-image: url("/src/browsers/internet-explorer.svg");
+}
+
+.operabrowser-icon {
+  -webkit-mask-image: url("/src/browsers/opera.svg");
+  mask-image: url("/src/browsers/opera.svg");
+}
+
+.qutebrowser-icon {
+  -webkit-mask-image: url("/src/browsers/qutebrowser.svg");
+  mask-image: url("/src/browsers/qutebrowser.svg");
+}
+
+.safaribrowser-icon {
+  -webkit-mask-image: url("/src/browsers/safari.svg");
+  mask-image: url("/src/browsers/safari.svg");
+}
+
+.vivaldibrowser-icon {
+  -webkit-mask-image: url("/src/browsers/vivaldi.svg");
+  mask-image: url("/src/browsers/vivaldi.svg");
+}

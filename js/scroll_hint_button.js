@@ -1,7 +1,7 @@
 /**
- * Handles scroll hint interaction:
+ * Handles scroll hint 
  * click → smooth scroll down
- * scroll → hide/show hint based on scroll position
+ * scroll → hide/show hint 
  */
 document.querySelector(".scroll-hint").addEventListener("click", () => {
   window.scrollBy({

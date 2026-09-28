@@ -16,14 +16,14 @@
       gtag("config", "G-P7NFCNCYEN");
     </script>
 
-    <title>Natalia Ivakina | Full stack Developer, NB, Canada</title>
+    <title>Natalia Ivakina | Web Developer, Moncton, NB, Canada</title>
 
     <!-- Meta -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Full stack Developer based in Moncton, Canada. Portfolio of web projects, React applications and UI development."
+      content="Web Developer based in Moncton, Canada. Portfolio of web projects, React applications and UI development."
     />
     <meta
       name="keywords"
@@ -38,11 +38,11 @@
     />
     <meta
       property="og:description"
-      content="Full stack Developer based in Moncton, Canada. Portfolio of web and mobile projects."
+      content="Web Developer based in Moncton, Canada. Portfolio of web and mobile projects."
     />
     <meta
       property="og:image"
-      content="https://nataiva.com/src/Binary%20cat%20app%20logo.png"
+      content="https://nataiva.com/src/binary_cat_app_logo.png"
     />
     <meta property="og:url" content="https://nataiva.com/" />
     <meta property="og:type" content="website" />
@@ -55,8 +55,19 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style/nav_projects.css" />
-    <link rel="stylesheet" href="style/skills.css" />
+    <link rel="stylesheet" href="style/scenes/common.css" />
+    <link rel="stylesheet" href="style/scenes/backend_scene.css" />
+    <link rel="stylesheet" href="style/scenes/commerce_scene.css" />
+    <link rel="stylesheet" href="style/scenes/db_scene.css" />
+    <link rel="stylesheet" href="style/scenes/deploy_scene.css" />
+    <link rel="stylesheet" href="style/scenes/web_scene.css" />
+    <link rel="stylesheet" href="style/scenes/mobile_scene.css" />
+    <link rel="stylesheet" href="style/icons.css" />
+
+    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -186,7 +197,7 @@
     <nav>
       <div id="nav-banner-text">
         <h1 id="nav-name-text" style="margin: 0">Natalia Ivakina</h1>
-        <h2 class="dev-text">&lt;Full stack developer/&gt;</h2>
+        <h2 class="dev-text">&lt;Web Developer/&gt;</h2>
         <p class="location-text">
           <i class="fa-solid fa-location-dot"></i> Moncton, NB, Canada
         </p>
@@ -224,7 +235,7 @@
     <!-- Content -->
     <main id="wrapper">
       <div id="ns-stories" class="ns-stories">
-        <h2 class="skills-header-text">Demonstrations</h2>
+        <h2 class="skills-header-text">Skills</h2>
         <div class="ns-stories-layout">
           <aside class="ns-stories-side-menu" aria-label="Skill groups">
             <button
@@ -264,10 +275,24 @@
             >
               <span class="code-text">
                 <i aria-hidden="true" class="fa-solid fa-database"></i>
-                Data &amp; databases
+                Database Design
               </span>
-              <small>SQL / Data modelling</small>
+              <small>MySQL / SQL Server / SheetJS </small>
             </button>
+
+            <button
+              type="button"
+              class="ns-skill-button"
+              data-mode="backend"
+              aria-pressed="false"
+            >
+              <span class="code-text">
+                <i aria-hidden="true" class="fa-solid fa-gear"></i>
+                Backend 
+              </span>
+              <small>C# / Java / JS</small>
+            </button>
+
 
             <button
               type="button"
@@ -277,9 +302,9 @@
             >
               <span class="code-text">
                 <i aria-hidden="true" class="fa-solid fa-store"></i>
-                Commerce &amp; APIs
+                Ecommerce &amp; APIs
               </span>
-              <small>Node.js / REST / Shopify</small>
+              <small>Node.js / REST / SEO </small>
             </button>
 
             <button
@@ -292,7 +317,7 @@
                 <i aria-hidden="true" class="fa-solid fa-globe"></i>
                 Launch &amp; Support
               </span>
-              <small>GitHub / Linux / nginx</small>
+              <small>GitHub / Linux / Nginx</small>
             </button>
           </aside>
 
@@ -356,21 +381,27 @@
                                    
                   <!-- Logo Bar -->
                   <div id="web-logo-bar" class="glass-scene1" data-snippet="logo-wall">         
-                    <div class="web-logo-bar-item" style="--index: 0"> 
-                      <i aria-hidden="true" class="fa-brands fa-chrome"></i>                 
-                    </div>
-                    <div class="web-logo-bar-item" style="--index: 1"> 
-                      <i aria-hidden="true" class="fa-brands fa-internet-explorer"></i>                    
+                    <div class="web-logo-bar-item" style="--index: 1">              
+                      <i class="browser-icon chromebrowser-icon" aria-label="chrome browser"></i>                                 
                     </div>
                     <div class="web-logo-bar-item" style="--index: 2"> 
-                      <i aria-hidden="true" class="fa-brands fa-firefox-browser"></i>                     
+                      <i class="browser-icon firefoxbrowser-icon" aria-label="firefox browser"></i>                    
                     </div>
-                    <div class="web-logo-bar-item" style="--index: 3">
-                      <i aria-hidden="true" class="fa-brands fa-safari"></i> 
+                    <div class="web-logo-bar-item hidden-icon" style="--index: 3"> 
+                      <i class="browser-icon internet-explorer-icon" aria-label="internet explorer"></i>                    
                     </div>
-                    <div class="web-logo-bar-item" style="--index: 4">  
-                      <i aria-hidden="true" class="fa-brands fa-opera"></i>                 
-                    </div>                               
+                    <div class="web-logo-bar-item" style="--index: 4">
+                      <i class="browser-icon operabrowser-icon" aria-label="opera browser"></i> 
+                    </div>
+                    <div class="web-logo-bar-item hidden-icon" style="--index: 5">  
+                      <i class="browser-icon qutebrowser-icon" aria-label="qute browser"></i>                
+                    </div> 
+                     <div class="web-logo-bar-item" style="--index: 6">  
+                      <i class="browser-icon safaribrowser-icon" aria-label="safari browser"></i>                
+                    </div>   
+                     <div class="web-logo-bar-item" style="--index: 7">  
+                      <i class="browser-icon vivaldibrowser-icon" aria-label="vivaldi browser"></i>                
+                    </div>                                 
                   </div>
                 </div>         
                 
@@ -417,7 +448,7 @@
 
                         <div class="ns-phone-cards-row-item">
                           <div>Binary Cat <small>Mobile application</small></div>
-                          <div><img src="src/Binary cat app logo.png"></img></div>
+                          <div><img src="src/binary_cat_app_logo.png"></img></div>
                         </div>
                       </div>
 
@@ -437,7 +468,6 @@
 
                   <div class="ns-appbar" aria-label="App nav">
                     <span>Projects</span>
-                    <!-- <span>About</span> -->
                     <span>Contacts</span>
                   </div>
 
@@ -462,7 +492,47 @@
               </div>
             </section>
 
-            <!-- API,  Shopify. -->
+            <!-- Backend -->
+             <section class="ns-pane" data-pane="backend">
+              <div class="ns-step">Backend / database → server → website</div>
+              <div class="ns-codebox">
+                <small class="ns-language">Node.js / Express</small>
+                <pre class="ns-code"></pre>
+              </div>
+
+              <div class="ns-backend-area">
+                <div class="ns-backend-node ns-backend-db">
+                  <i class="fa-solid fa-database" aria-hidden="true"></i>
+                  <span>Database</span>
+                </div>
+
+                <div class="ns-hamster-wheel">
+                  <div class="ns-coming-soon">
+                    <span>C</span>
+                    <span>O</span>
+                    <span>M</span>
+                    <span>I</span>
+                    <span>N</span>
+                    <span>G</span>
+                    <span>*</span>
+                    <span>S</span>
+                    <span>O</span>
+                    <span>O</span>
+                    <span>N</span>
+                    <span>*</span>
+                  </div>
+
+                  <span class="ns-hamster" aria-hidden="true">🐹</span>
+                </div>
+
+                <div class="ns-backend-node ns-backend-site">
+                  <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                  <span>Website</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- API, Shopify. -->
             <section class="ns-pane" data-pane="commerce">
               <div class="ns-step">Commerce / files → API → storefront</div>
               <div class="ns-codebox">
@@ -471,22 +541,142 @@
               </div>
 
               <div class="ns-commerce-area">
-                <div class="ns-files">
-                  <div class="ns-file">catalog.csv</div>
-                  <div class="ns-file">stock.xlsx</div>
-                </div>
-                <div class="ns-pipeline-line" aria-hidden="true"></div>
-                <div class="ns-normalized">" Lamp " · "25.00"</div>
-                <div class="ns-store">
-                  <article class="ns-product">
-                    Lamp<strong>$25.00</strong>
-                  </article>
-                  <article class="ns-product">
-                    Print<strong>$40.00</strong>
-                  </article>
-                  <article class="ns-product">
-                    Vase<strong>$18.00</strong>
-                  </article>
+                <div class="ns-commerce-layout">
+
+                  <!-- Vertical timeline, left -->
+                  <div class="ns-commerce-timeline" aria-hidden="true">
+                    <div class="ns-commerce-line"></div>
+                    <div class="ns-commerce-progress"></div>
+
+                    <span class="ns-commerce-dot ns-cm-clientdata"></span>
+                    <span class="ns-commerce-dot ns-cm-transformed"></span>
+                    <span class="ns-commerce-dot ns-cm-importing"></span>
+                    <span class="ns-commerce-dot ns-cm-published"></span>
+
+                    <div class="ns-commerce-caption">
+                      <span class="ns-cap-label">Client data</span>
+                      <span class="ns-cap-status ns-cap-status-bad">
+                        <i class="fa-solid fa-xmark" aria-hidden="true"></i> Not suitable <br> for import
+                      </span>
+
+                      <span class="ns-cap-label">Data Processing</span>
+                      <span class="ns-cap-status ns-cap-status-good">
+                        <i class="fa-solid fa-check" aria-hidden="true"></i> Import table <br> created
+                      </span>
+
+                      <span class="ns-cap-label">Import</span>                     
+
+                      <span class="ns-cap-label">In store</span>
+                    </div>
+                  </div>
+
+                  <!-- Main content column -->
+                  <div class="ns-commerce-content">
+
+                    <div class="ns-commerce-area-row">
+                      <div class="ns-files">
+                        <div class="ns-file-client">
+                          <span class="ns-word word-1">Leather</span>
+                          <span class="ns-word word-2">Backpack</span>
+                          <span class="ns-word word-3">price: 35?</span>
+                          <span class="ns-word word-4">SKU-204</span>
+                        </div>
+
+                        <div class="ns-file-client hide-data-tablet">
+                          <span class="ns-word word-1">T-Shirt</span>
+                          <span class="ns-word word-2">Cotton</span>
+                          <span class="ns-word word-3">price: 25?</span>
+                          <span class="ns-word word-4">Blue / M</span>
+                        </div>
+
+                        <div class="ns-file-client hide-data-mobile">
+                          <span class="ns-word word-1">Desk Lamp</span>
+                          <span class="ns-word word-2">cost 20</span>
+                          <span class="ns-word word-3">qty: 5!!</span>
+                          <span class="ns-word word-4">Lighting</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="ns-transform-row">
+                      <div class="ns-file ns-file-table">
+                        <div class="ns-file-head">
+                          <i class="fa-solid fa-file-csv" aria-hidden="true"></i>
+                          <span>ImportTable.cvs</span>
+                        </div>
+                        <div class="ns-mini-table">
+                          <div class="ns-mini-row ns-mini-head">
+                            <span class="hide-data-tablet">Handle</span>
+                            <span>Title</span>
+                            <span>Price</span>
+                            <span  class="hide-data-tablet">Body (HTML)</span>
+                            <span  class="hide-data-mobile">Tags</span>
+                          </div>
+                          <div class="ns-mini-row">
+                            <span class="hide-data-tablet">cotton-t-shirt</span>
+                            <span>Cotton T-Shirt</span>
+                            <span>$24.99</span>
+                            <span class="hide-data-tablet">Soft everyday...</span>
+                            <span class="hide-data-mobile">Clothing</span>
+                          </div>
+                          <div class="ns-mini-row">
+                            <span class="hide-data-tablet">leather-backpack</span>
+                            <span>Leather Backpack</span>
+                            <span>$35.00</span>
+                            <span class="hide-data-tablet">Classic leather...</span>
+                            <span class="hide-data-mobile">Bags</span>
+                          </div>
+                        </div>
+                      </div>                   
+                    </div>
+
+                    <div class="ns-import-flag" aria-hidden="true">
+                      <i class="fa-solid fa-arrows-rotate"></i>
+                      <span class="ns-import-flag-text">Importing …</span>
+                    </div>
+
+                    <div class="ns-store">
+                      <article class="ns-product">
+                        <div class="ns-product-thumb">
+                          <i class="fa-solid fa-shirt"></i>
+                          T-Shirt
+                        </div>
+                        <small class="ns-product-desc">Soft everyday cotton...</small>
+                        <strong>$24.99</strong>
+                      </article>
+
+                      <article class="ns-product">
+                        <div class="ns-product-thumb">
+                          <i class="fa-solid fa-image"></i>
+                          Print
+                        </div>
+                        <small class="ns-product-desc">Framed abstract wall..</small>
+                        <strong>$40.00</strong>
+                      </article>
+
+                      <article class="ns-product hide-data-tablet">
+                        <div class="ns-product-thumb">
+                          <i class="fa-solid fa-person-hiking"></i>
+                          Backpack
+                        </div>
+                        <small class="ns-product-desc">Classic leather backpack...</small>
+                        <strong>$35.00</strong>
+                      </article>
+
+                      
+
+                      <article class="ns-product hide-data-mobile">
+                        <div class="ns-product-thumb">
+                          <i class="fa-solid fa-camera"></i>
+                          Camera
+                        </div>
+                        <small class="ns-product-desc">Compact digital camera...</small>
+                        <strong>$250.00</strong>
+                      </article>
+                    </div>
+
+                  </div>
                 </div>
               </div>
             </section>
@@ -531,12 +721,19 @@
 
                       <div class="ns-preview-page">
                         <strong>Portfolio</strong>                       
-                         <div class="ns-preview-hero">
-                          <img src="src/black_pixel_cat_running.gif" class="ns-cat-run" alt="" />
-                          <div class="ns-progress-track">
-                            <div class="ns-progress-fill"></div>
+                        <div class="ns-preview-hero">
+                            <div class="ns-battery-track">
+                              <span class="ns-battery-seg" style="--i:0"></span>
+                              <span class="ns-battery-seg" style="--i:1"></span>
+                              <span class="ns-battery-seg" style="--i:2"></span>
+                              <span class="ns-battery-seg" style="--i:3"></span>
+                              <span class="ns-battery-seg" style="--i:4"></span>
+                              <span class="ns-battery-seg" style="--i:5"></span>
+                              <span class="ns-battery-seg" style="--i:6"></span>
+                              <span class="ns-battery-seg" style="--i:7"></span>
+                            </div>
+                            <img src="src/black_pixel_cat_running.gif" class="ns-cat-run" alt="" />
                           </div>
-                        </div>
                         <div class="ns-preview-columns">
                           <span>Home</span>
                           <span>Arts</span>
@@ -572,6 +769,19 @@
                       <span>SSL <small>> HTTPS enabled</small></span>
                       <span class="ns-led"></span>
                     </div>
+                  </div>
+                  <div class="ns-preview-hero">
+                    <div class="ns-battery-track">
+                      <span class="ns-battery-seg" style="--i:0"></span>
+                      <span class="ns-battery-seg" style="--i:1"></span>
+                      <span class="ns-battery-seg" style="--i:2"></span>
+                      <span class="ns-battery-seg" style="--i:3"></span>
+                      <span class="ns-battery-seg" style="--i:4"></span>
+                      <span class="ns-battery-seg" style="--i:5"></span>
+                      <span class="ns-battery-seg" style="--i:6"></span>
+                      <span class="ns-battery-seg" style="--i:7"></span>
+                    </div>
+                    <img src="src/black_pixel_cat_running.gif" class="ns-cat-run" alt="" />
                   </div>
                   <span class="ns-packet" aria-hidden="true"></span>
                 </div>
@@ -609,6 +819,7 @@
                     </div>
 
                     <div class="ns-support-items">
+                      <img src="src/black_pixel_cat_running.gif" class="ns-cat-support" alt="" />
                       <span><i class="fa-solid fa-rotate"></i>Updated</span>
                       <span><i class="fa-solid fa-list"></i>No Errors</span>
                       <span><i class="fa-solid fa-clock"></i>Up 6 weeks</span>
@@ -617,6 +828,7 @@
                 </div>
               </div>              
             </section>
+
           </section>
         </div>
       </div>
@@ -649,7 +861,7 @@
               operations.
             </p>
             <div class="project-card-content">
-              <img src="src/Binary cat app logo.png" alt="cat" />
+              <img src="src/binary_cat_app_logo.png" alt="cat" />
               <div class="project-desc-text">
                 <div>
                   <div class="desc-label">Key features</div>
@@ -727,6 +939,7 @@
               </div>
             </div>
           </div>
+          
         </div>
         <!-- ROW 2 -->
         <div class="projects-row">

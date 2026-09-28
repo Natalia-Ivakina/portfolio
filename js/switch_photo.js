@@ -1,6 +1,4 @@
-/* ========================================================================== 
-  SKILLS IN ACTION
-========================================================================== */
+/* ======= SKILLS =============== */
 (function initSkillsStories() {
   "use strict";
 
@@ -13,7 +11,7 @@
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
-  // terminal
+  //terminal
   const sharedCode = root.querySelector(".ns-codebox");
   root.querySelectorAll(".ns-codebox").forEach((box) => {
     if (box !== sharedCode) box.remove();
@@ -25,28 +23,26 @@
   let activeMode = "";
   let hoverTimer = 0;
 
-  /** Найти элемент только внутри конкретной сцены. */
+  //Find an element
   function get(paneName, selector) {
     if (selector === ".ns-language" || selector === ".ns-code")
       return sharedCode.querySelector(selector);
     return root.querySelector(`[data-pane="${paneName}"] ${selector}`);
   }
 
-  /** Сохранить таймер, чтобы безопасно отменить его при смене сцены. */
+  //Store the timer
   function later(callback, delay) {
     timers.push(window.setTimeout(callback, delay));
   }
 
-  /** Остановить незавершённую сцену перед запуском следующей. */
+  //Stop
   function clearAnimationQueue() {
     timers.forEach(window.clearTimeout);
     timers = [];
     window.clearInterval(typingInterval);
   }
 
-  /* ------------------------------------------------------------------------
-    SQL - animation
-  ------------------------------------------------------------------------ */
+  /* --------- SQL ---------------- */
   const types = ["web", "mobile", "data"];
   const records = [
     "web",
@@ -69,7 +65,7 @@
 
   const databaseBoard = get("db", ".ns-db-board");
 
-  // Равные колонки с собственными строками, цветом и итоговым COUNT(*).
+  //columns
   const groupCounts = types.map((type, column) => {
     const group = document.createElement("div");
     group.className = "ns-db-group";
@@ -90,7 +86,7 @@
     return group.querySelector(".ns-group-count");
   });
 
-  // Создание строк из массива records — это уже реальная работа с данными.
+  //rows
   const databaseRows = records.map((record, index) => {
     const row = document.createElement("div");
     row.className = "ns-db-row";
@@ -115,11 +111,7 @@
     return row;
   });
 
-  /* ------------------------------------------------------------------------
-     Clear
-     Нужен, чтобы повторный клик действительно проигрывал сцену с начала.
-     ------------------------------------------------------------------------ */
-
+  /* ------------ Clear ----- */
   function resetAllScenes() {
     root.querySelector('[data-pane="ui"]').dataset.ui = "0";
     root.querySelectorAll(".ns-code-under").forEach((element) => {
@@ -132,13 +124,16 @@
       row.style.setProperty("--slot", index),
     );
 
+    //api
     get("commerce", ".ns-commerce-area").className = "ns-commerce-area";
-    get("commerce", ".ns-normalized").textContent = '" Lamp " · "25.00"';
+    get("commerce", ".ns-import-flag-text").textContent = "Importing…";
+    get("commerce", ".ns-import-flag i").className =
+      "fa-solid fa-arrows-rotate";
 
-    // mobile
+    //mobile
     get("mobile", ".ns-phone").className = "ns-phone";
 
-    // deploy
+    //deploy
     get("deploy", ".ns-git").className = "ns-git";
     get("deploy", ".ns-preview-site").className = "ns-preview-site";
     get("deploy", ".ns-server").className = "ns-server";
@@ -147,9 +142,7 @@
     get("deploy", ".ns-live-indicator").textContent = "Not published";
   }
 
-  /* ------------------------------------------------------------------------
-    Codebox
-  ------------------------------------------------------------------------ */
+  /* ----------- Code --------- */
   function typeCode(paneName, language, source, afterTyping) {
     const languageLabel = get(paneName, ".ns-language");
     const codeElement = get(paneName, ".ns-code");
@@ -167,7 +160,7 @@
     codeElement.textContent = "";
 
     typingInterval = window.setInterval(() => {
-      // long code line
+      //long  line
       visibleCharacters += Math.max(1, Math.ceil(source.length / 22));
       codeElement.textContent = source.slice(0, visibleCharacters);
 
@@ -178,13 +171,11 @@
     }, 35);
   }
 
-  /* ------------------------------------------------------------------------
-     Scenes
-     ------------------------------------------------------------------------ */
+  /* ----------------Scenes-------------------------- */
   const stages = {
     ui: [
       [
-        "CSS / page space",
+        "CSS / Perspective",
         ".scene { perspective: 1000px; }\n.title { transform: translateZ(75px); }",
         () => {
           root.querySelector('[data-pane="ui"]').dataset.ui = "1";
@@ -192,7 +183,7 @@
         },
       ],
       [
-        "CSS / image in the foreground",
+        "CSS / Avatar",
         ".portrait {\n  transform: translateZ(120px) translateY(-8px);\n}",
         () => {
           root.querySelector('[data-pane="ui"]').dataset.ui = "2";
@@ -200,7 +191,7 @@
         },
       ],
       [
-        "CSS / cards in the foreground",
+        "CSS / Cards",
         ".project {\n  transform: translateZ(100px) translateY(15px);\n}",
         () => {
           root.querySelector('[data-pane="ui"]').dataset.ui = "3";
@@ -208,7 +199,7 @@
         },
       ],
       [
-        "CSS / popular web browzers",
+        "CSS / Web browsers",
         "#web-logo-bar {\n  transform: translateZ(170px) translateY(25px);\n}",
         () => {
           root.querySelector('[data-pane="ui"]').dataset.ui = "4";
@@ -254,34 +245,56 @@
     ],
     commerce: [
       [
-        "JavaScript / очищаем поля",
-        "const title = raw.title.trim();\nconst price = Number(raw.price);",
+        "JavaScript / Node.js",
+        "$ node transform_prices.js\n→ Processing product data...",
         () => {
-          get("commerce", ".ns-commerce-area").classList.add("ns-clean");
-          get("commerce", ".ns-normalized").textContent =
-            '{ title: "Lamp", price: 25 }';
+          const area = get("commerce", ".ns-commerce-area");
+          later(() => area.classList.add("ns-show-files"), 0);
+          later(() => area.classList.add("ns-show-bad"), 600);
+          later(() => area.classList.add("ns-clean"), 1200);
         },
       ],
       [
-        "REST API / передаём каталог",
-        'POST /api/catalog\n{"title":"Lamp","price":25}',
+        "JavaScript / Node.js",
+        "$ node create_import_table.js\n→ Import table created",
         () => {
-          get("commerce", ".ns-normalized").textContent =
-            "201 Created · catalogue updated";
+          const area = get("commerce", ".ns-commerce-area");
+          later(() => area.classList.add("ns-show-transform"), 0);
+          later(() => area.classList.add("ns-show-good"), 600);
+          later(() => {
+            area.classList.add("ns-importing");
+            area.classList.add("ns-show-importflag");
+          }, 1200);
         },
       ],
       [
-        "Liquid / показываем товар",
+        "Liquid / render product",
         "{{ product.title }}\n{{ product.price | money }}",
-        () =>
-          get("commerce", ".ns-commerce-area").classList.add("ns-published"),
+        () => {
+          const area = get("commerce", ".ns-commerce-area");
+          later(() => {
+            get("commerce", ".ns-import-flag-text").textContent =
+              "Data imported!";
+            get("commerce", ".ns-import-flag i").className =
+              "fa-solid fa-check";
+            area.classList.remove("ns-importing");
+            area.classList.add("ns-published");
+          }, 900);
+        },
       ],
     ],
     mobile: [
       [
         "CSS / responsive layout",
         "@media (max-width: 600px) {\n  .projects { grid-template-columns: 1fr; }\n}",
-        () => get("mobile", ".ns-phone").classList.add("ns-shell"),
+        () => {
+          const phone = get("mobile", ".ns-phone");
+          phone.classList.add("ns-transitioning");
+          later(() => {
+            phone.classList.add("ns-shell");
+            later(() => phone.classList.remove("ns-transitioning"), 30);
+          }, 350);
+        },
       ],
       [
         "Dart / Flutter — navigation",
@@ -300,7 +313,10 @@
         "> node server.js\n> npm start\n> git push origin main",
         () => {
           get("deploy", ".ns-git").classList.add("ns-ready");
-          get("deploy", ".ns-preview-site").classList.add("ns-ready");
+          get("deploy", ".ns-preview-site").classList.add(
+            "ns-ready",
+            "ns-trail",
+          );
         },
       ],
       [
@@ -309,7 +325,7 @@
         () => {
           resetDeployCards();
           get("deploy", ".ns-git").classList.add("ns-ready", "ns-publishing");
-          get("deploy", ".ns-server").classList.add("ns-online");
+          get("deploy", ".ns-server").classList.add("ns-online", "ns-trail");
         },
       ],
       [
@@ -344,22 +360,21 @@
         },
       ],
     ],
+    backend: [
+      [
+        "Node.js / Express",
+        "$ npm start\n→ Server running on port 3000",
+        () => {
+          // coming...
+        },
+      ],
+    ],
   };
 
-  const finishedMessages = {
-    ui: "Layout → portrait → project cards → layered depth.",
-    db: "12 records → web: 6 · mobile: 4 · data: 2",
-    commerce: "Очистка данных → API → товарные карточки Shopify.",
-    mobile: "Responsive layout → mobile navigation → user feedback.",
-    deploy: "Ready website → publishing setup → live website.",
-  };
-
-  /* ------------------------------------------------------------------------
-    Start scene
-  ------------------------------------------------------------------------ */
+  /* ---------Start scene-------------------------- */
   //mobile delay
   const initialDelays = {
-    mobile: 1500,
+    mobile: 1000,
   };
 
   function startScene(nextMode, forceRestart) {
@@ -381,7 +396,7 @@
     });
     root.dataset.mode = nextMode;
 
-    // 3 × 3000. Reduced motion.
+    //3 × 3000, motion.
     const stageDuration = reducedMotion ? 1300 : 3000;
     const startDelay = reducedMotion ? 0 : initialDelays[nextMode] || 0;
 
@@ -395,20 +410,14 @@
     });
   }
 
-  /* reset Deploy Cards */
+  //reset
   function resetDeployCards() {
     get("deploy", ".ns-preview-site").classList.remove("ns-ready");
     get("deploy", ".ns-server").classList.remove("ns-online");
     get("deploy", ".ns-live-site").classList.remove("ns-live", "ns-supported");
   }
 
-  /* ------------------------------------------------------------------------
-     УПРАВЛЕНИЕ
-     - мышь: короткая задержка защищает от случайного пролёта курсора;
-     - клавиатура: focus запускает тот же сценарий;
-     - touch: только click, потому что на телефоне hover ненадёжен.
-     ------------------------------------------------------------------------ */
-
+  //events
   buttons.forEach((button) => {
     button.addEventListener("pointerenter", (event) => {
       if (event.pointerType === "touch") return;
@@ -418,7 +427,6 @@
         180,
       );
     });
-
     button.addEventListener("pointerleave", () =>
       window.clearTimeout(hoverTimer),
     );

@@ -1,0 +1,294 @@
+/* ===Mobile=== */
+.ns-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 0;
+  padding: 0 3px 10px;
+  border-bottom: 1px solid var(--ns-glass-line);
+  opacity: 0;
+  transition: all 3s ease;
+}
+
+.ns-shell .ns-statusbar {
+  max-height: 45px;
+  opacity: 1;
+}
+
+.ns-island {
+  width: 65px;
+  height: 16px;
+  border-radius: 20px;
+  background: var(--ns-text);
+}
+
+.ns-battery {
+  display: inline-block;
+  width: 20px;
+  height: 10px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  background: linear-gradient(to right, currentColor 80%, transparent 80%);
+}
+
+.ns-phone h2 {
+  margin: 10px 0 16px;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.ns-shell .ns-phone-cards {
+  grid-template-columns: 1fr;
+}
+
+.ns-native .ns-appbar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ns-homebar {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  width: 70px;
+  height: 4px;
+  opacity: 0;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  background: var(--ns-text);
+  transition: opacity 1s ease;
+}
+
+.ns-shell .ns-homebar {
+  opacity: 1;
+}
+
+.ns-notify .ns-notification {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ns-phone-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: var(--ns-height);
+  margin-top: 0;
+  padding: 20px;
+  background: var(--glass-mid);
+  border: 1px solid var(--ns-glass-line);
+  border-radius: 12px;
+}
+
+#nav-mobile-menu {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 1.5em;
+  border-bottom: 1px solid var(--ns-glass-line);
+  padding-bottom: 10px;
+}
+
+#nav-mobile-menu i {
+  display: none;
+}
+
+#mobile-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+}
+
+#mobile-header h2 {
+  margin: 1em;
+}
+
+.ns-phone {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  padding: 14px 12px 25px;
+  border: 2px solid var(--ns-glass-line);
+  border-radius: 9px;
+  background: var(--glass-mid);
+  min-height: 440px;
+  transition: all 3s ease;
+}
+
+.ns-phone.ns-shell {
+  width: 254px;
+  padding: 14px 12px 25px;
+  border: 2px solid var(--ns-text);
+  border-radius: 32px;
+  box-shadow: 0 10px 25px var(--ns-shadow-medium);
+}
+
+.ns-phone.ns-shell #nav-mobile-menu {
+  justify-content: left;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ns-phone.ns-shell #nav-mobile-menu span {
+  display: none;
+}
+
+.ns-phone.ns-shell #nav-mobile-menu i {
+  margin-top: 1em;
+  display: block;
+}
+
+.ns-phone.ns-shell #mobile-header h2 {
+  margin: 0 0 1em 0;
+}
+
+.ns-phone-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: opacity 0.35s ease;
+}
+
+.ns-phone.ns-transitioning .ns-phone-cards {
+  opacity: 0;
+}
+
+.ns-phone-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ns-phone-cards .ns-phone-cards-row-item {
+  padding: 6px;
+  border: 1px solid var(--ns-glass-line);
+  border-radius: 7px;
+  background: var(--glass-front);
+  font-size: 0.85rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+
+  min-height: 115px;
+  transition: all 3s ease;
+}
+
+.ns-phone-cards > .ns-phone-cards-row-item > div:first-child {
+  min-width: 0;
+}
+
+.ns-phone-cards > .ns-phone-cards-row-item > div:last-child {
+  flex-shrink: 0;
+}
+
+.ns-phone-cards img {
+  display: block;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.ns-phone.ns-shell .ns-phone-cards {
+  display: block;
+  overflow-y: auto;
+  max-height: 250px;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.431) transparent;
+}
+
+.ns-phone.ns-shell .ns-phone-cards-row {
+  display: contents;
+}
+
+.ns-phone.ns-shell .ns-phone-cards-row-item {
+  width: 100%;
+  margin-bottom: 12px;
+  min-height: 50px;
+}
+
+.ns-phone.ns-shell .ns-phone-cards img {
+  width: 50px;
+  height: 50px;
+}
+
+.ns-phone-cards small {
+  display: block;
+  margin-top: 7px;
+  color: var(--ns-muted);
+  font-size: 0.75rem;
+}
+
+.ns-appbar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 8px 0 0 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(10px);
+  border-top: 1px solid var(--ns-glass-line);
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+  font-size: 0.8rem;
+}
+
+.ns-notification {
+  position: absolute;
+  right: 7px;
+  bottom: 62px;
+  left: 7px;
+  z-index: 2;
+  opacity: 0;
+
+  padding: 14px 16px;
+  transform: translateY(-20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(200, 200, 200, 0.463);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000;
+  text-align: center;
+}
+
+/* ---- medias ---- */
+@media (max-width: 768px) {
+  .ns-phone {
+    max-width: 400px;
+    min-height: 0;
+    padding: 12px 10px 20px;
+  }
+  #nav-mobile-menu {
+    justify-content: center;
+    gap: 1.5em;
+  }
+  .ns-phone-cards {
+    text-align: center;
+  }
+  .ns-phone-cards img {
+    display: none;
+  }
+  .ns-phone.ns-shell .ns-phone-cards img {
+    display: block;
+  }
+  .ns-phone.ns-shell .ns-phone-cards {
+    text-align: left;
+  }
+}
