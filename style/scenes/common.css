@@ -272,6 +272,21 @@
 }
 
 @media (max-width: 768px) {
+  aside button .code-text span {
+    display: none;
+  }
+
+  .ns-stories-side-menu {
+    gap: 10px;
+  }
+
+  .ns-skill-button {
+    min-height: 40px;
+    flex-basis: 40px;
+    padding: 0;
+    text-align: center;
+  }
+
   .skills-header-text {
     line-height: 1.3;
     margin: 0.5em auto 0 auto;
