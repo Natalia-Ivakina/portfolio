@@ -759,9 +759,21 @@
     animation-delay: 0.35s;
   }
 
+  .ns-dev-area {
+    padding: 0 10px;
+  }
+
   .ns-git {
     grid-row: 1;
     grid-column: 1 / -1;
     padding-bottom: 8px;
+  }
+
+  .ns-rack {
+    font-size: 12px;
+  }
+
+  .ns-rack small {
+    font-size: 10px;
   }
 }

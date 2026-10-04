@@ -385,10 +385,27 @@
     resetAllScenes();
 
     buttons.forEach((button) => {
-      button.setAttribute(
-        "aria-pressed",
-        String(button.dataset.mode === nextMode),
-      );
+      button.addEventListener("click", () => {
+        startScene(button.dataset.mode, true);
+
+        //movement to scene
+        if (window.innerWidth <= 768) {
+          const stage = root.querySelector(".ns-stage");
+
+          window.setTimeout(() => {
+            const y =
+              stage.getBoundingClientRect().top +
+              window.scrollY -
+              150 +
+              window.innerHeight * 0.05;
+
+            window.scrollTo({
+              top: y,
+              behavior: "smooth",
+            });
+          }, 100);
+        }
+      });
     });
 
     panes.forEach((pane) => {
