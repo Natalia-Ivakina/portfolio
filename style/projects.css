@@ -1,0 +1,76 @@
+.open-image {
+  cursor: zoom-in;
+}
+
+.project-image {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  z-index: 9999;
+}
+
+.project-image.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.project-image-wrap {
+  position: relative;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 10px;
+   border: 1px solid #a8dcf096;
+   backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.project-image-open {
+  display: block;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border: 1px solid #a8dcf096;
+  border-radius: 10px;
+  cursor: zoom-out;
+}
+
+.project-image-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.251);
+  border-radius: 8px;
+  background: rgba(89, 88, 88, 0.582);
+  color: rgb(254, 254, 254);
+  cursor: pointer;
+  z-index: 1;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 3px 6px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
