@@ -538,19 +538,47 @@ footer a:hover {
   }
 
   .project-card-content {
-    flex-direction: row;
+    /* flex-direction: row; */
     gap: 1em;
   }
 
   #projects img {
-    width: 160px;
-    height: 160px;
+    width: 310px;
+    height: 110px;
+  }
+
+  .cat-project {
+    object-position: 100% 70% !important;
+  }
+
+  .gallery-project {
+    object-position: 100% 70% !important;
+  }
+
+  .crystal-project {
+    object-position: 100% 25% !important;
+  }
+
+  .golf-project {
+    object-position: 100% 0% !important;
+  }
+
+  .bedores-project {
+    object-position: 100% 35% !important;
+  }
+
+  .hr-project {
+    object-position: 100% 0% !important;
+  }
+
+  .google-project {
+    object-position: 100% 0% !important;
   }
 
   #projects .status-badge {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     font-weight: 600;
-    padding: 3px 8px;
+    padding: 3px 5px;
   }
 
   .video-btn {
