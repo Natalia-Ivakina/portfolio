@@ -336,6 +336,11 @@
     padding: 18px;
   }
 
+  #push-text-left,
+  #push-text-right {
+    display: none;
+  }
+
   .ns-stories-side-menu {
     flex-direction: row;
     flex-wrap: wrap;
