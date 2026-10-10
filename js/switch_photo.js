@@ -21,7 +21,6 @@
   let timers = [];
   let typingInterval = 0;
   let activeMode = "";
-  let hoverTimer = 0;
 
   //Find an element
   function get(paneName, selector) {
@@ -377,36 +376,12 @@
     mobile: 1000,
   };
 
-  function startScene(nextMode, forceRestart) {
-    if (activeMode === nextMode && !forceRestart) return;
+  function startScene(nextMode) {
+    if (activeMode === nextMode) return;
 
     activeMode = nextMode;
     clearAnimationQueue();
     resetAllScenes();
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        startScene(button.dataset.mode, true);
-
-        //movement to scene
-        if (window.innerWidth <= 768) {
-          const stage = root.querySelector(".ns-stage");
-
-          window.setTimeout(() => {
-            const y =
-              stage.getBoundingClientRect().top +
-              window.scrollY -
-              150 +
-              window.innerHeight * 0.05;
-
-            window.scrollTo({
-              top: y,
-              behavior: "smooth",
-            });
-          }, 100);
-        }
-      });
-    });
 
     panes.forEach((pane) => {
       pane.classList.toggle("ns-active", pane.dataset.pane === nextMode);
@@ -434,24 +409,28 @@
     get("deploy", ".ns-live-site").classList.remove("ns-live", "ns-supported");
   }
 
-  //events
+  // Events
   buttons.forEach((button) => {
-    // button.addEventListener("pointerenter", (event) => {
-    //   if (event.pointerType === "touch") return;
-    //   window.clearTimeout(hoverTimer);
-    //   hoverTimer = window.setTimeout(
-    //     () => startScene(button.dataset.mode, false),
-    //     180,
-    //   );
-    // });
-    // button.addEventListener("pointerleave", () =>
-    //   window.clearTimeout(hoverTimer),
-    // );
-    // button.addEventListener("focus", () =>
-    //   startScene(button.dataset.mode, false),
-    // );
-    button.addEventListener("click", () =>
-      startScene(button.dataset.mode, true),
-    );
+    button.addEventListener("click", () => {
+      startScene(button.dataset.mode);
+
+      // Scroll to scene on mobile
+      if (window.innerWidth <= 768) {
+        const stage = root.querySelector(".ns-stage");
+
+        window.setTimeout(() => {
+          const y =
+            stage.getBoundingClientRect().top +
+            window.scrollY -
+            150 +
+            window.innerHeight * 0.05;
+
+          window.scrollTo({
+            top: y,
+            behavior: "smooth",
+          });
+        }, 100);
+      }
+    });
   });
 })();
