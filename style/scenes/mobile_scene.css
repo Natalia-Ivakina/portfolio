@@ -191,6 +191,7 @@
   height: 90px;
   object-fit: cover;
   border-radius: 5px;
+  border: 1px solid var(--ns-glass-line);
 }
 
 .ns-phone.ns-shell .ns-phone-cards {

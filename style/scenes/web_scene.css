@@ -43,8 +43,6 @@
 
 .glass-scene1 {
   background: var(--glass-front);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--ns-glass-line);
 }
 
@@ -314,7 +312,6 @@
 }
 
 @media (max-width: 768px) {
-  /* === Web ==== */
   .ns-ui-hero {
     grid-template-columns: 1fr 130px;
   }

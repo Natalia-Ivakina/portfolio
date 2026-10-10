@@ -436,20 +436,20 @@
 
   //events
   buttons.forEach((button) => {
-    button.addEventListener("pointerenter", (event) => {
-      if (event.pointerType === "touch") return;
-      window.clearTimeout(hoverTimer);
-      hoverTimer = window.setTimeout(
-        () => startScene(button.dataset.mode, false),
-        180,
-      );
-    });
-    button.addEventListener("pointerleave", () =>
-      window.clearTimeout(hoverTimer),
-    );
-    button.addEventListener("focus", () =>
-      startScene(button.dataset.mode, false),
-    );
+    // button.addEventListener("pointerenter", (event) => {
+    //   if (event.pointerType === "touch") return;
+    //   window.clearTimeout(hoverTimer);
+    //   hoverTimer = window.setTimeout(
+    //     () => startScene(button.dataset.mode, false),
+    //     180,
+    //   );
+    // });
+    // button.addEventListener("pointerleave", () =>
+    //   window.clearTimeout(hoverTimer),
+    // );
+    // button.addEventListener("focus", () =>
+    //   startScene(button.dataset.mode, false),
+    // );
     button.addEventListener("click", () =>
       startScene(button.dataset.mode, true),
     );

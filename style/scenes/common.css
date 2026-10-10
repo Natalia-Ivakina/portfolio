@@ -3,6 +3,7 @@
   --ns-height: 490px;
 }
 
+/* === Main Container === */
 .ns-stories * {
   box-sizing: border-box;
 }
@@ -63,18 +64,7 @@
   display: grid;
   grid-template-columns: 250px minmax(0, 1fr);
   gap: 28px;
-  padding: 0 1.5em 1.5em;
-}
-
-.ns-stories button {
-  border-radius: 16px;
-  background: var(--glass-mid);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border: 1px solid var(--ns-glass-line);
-  color: inherit;
-  font: inherit;
-  transition: all 0.4s ease;
+  padding: 0 2em 1.5em;
 }
 
 .ns-stories code {
@@ -94,20 +84,6 @@
   color: var(--ns-muted);
 }
 
-.ns-stories-side-menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.1em;
-  position: relative;
-  z-index: 10;
-}
-
-.ns-stories-side-menu p {
-  margin: 0 0 15px;
-  color: var(--ns-muted);
-}
-
 .code-text {
   font-family: "Fira Code", monospace;
   font-size: 1em;
@@ -119,9 +95,154 @@
     0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-.ns-skill-button[aria-pressed="true"] {
+.ns-stories-side-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1em;
+  position: relative;
+  z-index: 10;
+}
+
+#push-text-left,
+#push-text-right {
+  position: absolute;
+  color: var(--color-dev-text);
+  font-family:Segoe UI Black;
+  letter-spacing: 3px;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  writing-mode: vertical-lr;
+  animation: text-shine 2s ease-in-out infinite alternate;
+}
+
+#push-text-left {
+  top: 91.5%;
+  left: -1.8em;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+#push-text-right {
+   top: 8.5%;
+  left: 16em;
+  transform: translateY(-50%);
+}
+
+@keyframes text-shine {
+  from {
+    opacity: 0.2;
+  }
+
+  to {
+    opacity: 0.6;
+  }
+}
+
+.ns-stories-side-menu p {
+  margin: 0 0 15px;
+  color: var(--ns-muted);
+}
+
+/* Buttons */
+.ns-skill-button {
+  display: block;
+  width: 100%;
+  padding: 18px 10px;
+  cursor: pointer;
+  text-align: left;
+
+  font: inherit;
+  color: inherit;
+
+  border-radius: 16px;
+  border: 1px solid var(--ns-glass-line);
+  background: var(--glass-mid);
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+
+  box-shadow:
+    0 5px 0 rgba(0, 0, 0, 0.4),
+    0 10px 18px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
   transition: all 0.4s ease;
-  outline: 2px solid rgba(255, 255, 255, 0.6);
+
+  position: relative;
+}
+
+@property --shine-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.ns-skill-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+
+  background: conic-gradient(
+    from var(--shine-angle),
+    transparent 0deg,
+    transparent 310deg,
+    rgba(168, 220, 240, 0.3) 330deg,
+    #e5faff 345deg,
+    transparent 360deg
+  );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+/* Hover */
+.ns-skill-button:hover {
+  transform: translateY(3px);
+  box-shadow:
+    inset 0 0 0 1px #a1cfe69e,
+    0 0 10px rgba(161, 214, 230, 0.454);
+}
+
+/* Pressing */
+.ns-skill-button:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.3),
+    inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus */
+.ns-skill-button:focus {
+  transform: translateY(3px);
+  background: var(--glass-front);
+  box-shadow:
+    inset 0 0 0 1px #a1cfe69e,
+    0 0 10px rgba(161, 214, 230, 0.454);
+}
+
+.ns-skill-button:focus::before {
+  opacity: 1;
+  animation: border-shine 9s linear infinite;
+}
+
+@keyframes border-shine {
+  to {
+    --shine-angle: 360deg;
+  }
 }
 
 .ns-skill-button b {
@@ -140,19 +261,7 @@
     0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.ns-skill-button:hover {
-  background: var(--glass-front);
-}
-
-.ns-skill-button:focus-visible {
-  background: var(--ns-paper);
-}
-
-.ns-pane.ns-active {
-  display: block;
-}
-
-/* ===scenes=== */
+/* Scenes  */
 .ns-stage {
   position: relative;
   min-width: 0;
@@ -167,7 +276,6 @@
   justify-content: space-between;
   gap: 12px;
   padding: 0 4px 14px;
-  border-bottom: 1px solid var(--ns-line);
   color: var(--ns-muted);
   border: 0;
 }
@@ -183,18 +291,22 @@
   padding: 0;
 }
 
+.ns-pane.ns-active {
+  display: block;
+}
+
 .ns-step {
   margin-bottom: 12px;
   color: var(--ns-green);
   display: none;
 }
 
+/*  Codebox */
 .ns-codebox {
   position: relative;
   padding: 16px 18px;
-  border-left: 3px solid var(--ns-green);
-  background: var(--glass-mid);
   margin: 18px 0 0;
+  background: var(--glass-mid);
   border: 1px solid var(--ns-glass-line);
   border-radius: 9px;
 }
@@ -213,58 +325,54 @@
   letter-spacing: 0.03em;
 }
 
-.ns-skill-button {
-  display: block;
-  width: 100%;
-  padding: 18px 10px;
-  cursor: pointer;
-  text-align: left;
-  border: 1px solid var(--ns-line);
-  border-radius: 4px;
-  background: transparent;
-  transition: all transform 0.3s;
-}
-
 .ns-foot {
   padding: 14px 26px;
   font-size: 0.8rem;
 }
 
-/* ---- medias ---- */
+/* === Media === */
 @media (max-width: 1100px) {
   .ns-stories-layout {
     grid-template-columns: 1fr;
     gap: 22px;
     padding: 18px;
   }
+
   .ns-stories-side-menu {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 6px;
   }
+
   .ns-stories-side-menu p {
     width: 100%;
     margin-bottom: 5px;
   }
+
   .ns-skill-button {
     flex: 1 1 140px;
     width: auto;
     min-height: 62px;
     flex-basis: 130px;
   }
+
   .ns-skill-button small {
     display: none;
   }
+
   .ns-foot {
     font-size: 0.75rem;
   }
+
   .ns-head {
     flex-wrap: wrap;
     padding-top: 0;
   }
+
   .ns-pane {
     min-height: 400px;
   }
+
   .ns-codebox {
     min-height: 146px;
     padding: 14px;
@@ -293,20 +401,11 @@
   }
 }
 
-/* ---- reduced motion ---- */
+/* === Reduced Motion === */
+
 @media (prefers-reduced-motion: reduce) {
-  .ns-stories * {
-    scroll-behavior: auto !important;
-    transition: none !important;
-    animation: none !important;
-  }
-
-  .ns-stories *::before {
-    scroll-behavior: auto !important;
-    transition: none !important;
-    animation: none !important;
-  }
-
+  .ns-stories *,
+  .ns-stories *::before,
   .ns-stories *::after {
     scroll-behavior: auto !important;
     transition: none !important;
