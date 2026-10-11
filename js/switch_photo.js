@@ -21,6 +21,7 @@
   let timers = [];
   let typingInterval = 0;
   let activeMode = "";
+  let runningButton = null;
 
   //Find an element
   function get(paneName, selector) {
@@ -376,30 +377,81 @@
     mobile: 1000,
   };
 
-  function startScene(nextMode) {
+  function startScene(nextMode, button) {
+    if (!stages[nextMode] || activeMode === nextMode) return;
     if (activeMode === nextMode) return;
 
-    activeMode = nextMode;
     clearAnimationQueue();
-    resetAllScenes();
 
-    panes.forEach((pane) => {
-      pane.classList.toggle("ns-active", pane.dataset.pane === nextMode);
-    });
-    root.dataset.mode = nextMode;
+    const mobilePane = root.querySelector('[data-pane="mobile"]');
+    const mobileArea = mobilePane.querySelector(".ns-phone-area");
+    const replayMobile =
+      nextMode === "mobile" && mobilePane.classList.contains("ns-active");
 
-    //3 × 3000, motion.
-    const stageDuration = reducedMotion ? 1300 : 3000;
-    const startDelay = reducedMotion ? 0 : initialDelays[nextMode] || 0;
+    mobileArea.classList.remove("ns-mobile-fading", "ns-mobile-resetting");
 
-    stages[nextMode].forEach(([language, source, action], index) => {
-      later(
-        () => {
-          typeCode(nextMode, language, source, action);
-        },
-        startDelay + index * stageDuration,
-      );
-    });
+    if (runningButton) {
+      runningButton.disabled = false;
+      runningButton.classList.remove("ns-playing");
+    }
+
+    activeMode = nextMode;
+    runningButton = button;
+
+    button.classList.add("ns-playing");
+    button.disabled = true;
+
+    function beginScene() {
+      if (replayMobile) {
+        mobileArea.classList.add("ns-mobile-resetting");
+      }
+
+      resetAllScenes();
+
+      panes.forEach((pane) => {
+        pane.classList.toggle("ns-active", pane.dataset.pane === nextMode);
+      });
+
+      root.dataset.mode = nextMode;
+
+      //Mobile reverse
+      if (replayMobile) {
+        void mobileArea.offsetWidth;
+        mobileArea.classList.remove("ns-mobile-resetting");
+        mobileArea.classList.remove("ns-mobile-fading");
+      }
+
+      const stageDuration = reducedMotion ? 1300 : 3000;
+      const startDelay = reducedMotion ? 0 : initialDelays[nextMode] || 0;
+
+      stages[nextMode].forEach(([language, source, action], index) => {
+        later(
+          () => {
+            typeCode(nextMode, language, source, action);
+          },
+          startDelay + index * stageDuration,
+        );
+      });
+
+      const totalDuration =
+        startDelay + stages[nextMode].length * stageDuration;
+
+      later(() => {
+        button.disabled = false;
+        button.classList.remove("ns-playing");
+        button.blur();
+
+        runningButton = null;
+        activeMode = "";
+      }, totalDuration);
+    }
+
+    if (replayMobile && !reducedMotion) {
+      mobileArea.classList.add("ns-mobile-fading");
+      later(beginScene, 300);
+    } else {
+      beginScene();
+    }
   }
 
   //reset
@@ -412,9 +464,9 @@
   // Events
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
-      startScene(button.dataset.mode);
+      startScene(button.dataset.mode, button);
 
-      // Scroll to scene on mobile
+      //Scrollon mobile
       if (window.innerWidth <= 768) {
         const stage = root.querySelector(".ns-stage");
 
@@ -427,7 +479,7 @@
 
           window.scrollTo({
             top: y,
-            behavior: "smooth",
+            behavior: reducedMotion ? "auto" : "smooth",
           });
         }, 100);
       }

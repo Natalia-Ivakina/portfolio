@@ -178,7 +178,7 @@ nav i {
 
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  animation: bounce 1.6s infinite;
+  animation: bounce 2.3s infinite;
 
   transition: all 0.1s ease;
 }

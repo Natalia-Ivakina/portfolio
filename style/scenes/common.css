@@ -38,8 +38,7 @@
   --ns-shadow-dark: #00000018;
 
   max-width: 1400px;
-  margin: 0 auto;
-  margin-top: 2em;
+  margin: 2em auto 0;
   overflow: hidden;
   color: var(--ns-text);
   border-radius: 16px;
@@ -80,21 +79,6 @@
   margin: 0;
 }
 
-.ns-muted {
-  color: var(--ns-muted);
-}
-
-.code-text {
-  font-family: "Fira Code", monospace;
-  font-size: 1em;
-  font-weight: 700;
-  display: inline-block;
-  color: #a8dcf0;
-  text-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.6),
-    0 4px 8px rgba(0, 0, 0, 0.4);
-}
-
 .ns-stories-side-menu {
   display: flex;
   flex-direction: column;
@@ -102,6 +86,11 @@
   gap: 1.1em;
   position: relative;
   z-index: 10;
+}
+
+.ns-stories-side-menu p {
+  margin: 0 0 15px;
+  color: var(--ns-muted);
 }
 
 #push-text-left,
@@ -114,7 +103,7 @@
     0 1px 3px rgba(0, 0, 0, 0.5),
     0 2px 4px rgba(0, 0, 0, 0.3);
   writing-mode: vertical-lr;
-  animation: text-shine 2s ease-in-out infinite alternate;
+  animation: text-shine 1.8s ease-in-out infinite alternate;
 }
 
 #push-text-left {
@@ -131,17 +120,12 @@
 
 @keyframes text-shine {
   from {
-    opacity: 0.2;
+    opacity: 0.1;
   }
 
   to {
     opacity: 0.6;
   }
-}
-
-.ns-stories-side-menu p {
-  margin: 0 0 15px;
-  color: var(--ns-muted);
 }
 
 /* Buttons */
@@ -172,12 +156,6 @@
   position: relative;
 }
 
-@property --shine-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
 .ns-skill-button::before {
   content: "";
   position: absolute;
@@ -189,8 +167,13 @@
   background: conic-gradient(
     from var(--shine-angle),
     transparent 0deg,
-    transparent 310deg,
-    rgba(168, 220, 240, 0.3) 330deg,
+    transparent 120deg,
+    rgba(168, 220, 240, 0.3) 135deg,
+    #e5faff 165deg,
+    transparent 180deg,
+
+    transparent 300deg,
+    rgba(168, 220, 240, 0.3) 315deg,
     #e5faff 345deg,
     transparent 360deg
   );
@@ -210,14 +193,15 @@
 }
 
 /* Hover */
-.ns-skill-button:hover {
+.ns-skill-button:not(.ns-playing):hover {
+  transform: translateY(2px);
   box-shadow:
     inset 0 0 0 1px #a1cfe69e,
     0 0 10px rgba(161, 214, 230, 0.454);
 }
 
 /* Pressing */
-.ns-skill-button:active {
+.ns-skill-button:not(.ns-playing):active {
   transform: translateY(5px);
   box-shadow:
     0 1px 0 rgba(0, 0, 0, 0.3),
@@ -225,16 +209,28 @@
 }
 
 /* Focus */
-.ns-skill-button:focus {
+.ns-skill-button:focus,
+.ns-skill-button.ns-playing {
   background: var(--glass-front);
   box-shadow:
     inset 0 0 0 1px #a1cfe69e,
     0 0 10px rgba(161, 214, 230, 0.454);
 }
 
-.ns-skill-button:focus::before {
+.ns-skill-button:focus::before,
+.ns-skill-button.ns-playing::before {
   opacity: 1;
-  animation: border-shine 9s linear infinite;
+  animation: border-shine 7s linear infinite;
+}
+
+.ns-skill-button:disabled {
+  cursor: default;
+}
+
+@property --shine-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
 @keyframes border-shine {
@@ -300,6 +296,21 @@
 }
 
 /*  Codebox */
+.ns-muted {
+  color: var(--ns-muted);
+}
+
+.code-text {
+  font-family: "Fira Code", monospace;
+  font-size: 1em;
+  font-weight: 700;
+  display: inline-block;
+  color: #a8dcf0;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
 .ns-codebox {
   position: relative;
   padding: 16px 18px;
