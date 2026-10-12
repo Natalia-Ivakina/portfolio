@@ -156,7 +156,7 @@
   width: 100%;
 }
 
-.ns-commerce-area-row{
+.ns-commerce-area-row {
   margin-bottom: 10px;
 }
 
@@ -477,7 +477,7 @@
 }
 
 .ns-commerce-caption span:nth-child(2) {
-  top: calc(6% + 16px);
+  top: calc(10%);
 }
 
 .ns-commerce-caption span:nth-child(3) {
@@ -485,15 +485,15 @@
 }
 
 .ns-commerce-caption span:nth-child(4) {
-  top: calc(33% + 26px);
+  top: calc(40%);
 }
 
 .ns-commerce-caption span:nth-child(5) {
-  top: 66%;
+  top: 63%;
 }
 
 .ns-commerce-caption span:nth-child(6) {
-  top: 94%;
+  top: 91%;
 }
 
 .ns-cap-status-bad {
@@ -526,7 +526,7 @@
 
 /* ---- media: tablet ---- */
 @media (max-width: 1220px) {
-  .hide-data-small-screen{
+  .hide-data-small-screen {
     display: none;
   }
 }
@@ -540,7 +540,7 @@
     padding: 14px 10px;
   }
 
-  .hide-data-tablet{
+  .hide-data-tablet {
     display: none;
   }
 
@@ -560,8 +560,7 @@
   }
 
   .ns-files,
-  .ns-commerce-area-row
-  {
+  .ns-commerce-area-row {
     margin-left: 2em;
     margin-right: 2em;
   }
@@ -570,10 +569,26 @@
     width: 200px;
   }
 
-  .ns-word:nth-child(1) { font-size: 16px; left: 6px; top: 16px; }
-  .ns-word:nth-child(2) { font-size: 13px; left: 60px; top: 34px; }
-  .ns-word:nth-child(3) { font-size: 14px; left: 16px; top: 48px; }
-  .ns-word:nth-child(4) { font-size: 10px; right: 5px; top: 22px; }
+  .ns-word:nth-child(1) {
+    font-size: 16px;
+    left: 6px;
+    top: 16px;
+  }
+  .ns-word:nth-child(2) {
+    font-size: 13px;
+    left: 60px;
+    top: 34px;
+  }
+  .ns-word:nth-child(3) {
+    font-size: 14px;
+    left: 16px;
+    top: 48px;
+  }
+  .ns-word:nth-child(4) {
+    font-size: 10px;
+    right: 5px;
+    top: 22px;
+  }
 
   .ns-mini-row > span:nth-child(2) {
     white-space: nowrap;
@@ -584,11 +599,11 @@
     flex-wrap: wrap;
   }
 
-  .ns-product-thumb {  
+  .ns-product-thumb {
     font-size: 0.9rem;
   }
 
-  .ns-product{
+  .ns-product {
     min-width: 200px;
   }
 }
@@ -605,14 +620,14 @@
     margin-bottom: 3px;
     font-size: 0.85rem;
   }
-  .hide-data-mobile{
+  .hide-data-mobile {
     display: none;
   }
 
   .ns-transform-row .ns-file {
     width: 100%;
     min-width: 0;
-    transform: rotate(0deg); /
+    transform: rotate(0deg);
   }
 
   .ns-commerce-layout {
@@ -621,7 +636,7 @@
   }
 
   .ns-commerce-timeline {
-    min-height: 320px; 
+    min-height: 320px;
   }
 
   .ns-commerce-dot {
@@ -630,7 +645,7 @@
   }
 
   .ns-commerce-caption {
-    min-height: 320px; 
+    min-height: 320px;
     font-size: 0.6rem;
     line-height: 1.25;
     margin-left: 6px;
@@ -640,25 +655,6 @@
   .ns-cap-status {
     font-size: 0.6rem;
     line-height: 1.2;
-  }
-
-  .ns-commerce-caption span:nth-child(1) {
-    top: calc(2%);
-  }
-  .ns-commerce-caption span:nth-child(2) {
-    top: calc(8% + 20px);
-  }
-  .ns-commerce-caption span:nth-child(3) {
-    top: calc(30%);
-  }
-  .ns-commerce-caption span:nth-child(4) {
-    top: calc(33% + 32px);
-  }
-  .ns-commerce-caption span:nth-child(5) {
-    top: calc(61%);
-  }
-  .ns-commerce-caption span:nth-child(6) {
-    top: calc(92%);
   }
 
   .ns-files {
@@ -672,10 +668,26 @@
     height: 68px;
   }
 
-  .ns-word:nth-child(1) { font-size: 14px; left: 4px; top: 14px; }
-  .ns-word:nth-child(2) { font-size: 11px; left: 50px; top: 32px; }
-  .ns-word:nth-child(3) { font-size: 12px; left: 12px; top: 44px; }
-  .ns-word:nth-child(4) { font-size: 9px; right: 6px; top: 18px; }
+  .ns-word:nth-child(1) {
+    font-size: 14px;
+    left: 4px;
+    top: 14px;
+  }
+  .ns-word:nth-child(2) {
+    font-size: 11px;
+    left: 50px;
+    top: 32px;
+  }
+  .ns-word:nth-child(3) {
+    font-size: 12px;
+    left: 12px;
+    top: 44px;
+  }
+  .ns-word:nth-child(4) {
+    font-size: 9px;
+    right: 6px;
+    top: 18px;
+  }
 
   .ns-mini-row > span:nth-child(1) {
     white-space: nowrap;
@@ -690,12 +702,11 @@
     margin-left: 2em;
   }
 
-  .ns-store{
+  .ns-store {
     justify-content: center;
-
   }
 
-  .ns-product{
+  .ns-product {
     min-width: 100px;
   }
 
@@ -703,7 +714,20 @@
     font-size: 0.6rem;
   }
 
-  .ns-product-desc{
+  .ns-product-desc {
     display: none;
+  }
+
+  .ns-files,
+  .ns-commerce-area-row {
+    margin-left: 3em;
+    margin-right: 0;
+  }
+  .ns-transform-row .ns-file {
+    margin-left: 3em;
+  }
+  .ns-store,
+  .ns-import-flag {
+    margin-left: 3em;
   }
 }
