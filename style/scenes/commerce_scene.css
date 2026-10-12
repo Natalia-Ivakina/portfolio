@@ -610,24 +610,36 @@
 
 /* ---- media: mobile ---- */
 @media (max-width: 768px) {
+  .ns-store {
+    padding-left: 1em;
+    margin-left: 3em;
+  }
+
   .ns-product {
     padding: 10px 5px;
     border-radius: 6px;
-    min-width: 70px;
+    min-width: 80px;
   }
+
   .ns-product-thumb {
     height: 30px;
     margin-bottom: 3px;
-    font-size: 0.85rem;
+    font-size: 0.55rem;
   }
+
   .hide-data-mobile {
     display: none;
+  }
+
+  .ns-transform-row {
+    padding-left: 1em;
   }
 
   .ns-transform-row .ns-file {
     width: 100%;
     min-width: 0;
     transform: rotate(0deg);
+    margin-left: 3em;
   }
 
   .ns-commerce-layout {
@@ -657,14 +669,8 @@
     line-height: 1.2;
   }
 
-  .ns-files {
-    flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 14px;
-  }
-
   .ns-file-client {
-    width: 165px;
+    width: 150px;
     height: 68px;
   }
 
@@ -699,19 +705,11 @@
 
   .ns-import-flag {
     font-size: 1rem;
-    margin-left: 2em;
+    margin-left: 3em;
   }
 
   .ns-store {
     justify-content: center;
-  }
-
-  .ns-product {
-    min-width: 100px;
-  }
-
-  .ns-product-thumb {
-    font-size: 0.6rem;
   }
 
   .ns-product-desc {
@@ -723,11 +721,8 @@
     margin-left: 3em;
     margin-right: 0;
   }
-  .ns-transform-row .ns-file {
-    margin-left: 3em;
-  }
-  .ns-store,
-  .ns-import-flag {
-    margin-left: 3em;
+
+  .ns-commerce-area-row {
+    width: auto;
   }
 }
