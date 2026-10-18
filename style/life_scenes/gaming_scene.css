@@ -1,0 +1,78 @@
+/* zelda */
+@font-face {
+  font-family: "ZeldaGames";
+  src: url("../../src/fonts/hylia-serif/HyliaSerif.ttf") format("truetype");
+}
+
+/* Zelda button */
+#life-zone .ns-life-button.theme-zelda {
+  position: relative;
+  border: 0;
+
+  background-image: url("../../src/game-assets/games-gold.svg");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  font-family: "ZeldaGames", Georgia, serif;
+  font-size: 30px;
+  line-height: 1;
+  text-align: center;
+}
+
+.shine-window {
+  position: absolute;
+  inset: 7px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.button-shine {
+  position: absolute;
+  top: -50%;
+  height: 200%;
+  width: 7%;
+  left: -45%;
+  transform: skewX(-15deg);
+  opacity: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #fff2ba99 20%,
+    #fff8dcba 50%,
+    #fff2ba99 80%,
+    transparent
+  );
+}
+
+.button-shine {
+  animation: button-shine 5200ms linear 800ms infinite;
+}
+
+@keyframes button-shine {
+  0%,
+  8% {
+    left: -45%;
+    opacity: 0;
+  }
+  9% {
+    opacity: 0.7;
+  }
+  24% {
+    left: 145%;
+    opacity: 0.7;
+  }
+  25%,
+  100% {
+    left: 145%;
+    opacity: 0;
+  }
+}
+
+/* === Media === */
+@media (max-width: 768px) {
+  #life-zone .ns-life-button.theme-zelda {
+    font-size: 15px;
+  }
+}

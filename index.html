@@ -28,10 +28,7 @@
     <meta name="author" content="Natalia Ivakina | Web Developer" />
 
     <!-- Open Graph / Twitter Card  -->
-    <meta
-      property="og:title"
-      content="Natalia Ivakina | Web Developer"
-    />
+    <meta property="og:title" content="Natalia Ivakina | Web Developer" />
     <meta
       property="og:description"
       content="Web Developer based in Moncton, Canada. Portfolio of web and mobile projects."
@@ -54,15 +51,18 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style/general.css?v=10" />
+    <link rel="stylesheet" href="style/browser_icons.css?v=10" />
     <link rel="stylesheet" href="style/projects.css?v=10" />
-    <link rel="stylesheet" href="style/scenes/common.css?v=10" />
-    <link rel="stylesheet" href="style/scenes/backend_scene.css?v=10" />
-    <link rel="stylesheet" href="style/scenes/commerce_scene.css?v=10" />
-    <link rel="stylesheet" href="style/scenes/db_scene.css?v=10" />
-    <link rel="stylesheet" href="style/scenes/deploy_scene.css?v=10" />
-    <link rel="stylesheet" href="style/scenes/web_scene.css?v=10" />
-    <link rel="stylesheet" href="style/scenes/mobile_scene.css?v=10" />
-    <link rel="stylesheet" href="style/icons.css?v=10" />
+    <link rel="stylesheet" href="style/scenes-container.css" />
+    <link rel="stylesheet" href="style/skill_scenes/aside_skill_menu.css" />
+    <link rel="stylesheet" href="style/skill_scenes/backend_scene.css?v=10" />
+    <link rel="stylesheet" href="style/skill_scenes/commerce_scene.css?v=10" />
+    <link rel="stylesheet" href="style/skill_scenes/db_scene.css?v=10" />
+    <link rel="stylesheet" href="style/skill_scenes/deploy_scene.css?v=10" />
+    <link rel="stylesheet" href="style/skill_scenes/web_scene.css?v=10" />
+    <link rel="stylesheet" href="style/skill_scenes/mobile_scene.css?v=10" />
+    <link rel="stylesheet" href="style/life_scenes/life_side_menu.css.css" />
+    <link rel="stylesheet" href="style/life_scenes/gaming_scene.css" />
 
     <!-- Fonts -->
     <link
@@ -72,11 +72,12 @@
     <link rel="canonical" href="https://nataiva.com/" />
 
     <!-- Scripts -->
-    <script src="js/switch_photo.js" defer></script>
+    <script src="js/switch_skill_scene.js" defer></script>
+    <script src="js/switch_zones.js" defer></script>
     <script src="js/gototop_button.js" defer></script>
     <script src="js/scroll_hint_button.js" defer></script>
-    <script src="js/bg-simple.js" defer></script>
-    <script src="js/open_project.js" defer></script>
+    <script src="js/background.js" defer></script>
+    <script src="js/open_project_img.js" defer></script>
 
     <script type="application/ld+json">
       {
@@ -261,11 +262,37 @@
     <!-- Content -->
     <main id="wrapper">
       <div id="ns-stories" class="ns-stories">
-        <h2 class="skills-header-text">Skills</h2>
-        <div class="ns-stories-layout">  
-          <aside class="ns-stories-side-menu" aria-label="Skill groups">
-             <div id="push-text-left">Push</div> 
-             <div id="push-text-right">Push</div>    
+        <div
+          id="sills-live-switcher"
+          role="group"
+          aria-label="Portfolio sections"
+        >
+          <button
+            type="button"
+            class="skills-header-text"
+            data-zone="skills-zone"
+            aria-controls="skills-zone"
+            aria-pressed="true"
+          >
+            Skills
+          </button>
+          <hr />
+          <button
+            type="button"
+            class="skills-header-text"
+            data-zone="life-zone"
+            aria-controls="life-zone"
+            aria-pressed="false"
+          >
+            Life
+          </button>
+        </div>
+
+        <!-- Skill Scenes -->
+        <div id="skills-zone" class="ns-stories-layout">
+          <aside class="ns-stories-skill-side-menu" aria-label="Skill groups">
+            <div id="push-text-left">Push</div>
+            <div id="push-text-right">Push</div>
             <button
               type="button"
               class="ns-skill-button"
@@ -321,7 +348,6 @@
               <small>C# / Java / JS</small>
             </button>
 
-
             <button
               type="button"
               class="ns-skill-button"
@@ -348,8 +374,6 @@
               <small>GitHub / Linux / Nginx</small>
             </button>
           </aside>
-
-          <!-- Scenes -->
           <section class="ns-stage" aria-label="Skill demonstration">
             <!-- Web  -->
             <section class="ns-pane ns-active" data-pane="ui" data-ui="0">
@@ -406,38 +430,72 @@
                   <code class="ns-code-under" data-snippet="cards"
                     >projects.map(project =&gt; &lt;ProjectCard /&gt;)
                   </code>
-                                   
+
                   <!-- Logo Bar -->
-                  <div id="web-logo-bar" class="glass-scene1" data-snippet="logo-wall">         
-                    <div class="web-logo-bar-item" style="--index: 1">              
-                      <i class="browser-icon chromebrowser-icon" aria-label="chrome browser"></i>                                 
+                  <div
+                    id="web-logo-bar"
+                    class="glass-scene1"
+                    data-snippet="logo-wall"
+                  >
+                    <div class="web-logo-bar-item" style="--index: 1">
+                      <i
+                        class="browser-icon chromebrowser-icon"
+                        aria-label="chrome browser"
+                      ></i>
                     </div>
-                    <div class="web-logo-bar-item" style="--index: 2"> 
-                      <i class="browser-icon firefoxbrowser-icon" aria-label="firefox browser"></i>                    
+                    <div class="web-logo-bar-item" style="--index: 2">
+                      <i
+                        class="browser-icon firefoxbrowser-icon"
+                        aria-label="firefox browser"
+                      ></i>
                     </div>
-                    <div class="web-logo-bar-item hidden-icon" style="--index: 3"> 
-                      <i class="browser-icon internet-explorer-icon" aria-label="internet explorer"></i>                    
+                    <div
+                      class="web-logo-bar-item hidden-icon"
+                      style="--index: 3"
+                    >
+                      <i
+                        class="browser-icon internet-explorer-icon"
+                        aria-label="internet explorer"
+                      ></i>
                     </div>
                     <div class="web-logo-bar-item" style="--index: 4">
-                      <i class="browser-icon operabrowser-icon" aria-label="opera browser"></i> 
+                      <i
+                        class="browser-icon operabrowser-icon"
+                        aria-label="opera browser"
+                      ></i>
                     </div>
-                    <div class="web-logo-bar-item hidden-icon" style="--index: 5">  
-                      <i class="browser-icon qutebrowser-icon" aria-label="qute browser"></i>                
-                    </div> 
-                     <div class="web-logo-bar-item" style="--index: 6">  
-                      <i class="browser-icon safaribrowser-icon" aria-label="safari browser"></i>                
-                    </div>   
-                     <div class="web-logo-bar-item" style="--index: 7">  
-                      <i class="browser-icon vivaldibrowser-icon" aria-label="vivaldi browser"></i>                
-                    </div>                                 
+                    <div
+                      class="web-logo-bar-item hidden-icon"
+                      style="--index: 5"
+                    >
+                      <i
+                        class="browser-icon qutebrowser-icon"
+                        aria-label="qute browser"
+                      ></i>
+                    </div>
+                    <div class="web-logo-bar-item" style="--index: 6">
+                      <i
+                        class="browser-icon safaribrowser-icon"
+                        aria-label="safari browser"
+                      ></i>
+                    </div>
+                    <div class="web-logo-bar-item" style="--index: 7">
+                      <i
+                        class="browser-icon vivaldibrowser-icon"
+                        aria-label="vivaldi browser"
+                      ></i>
+                    </div>
                   </div>
-                </div>         
-                
-                <!-- Codebox -->
-                <div class="ns-codebox">
-                  <small class="ns-language">Demonstration: Waiting for an action</small>
-                  <pre class="ns-code">Click a button to start</pre>
                 </div>
+              </div>
+
+              <!-- Codebox -->
+              <div class="ns-codebox">
+                <small class="ns-language"
+                  >Demonstration: Waiting for an action</small
+                >
+                <pre class="ns-code">Click a button to start</pre>
+              </div>
             </section>
 
             <!-- Mobile -->
@@ -470,25 +528,35 @@
                     <div class="ns-phone-cards">
                       <div class="ns-phone-cards-row">
                         <div class="ns-phone-cards-row-item">
-                          <div>Art gallery <small>Shopify storefront</small></div>
-                          <div><img src="src/4M_P 1.webp"></div>
+                          <div>
+                            Art gallery <small>Shopify storefront</small>
+                          </div>
+                          <div><img src="src/4M_P 1.webp" /></div>
                         </div>
 
                         <div class="ns-phone-cards-row-item">
-                          <div>Binary Cat <small>Mobile application</small></div>
-                          <div><img src="src/binary_cat_app_logo.png"></div>
+                          <div>
+                            Binary Cat <small>Mobile application</small>
+                          </div>
+                          <div><img src="src/binary_cat_app_logo.png" /></div>
                         </div>
                       </div>
 
                       <div class="ns-phone-cards-row">
                         <div class="ns-phone-cards-row-item">
-                          <div >Motion portfolio<small>Creative platform</small></div>
-                          <div><img src="src/Other World, Alex Akimov.jpg"></div>
+                          <div>
+                            Motion portfolio<small>Creative platform</small>
+                          </div>
+                          <div>
+                            <img src="src/Other World, Alex Akimov.jpg" />
+                          </div>
                         </div>
 
                         <div class="ns-phone-cards-row-item">
-                          <div >Business website<small>Professional presence</small></div>
-                          <div><img src="src/Iva_Mage.jpg"></div>
+                          <div>
+                            Business website<small>Professional presence</small>
+                          </div>
+                          <div><img src="src/Iva_Mage.jpg" /></div>
                         </div>
                       </div>
                     </div>
@@ -521,7 +589,7 @@
             </section>
 
             <!-- Backend -->
-             <section class="ns-pane" data-pane="backend">
+            <section class="ns-pane" data-pane="backend">
               <div class="ns-step">Backend / database → server → website</div>
               <div class="ns-codebox">
                 <small class="ns-language">Node.js / Express</small>
@@ -570,7 +638,6 @@
 
               <div class="ns-commerce-area">
                 <div class="ns-commerce-layout">
-
                   <!-- Vertical timeline, left -->
                   <div class="ns-commerce-timeline" aria-hidden="true">
                     <div class="ns-commerce-line"></div>
@@ -584,17 +651,19 @@
                     <div class="ns-commerce-caption">
                       <span class="ns-cap-label">Client data</span>
                       <span class="ns-cap-status ns-cap-status-bad">
-                        <i class="fa-solid fa-xmark" aria-hidden="true"></i> 
-                        Not suitable <br> for import
+                        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        Not suitable <br />
+                        for import
                       </span>
 
                       <span class="ns-cap-label">Data Processing</span>
                       <span class="ns-cap-status ns-cap-status-good">
-                        <i class="fa-solid fa-check" aria-hidden="true"></i> 
-                        Import table <br> created
+                        <i class="fa-solid fa-check" aria-hidden="true"></i>
+                        Import table <br />
+                        created
                       </span>
 
-                      <span class="ns-cap-label">Import</span>                     
+                      <span class="ns-cap-label">Import</span>
 
                       <span class="ns-cap-label">In store</span>
                     </div>
@@ -602,7 +671,6 @@
 
                   <!-- Main content column -->
                   <div class="ns-commerce-content">
-
                     <!-- data -->
                     <div class="ns-commerce-area-row">
                       <div class="ns-files">
@@ -626,7 +694,6 @@
                           <span class="ns-word word-3">qty: 5!!</span>
                           <span class="ns-word word-4">Lighting</span>
                         </div>
-
                       </div>
                     </div>
 
@@ -634,33 +701,55 @@
                     <div class="ns-transform-row">
                       <div class="ns-file ns-file-table">
                         <div class="ns-file-head">
-                          <i class="fa-solid fa-file-csv" aria-hidden="true"></i>
+                          <i
+                            class="fa-solid fa-file-csv"
+                            aria-hidden="true"
+                          ></i>
                           <span>ImportTable.csv</span>
                         </div>
                         <div class="ns-mini-table">
                           <div class="ns-mini-row ns-mini-head">
-                            <span class="hide-data-tablet hide-data-small-screen">Handle</span>
+                            <span
+                              class="hide-data-tablet hide-data-small-screen"
+                              >Handle</span
+                            >
                             <span>Title</span>
                             <span>Price</span>
-                            <span  class="hide-data-tablet">Body (HTML)</span>
-                            <span  class="hide-data-mobile">Tags</span>
+                            <span class="hide-data-tablet">Body (HTML)</span>
+                            <span class="hide-data-mobile">Tags</span>
                           </div>
                           <div class="ns-mini-row">
-                            <span class="hide-data-tablet hide-data-small-screen">cotton-t-shirt</span>
-                            <span><b class="hide-data-mobile">Cotton</b> T-Shirt</span>
+                            <span
+                              class="hide-data-tablet hide-data-small-screen"
+                              >cotton-t-shirt</span
+                            >
+                            <span
+                              ><b class="hide-data-mobile">Cotton</b>
+                              T-Shirt</span
+                            >
                             <span>$24.99</span>
-                            <span class="hide-data-tablet">Soft everyday...</span>
+                            <span class="hide-data-tablet"
+                              >Soft everyday...</span
+                            >
                             <span class="hide-data-mobile">Clothing</span>
                           </div>
                           <div class="ns-mini-row">
-                            <span class="hide-data-tablet hide-data-small-screen">leather-backpack</span>
-                            <span><b class="hide-data-mobile">Leather</b> Backpack</span>
+                            <span
+                              class="hide-data-tablet hide-data-small-screen"
+                              >leather-backpack</span
+                            >
+                            <span
+                              ><b class="hide-data-mobile">Leather</b>
+                              Backpack</span
+                            >
                             <span>$35.00</span>
-                            <span class="hide-data-tablet">Classic leather...</span>
+                            <span class="hide-data-tablet"
+                              >Classic leather...</span
+                            >
                             <span class="hide-data-mobile">Bags</span>
                           </div>
                         </div>
-                      </div>                   
+                      </div>
                     </div>
 
                     <div class="ns-import-flag" aria-hidden="true">
@@ -674,7 +763,9 @@
                           <i class="fa-solid fa-shirt"></i>
                           T-Shirt
                         </div>
-                        <small class="ns-product-desc">Soft everyday cotton...</small>
+                        <small class="ns-product-desc"
+                          >Soft everyday cotton...</small
+                        >
                         <strong>$24.99</strong>
                       </article>
 
@@ -683,7 +774,9 @@
                           <i class="fa-solid fa-image"></i>
                           Print
                         </div>
-                        <small class="ns-product-desc">Framed abstract wall..</small>
+                        <small class="ns-product-desc"
+                          >Framed abstract wall..</small
+                        >
                         <strong>$40.00</strong>
                       </article>
 
@@ -692,20 +785,23 @@
                           <i class="fa-solid fa-person-hiking"></i>
                           Backpack
                         </div>
-                        <small class="ns-product-desc">Classic leather backpack...</small>
+                        <small class="ns-product-desc"
+                          >Classic leather backpack...</small
+                        >
                         <strong>$35.00</strong>
                       </article>
-                     
+
                       <article class="ns-product hide-data-mobile">
                         <div class="ns-product-thumb">
                           <i class="fa-solid fa-camera"></i>
                           Camera
                         </div>
-                        <small class="ns-product-desc">Compact digital camera...</small>
+                        <small class="ns-product-desc"
+                          >Compact digital camera...</small
+                        >
                         <strong>$250.00</strong>
                       </article>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -716,7 +812,6 @@
               <div class="ns-dev-area">
                 <!-- Timeline -->
                 <div class="ns-git">
-
                   <div class="ns-git-caption">
                     <span>Ready</span>
                     <span>Publishing</span>
@@ -737,9 +832,7 @@
 
                 <!-- 1. Finished website -->
                 <div class="ns-preview-site">
-                  <div class="ns-url">
-                    localhost:3000
-                  </div>
+                  <div class="ns-url">localhost:3000</div>
 
                   <div class="ns-preview-content">
                     <div class="ns-preview-browser">
@@ -750,32 +843,34 @@
                       </div>
 
                       <div class="ns-preview-page">
-                        <strong>Portfolio</strong>                       
+                        <strong>Portfolio</strong>
                         <div class="ns-preview-hero">
-                            <div class="ns-battery-track">
-                              <span class="ns-battery-seg" style="--i:0"></span>
-                              <span class="ns-battery-seg" style="--i:1"></span>
-                              <span class="ns-battery-seg" style="--i:2"></span>
-                              <span class="ns-battery-seg" style="--i:3"></span>
-                              <span class="ns-battery-seg" style="--i:4"></span>
-                              <span class="ns-battery-seg" style="--i:5"></span>
-                              <span class="ns-battery-seg" style="--i:6"></span>
-                              <span class="ns-battery-seg" style="--i:7"></span>
-                            </div>
-                            <img src="src/black_pixel_cat_running.gif" class="ns-cat-run" alt="" />
+                          <div class="ns-battery-track">
+                            <span class="ns-battery-seg" style="--i: 0"></span>
+                            <span class="ns-battery-seg" style="--i: 1"></span>
+                            <span class="ns-battery-seg" style="--i: 2"></span>
+                            <span class="ns-battery-seg" style="--i: 3"></span>
+                            <span class="ns-battery-seg" style="--i: 4"></span>
+                            <span class="ns-battery-seg" style="--i: 5"></span>
+                            <span class="ns-battery-seg" style="--i: 6"></span>
+                            <span class="ns-battery-seg" style="--i: 7"></span>
                           </div>
+                          <img
+                            src="src/black_pixel_cat_running.gif"
+                            class="ns-cat-run"
+                            alt=""
+                          />
+                        </div>
                         <div class="ns-preview-columns">
                           <span>Home</span>
                           <span>Arts</span>
                           <span>About</span>
                         </div>
                       </div>
-
                     </div>
                     <span class="ns-preview-status">
                       Development complete
                     </span>
-
                   </div>
                 </div>
 
@@ -792,7 +887,10 @@
                       <span class="ns-led"></span>
                     </div>
                     <div class="ns-rack">
-                      <span>Domain <small>> nataiva.com → 203.0.113.10</small></span>
+                      <span
+                        >Domain
+                        <small>> nataiva.com → 203.0.113.10</small></span
+                      >
                       <span class="ns-led"></span>
                     </div>
                     <div class="ns-rack">
@@ -802,44 +900,50 @@
                   </div>
                   <div class="ns-preview-hero">
                     <div class="ns-battery-track">
-                      <span class="ns-battery-seg" style="--i:0"></span>
-                      <span class="ns-battery-seg" style="--i:1"></span>
-                      <span class="ns-battery-seg" style="--i:2"></span>
-                      <span class="ns-battery-seg" style="--i:3"></span>
-                      <span class="ns-battery-seg" style="--i:4"></span>
-                      <span class="ns-battery-seg" style="--i:5"></span>
-                      <span class="ns-battery-seg" style="--i:6"></span>
-                      <span class="ns-battery-seg" style="--i:7"></span>
+                      <span class="ns-battery-seg" style="--i: 0"></span>
+                      <span class="ns-battery-seg" style="--i: 1"></span>
+                      <span class="ns-battery-seg" style="--i: 2"></span>
+                      <span class="ns-battery-seg" style="--i: 3"></span>
+                      <span class="ns-battery-seg" style="--i: 4"></span>
+                      <span class="ns-battery-seg" style="--i: 5"></span>
+                      <span class="ns-battery-seg" style="--i: 6"></span>
+                      <span class="ns-battery-seg" style="--i: 7"></span>
                     </div>
-                    <img src="src/black_pixel_cat_running.gif" class="ns-cat-run" alt="" />
+                    <img
+                      src="src/black_pixel_cat_running.gif"
+                      class="ns-cat-run"
+                      alt=""
+                    />
                   </div>
                   <span class="ns-packet" aria-hidden="true"></span>
                 </div>
 
                 <!-- 3. Public website -->
                 <div class="ns-live-site">
-                  <div class="ns-url">
-                    https://nataiva.com
-                  </div>
+                  <div class="ns-url">https://nataiva.com</div>
                   <div class="ns-live-content">
                     <div class="ns-live-person">
                       <div class="ns-live-avatar">
                         <i class="fa-solid fa-globe ns-avatar-globe"></i>
-                        <img class="ns-avatar-photo" src="src/4M_P 1.webp" alt="Natalia Ivakina" />
+                        <img
+                          class="ns-avatar-photo"
+                          src="src/4M_P 1.webp"
+                          alt="Natalia Ivakina"
+                        />
                       </div>
 
                       <div class="ns-live-text">
                         <div class="ns-text-live">
                           <strong>Web developer</strong>
                           <span class="ns-live-indicator">Not published</span>
-                        </div>                    
+                        </div>
                       </div>
                     </div>
 
                     <div class="ns-live-lock" aria-hidden="true">
-                    <i class="fa-solid fa-lock ns-lock-closed"></i>
-                    <i class="fa-solid fa-lock-open ns-lock-open"></i>
-                  </div>
+                      <i class="fa-solid fa-lock ns-lock-closed"></i>
+                      <i class="fa-solid fa-lock-open ns-lock-open"></i>
+                    </div>
 
                     <div class="ns-site-users" aria-hidden="true">
                       <i class="fa-solid fa-user"></i>
@@ -849,17 +953,114 @@
                     </div>
 
                     <div class="ns-support-items">
-                      <img src="src/black_pixel_cat_running.gif" class="ns-cat-support" alt="" />
+                      <img
+                        src="src/black_pixel_cat_running.gif"
+                        class="ns-cat-support"
+                        alt=""
+                      />
                       <span><i class="fa-solid fa-rotate"></i>Updated</span>
                       <span><i class="fa-solid fa-list"></i>No Errors</span>
                       <span><i class="fa-solid fa-clock"></i>Up 6 weeks</span>
                     </div>
                   </div>
                 </div>
-              </div>              
+              </div>
             </section>
           </section>
+        </div>
 
+        <!-- Live Scenes -->
+        <div id="life-zone" class="ns-stories-layout" hidden>
+          <aside class="ns-stories-life-side-menu" aria-label="Interests">
+            <button
+              type="button"
+              class="ns-life-button theme-zelda"
+              data-life-mode="games"
+              aria-pressed="true"
+            >
+              <span class="shine-window" aria-hidden="true">
+                <span class="button-shine"></span>
+              </span>
+              <span class="button-content">GAMES</span>
+            </button>
+
+            <button
+              type="button"
+              class="ns-life-button"
+              data-life-mode="glass"
+              aria-pressed="false"
+            >
+              <span>Coming soon...</span>
+            </button>
+
+            <button
+              type="button"
+              class="ns-life-button"
+              data-life-mode="travel"
+              aria-pressed="false"
+            >
+              <span>Coming soon...</span>
+            </button>
+
+            <button
+              type="button"
+              class="ns-life-button"
+              data-life-mode="food"
+              aria-pressed="false"
+            >
+              <span>Coming soon...</span>
+            </button>
+          </aside>
+
+          <section class="ns-stage" aria-label="Interests demonstration">
+            <section class="ns-life-pane is-active" data-life-pane="games">
+              <div class="life-canvas">
+                <div class="life-animation">
+                  <h3>Gaming</h3>
+                </div>
+              </div>
+              <div class="life-codebox">
+                <small class="life-text">Gaming</small>
+                <pre class="life-code">Gaming</pre>
+              </div>
+            </section>
+
+            <section class="ns-life-pane" data-life-pane="glass">
+              <div class="life-canvas">
+                <div class="life-animation">
+                  <h3>Glass Art</h3>
+                </div>
+              </div>
+              <div class="life-codebox">
+                <small class="life-text">Glass Art</small>
+                <pre class="life-code">Glass Art</pre>
+              </div>
+            </section>
+
+            <section class="ns-life-pane" data-life-pane="travel">
+              <div class="life-canvas">
+                <div class="life-animation">
+                  <h3>Travel</h3>
+                </div>
+              </div>
+              <div class="life-codebox">
+                <small class="life-text">Travel</small>
+                <pre class="life-code">Travel</pre>
+              </div>
+            </section>
+
+            <section class="ns-life-pane" data-life-pane="food">
+              <div class="life-canvas">
+                <div class="life-animation">
+                  <h3>Food</h3>
+                </div>
+              </div>
+              <div class="life-codebox">
+                <small class="life-text">Food</small>
+                <pre class="life-code">Food</pre>
+              </div>
+            </section>
+          </section>
         </div>
       </div>
 
@@ -891,12 +1092,12 @@
               operations.
             </p>
             <div class="project-card-content">
-                <img
-                  class="open-image cat-project"
-                  src="src/binary_cat_app_logo.png"
-                  data-full="src/web/Binary_Cat_BS.png"
-                  alt="Binary Cat Mobile App"
-                />              
+              <img
+                class="open-image cat-project"
+                src="src/binary_cat_app_logo.png"
+                data-full="src/web/Binary_Cat_BS.png"
+                alt="Binary Cat Mobile App"
+              />
               <div class="project-desc-text">
                 <div>
                   <div class="desc-label">Key features</div>
@@ -1080,21 +1281,21 @@
                 <a
                   href="#"
                   target="_blank"
-                  style="pointer-events: none; cursor: inherit;"
+                  style="pointer-events: none; cursor: inherit"
                 >
                   Golf Course System
                 </a>
               </div>
             </div>
             <p class="project-summary">
-              A full-stack system for managing and monitoring golf course operations, focused on data
-              visualization.
+              A full-stack system for managing and monitoring golf course
+              operations, focused on data visualization.
             </p>
             <div class="project-card-content">
               <img
                 src="src/golf.jpg"
                 alt="Angular and MySQL Golf Course Management Dashboard"
-                class="open-image golf-project "
+                class="open-image golf-project"
                 data-full="src/web/golf_BS.png"
               />
               <div class="project-desc-text">
@@ -1131,18 +1332,15 @@
           <div class="project-card">
             <div class="project-header">
               <div class="project-link">
-                <a
-                  href="https://envisionitconsulting.com/"
-                  target="_blank"
-                >
+                <a href="https://envisionitconsulting.com/" target="_blank">
                   envisionIT Consulting
                   <i class="fa-solid fa-up-right-from-square"></i>
                 </a>
               </div>
             </div>
             <p class="project-summary">
-              A business consulting website presenting financial, planning, taxation,
-              mediation, and business development services.
+              A business consulting website presenting financial, planning,
+              taxation, mediation, and business development services.
             </p>
             <div class="project-card-content">
               <img
@@ -1180,18 +1378,15 @@
           <div class="project-card">
             <div class="project-header">
               <div class="project-link">
-                <a
-                  href="https://rpshield.ca/"
-                  target="_blank"
-                >
+                <a href="https://rpshield.ca/" target="_blank">
                   RP Shield
                   <i class="fa-solid fa-up-right-from-square"></i>
                 </a>
               </div>
             </div>
             <p class="project-summary">
-              A cybersecurity service website offering scam support and online protection
-              for individuals, families, and small businesses.
+              A cybersecurity service website offering scam support and online
+              protection for individuals, families, and small businesses.
             </p>
             <div class="project-card-content">
               <img
@@ -1217,7 +1412,7 @@
                   </div>
                 </div>
                 <div class="project-footer">
-                  <span class="role-label">Web Developer</span>                 
+                  <span class="role-label">Web Developer</span>
                 </div>
               </div>
             </div>
@@ -1226,18 +1421,15 @@
           <div class="project-card">
             <div class="project-header">
               <div class="project-link">
-                <a
-                  href="https://bedores.ca/"
-                  target="_blank"
-                >
+                <a href="https://bedores.ca/" target="_blank">
                   Bedore's Group of Companies
                   <i class="fa-solid fa-up-right-from-square"></i>
                 </a>
               </div>
             </div>
             <p class="project-summary">
-              A corporate website presenting multiple businesses and services under the
-              Bedore's group.
+              A corporate website presenting multiple businesses and services
+              under the Bedore's group.
             </p>
             <div class="project-card-content">
               <img
@@ -1278,15 +1470,15 @@
                 <a
                   href="#"
                   target="_blank"
-                   style="pointer-events: none; cursor: inherit;"
+                  style="pointer-events: none; cursor: inherit"
                 >
-                  HR Management System                  
+                  HR Management System
                 </a>
               </div>
             </div>
             <p class="project-summary">
-              A full-stack HR management system with a custom backend, web and mobile
-              clients, employee search, and role-based access.
+              A full-stack HR management system with a custom backend, web and
+              mobile clients, employee search, and role-based access.
             </p>
             <div class="project-card-content">
               <img
@@ -1310,12 +1502,12 @@
                   <div class="pills">
                     <span class="pill">C#, Dart</span>
                     <span class="pill">HTML, CSS</span>
-                    <span class="pill">SQL (SSMS)</span> 
+                    <span class="pill">SQL (SSMS)</span>
                     <span class="pill">GitHub</span>
                   </div>
                 </div>
                 <div class="project-footer">
-                  <span class="role-label">Full-stack Developer</span>                 
+                  <span class="role-label">Full-stack Developer</span>
                 </div>
               </div>
             </div>
@@ -1327,15 +1519,15 @@
                 <a
                   href="#"
                   target="_blank"
-                  style="pointer-events: none; cursor: inherit;"
+                  style="pointer-events: none; cursor: inherit"
                 >
                   Advanced Inventory Search
                 </a>
               </div>
             </div>
             <p class="project-summary">
-              A custom inventory search tool built to simplify working with thousands
-              of product records in Google Sheets.
+              A custom inventory search tool built to simplify working with
+              thousands of product records in Google Sheets.
             </p>
             <div class="project-card-content">
               <img

@@ -1,4 +1,17 @@
 /* ==========WEB ==========*/
+#skills-zone code {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  font-family: Consolas, "SFMono-Regular", monospace;
+}
+
+#skills-zone pre {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  font-family: Consolas, "SFMono-Regular", monospace;
+  margin: 0;
+}
+
 .ns-code-under.ns-on {
   opacity: 1;
 }
