@@ -72,7 +72,9 @@
     <link rel="canonical" href="https://nataiva.com/" />
 
     <!-- Scripts -->
-    <script src="js/switch_skill_scene.js" defer></script>
+    <script type="module" src="js/switch_skill_scene.js"></script>
+    <script type="module" src="js/skills-db-scene.js"></script>
+    <script src="js/game_frame.js" defer></script>
     <script src="js/switch_zones.js" defer></script>
     <script src="js/gototop_button.js" defer></script>
     <script src="js/scroll_hint_button.js" defer></script>
@@ -262,14 +264,16 @@
     <!-- Content -->
     <main id="wrapper">
       <div id="ns-stories" class="ns-stories">
+        <!-- switcher -->
         <div
           id="sills-live-switcher"
           role="group"
+          class="ns-mode-area"
           aria-label="Portfolio sections"
         >
           <button
             type="button"
-            class="skills-header-text"
+            class="skills-header-text left"
             data-zone="skills-zone"
             aria-controls="skills-zone"
             aria-pressed="true"
@@ -279,7 +283,7 @@
           <hr />
           <button
             type="button"
-            class="skills-header-text"
+            class="skills-header-text right"
             data-zone="life-zone"
             aria-controls="life-zone"
             aria-pressed="false"
@@ -1013,9 +1017,11 @@
           </aside>
 
           <section class="ns-stage" aria-label="Interests demonstration">
+            <!-- Gaming -->
             <section class="ns-life-pane is-active" data-life-pane="games">
-              <div class="life-canvas">
-                <div class="life-animation">
+              <div class="life-canvas" id="game-action-container">
+                <svg class="pixel-svg" aria-hidden="true"></svg>
+                <div class="life-animation" id="game-content">
                   <h3>Gaming</h3>
                 </div>
               </div>

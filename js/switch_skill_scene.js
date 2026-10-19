@@ -1,4 +1,6 @@
 /* ======= SKILLS =============== */
+import { buildDbBoard } from "./skills-db-scene.js";
+
 (function initSkillsStories() {
   "use strict";
 
@@ -42,82 +44,23 @@
     window.clearInterval(typingInterval);
   }
 
-  /* --------- SQL ---------------- */
-  const types = ["web", "mobile", "data"];
-  const records = [
-    "web",
-    "mobile",
-    "data",
-    "web",
-    "mobile",
-    "web",
-    "data",
-    "web",
-    "mobile",
-    "web",
-    "mobile",
-    "web",
-  ].map((type, index) => ({
-    id: index + 1,
-    type,
-    name: "item_" + String(index + 1).padStart(2, "0"),
-  }));
+  //SQL
+  const {
+    types,
+    records,
+    board: databaseBoard,
+    groupCounts,
+    rows: databaseRows,
+  } = buildDbBoard(root);
 
-  const databaseBoard = get("db", ".ns-db-board");
-
-  //columns
-  const groupCounts = types.map((type, column) => {
-    const group = document.createElement("div");
-    group.className = "ns-db-group";
-    group.dataset.group = type;
-    group.style.setProperty("--col", column);
-    group.innerHTML =
-      '<div class="ns-group-title">' +
-      type +
-      '</div><div class="ns-group-fields">id<span>record</span></div><div class="ns-group-count"></div>';
-    for (let i = 0; i < 7; i++) {
-      const line = document.createElement("div");
-      line.className = "ns-grid-rule";
-      line.style.top = 86 + i * 34 + "px";
-      line.style.transitionDelay = i * 0.09 + "s";
-      group.appendChild(line);
-    }
-    databaseBoard.appendChild(group);
-    return group.querySelector(".ns-group-count");
-  });
-
-  //rows
-  const databaseRows = records.map((record, index) => {
-    const row = document.createElement("div");
-    row.className = "ns-db-row";
-    row.dataset.id = String(record.id);
-    row.dataset.group = record.type;
-    row.style.cssText = [
-      `--slot:${index}`,
-      `--col:${types.indexOf(record.type)}`,
-      `--mess-x:${25 + ((index * 13) % 35)}%`,
-      `--mess-y:${120 + ((index * 31) % 100)}px`,
-      `--tilt:${((index * 17) % 42) - 21}deg`,
-      `--fall-delay:${index * 0.065}s`,
-    ].join(";");
-
-    [String(record.id).padStart(2, "0"), record.name].forEach((value) => {
-      const cell = document.createElement("span");
-      cell.textContent = value;
-      row.appendChild(cell);
-    });
-
-    databaseBoard.appendChild(row);
-    return row;
-  });
-
-  /* ------------ Clear ----- */
+  /* ------------ Clear ------------ */
   function resetAllScenes() {
     root.querySelector('[data-pane="ui"]').dataset.ui = "0";
     root.querySelectorAll(".ns-code-under").forEach((element) => {
       element.classList.remove("ns-on");
     });
 
+    //sql
     databaseBoard.classList.remove("ns-ruled", "ns-filled", "ns-sorted");
     groupCounts.forEach((el) => (el.textContent = ""));
     databaseRows.forEach((row, index) =>
@@ -138,11 +81,10 @@
     get("deploy", ".ns-preview-site").className = "ns-preview-site";
     get("deploy", ".ns-server").className = "ns-server";
     get("deploy", ".ns-live-site").className = "ns-live-site";
-
     get("deploy", ".ns-live-indicator").textContent = "Not published";
   }
 
-  /* ----------- Code --------- */
+  /* ----------- Code ----------- */
   function typeCode(paneName, language, source, afterTyping) {
     const languageLabel = get(paneName, ".ns-language");
     const codeElement = get(paneName, ".ns-code");
@@ -171,7 +113,7 @@
     }, 35);
   }
 
-  /* ----------------Scenes-------------------------- */
+  /* ---------------- Scenes --------------- */
   const stages = {
     ui: [
       [
@@ -371,7 +313,7 @@
     ],
   };
 
-  /* ---------Start scene-------------------------- */
+  /* --------- Start scene --------- */
   //mobile delay
   const initialDelays = {
     mobile: 1000,
@@ -379,7 +321,6 @@
 
   function startScene(nextMode, button) {
     if (!stages[nextMode] || activeMode === nextMode) return;
-    if (activeMode === nextMode) return;
 
     clearAnimationQueue();
 

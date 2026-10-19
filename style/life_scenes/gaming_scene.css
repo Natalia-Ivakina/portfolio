@@ -1,4 +1,3 @@
-/* zelda */
 @font-face {
   font-family: "ZeldaGames";
   src: url("../../src/fonts/hylia-serif/HyliaSerif.ttf") format("truetype");
@@ -68,6 +67,24 @@
     left: 145%;
     opacity: 0;
   }
+}
+
+/* game frame */
+#game-action-container {
+  position: relative;
+  border: none;
+  background: #78a88b64;
+}
+.pixel-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  shape-rendering: crispEdges;
+}
+.pixel-svg rect {
+  fill: #4f8a5f;
 }
 
 /* === Media === */

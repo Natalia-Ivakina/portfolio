@@ -56,8 +56,8 @@
 .life-canvas .life-animation {
   min-height: var(--ns-height);
   padding: 26px;
-  border: 1px solid var(--ns-glass-line);
-  border-radius: 12px;
+  /* border: 1px solid var(--ns-glass-line); */
+  /* border-radius: 12px; */
   background: var(--glass-mid);
   width: 100%;
 }
