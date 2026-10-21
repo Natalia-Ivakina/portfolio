@@ -38,7 +38,7 @@
   border-radius: 16px;
   color: inherit;
   background-color: transparent;
-  transition: all 0.4s ease;
+  transition: all 0.1s ease;
 }
 
 #life-zone .ns-life-button small {
@@ -55,7 +55,7 @@
 
 .life-canvas .life-animation {
   min-height: var(--ns-height);
-  padding: 26px;
+  padding: 6px;
   /* border: 1px solid var(--ns-glass-line); */
   /* border-radius: 12px; */
   background: var(--glass-mid);

@@ -75,6 +75,7 @@
   border: none;
   background: #78a88b64;
 }
+
 .pixel-svg {
   position: absolute;
   inset: 0;
@@ -83,8 +84,229 @@
   pointer-events: none;
   shape-rendering: crispEdges;
 }
+
 .pixel-svg rect {
   fill: #4f8a5f;
+}
+
+/* game container*/
+#game-content {
+  /* background-image: url("../../src/PM.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+  display: grid;
+  grid-template-rows: 1.1fr 3fr 1.3fr;
+}
+
+#bricks-top,
+#hero-container,
+#bricks-bottom {
+  border: 1px solid red;
+}
+
+/* bricks animation*/
+
+/* middle animation*/
+#hero-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 8;
+
+  background-color: black;
+
+  position: relative;
+}
+
+/* torchs animation*/
+
+#stone-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6px;
+
+  width: 150px;
+  height: 40%;
+
+  background-image: url("../../src/game-assets/pedestal.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 1px solid green;
+  z-index: 9;
+}
+
+/* hero animation*/
+.hero-mover {
+  animation: travel 5s linear 1 forwards;
+  z-index: 10;
+}
+
+@keyframes travel {
+  from {
+    transform: translateX(-500px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.runner,
+.stop,
+.turn,
+.sword,
+.idle {
+  --frame: 120px;
+  width: var(--frame);
+  height: var(--frame);
+
+  --shift-x: -10px;
+  --shift-y: 16px;
+  translate: var(--shift-x) var(--shift-y);
+
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  z-index: 10;
+  border: 1px solid red;
+}
+
+.runner {
+  background-image: url("../../src/game-assets/Movement/run.png");
+  background-size: calc(var(--frame) * 8) var(--frame);
+  animation: run-frames 640ms steps(8, jump-none) infinite;
+}
+
+@keyframes run-frames {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: calc(var(--frame) * -7) 0;
+  }
+}
+
+.stop {
+  display: none;
+  background-image: url("../../src/game-assets/Movement/stop.png");
+  background-size: calc(var(--frame) * 10) var(--frame);
+  animation: stop-frames 1050ms steps(1, end) 1 forwards;
+}
+
+@keyframes stop-frames {
+  0% {
+    background-position: 0 0;
+  }
+  5.714286% {
+    background-position: calc(var(--frame) * -1) 0;
+  }
+  11.428571% {
+    background-position: calc(var(--frame) * -2) 0;
+  }
+  17.142857% {
+    background-position: calc(var(--frame) * -3) 0;
+  }
+  23.809524% {
+    background-position: calc(var(--frame) * -4) 0;
+  }
+  32.380952% {
+    background-position: calc(var(--frame) * -5) 0;
+  }
+  40.952381% {
+    background-position: calc(var(--frame) * -6) 0;
+  }
+  50.476190% {
+    background-position: calc(var(--frame) * -7) 0;
+  }
+  60% {
+    background-position: calc(var(--frame) * -8) 0;
+  }
+  71.428571% {
+    background-position: calc(var(--frame) * -9) 0;
+  }
+  100% {
+    background-position: calc(var(--frame) * -9) 0;
+  }
+}
+
+.turn {
+  display: none;
+  background-image: url("../../src/game-assets/Movement/turn.png");
+  background-size: calc(var(--frame) * 8) var(--frame);
+  animation: turn-frames 940ms steps(8, jump-none) 1 forwards;
+  animation-delay: 1s;
+}
+
+@keyframes turn-frames {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: calc(var(--frame) * -7) 0;
+  }
+}
+
+.sword {
+  display: none;
+  background-image: url("../../src/game-assets/Movement/sword.png");
+  background-size: calc(var(--frame) * 24) var(--frame);
+  animation: sword-frames 2430ms steps(24, jump-none) 1 forwards;
+  animation-delay: 1s;
+}
+
+@keyframes sword-frames {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: calc(var(--frame) * -23) 0;
+  }
+}
+
+.idle {
+  display: none;
+  background-image: url("../../src/game-assets/Movement/idle.png");
+  background-size: calc(var(--frame) * 10) var(--frame);
+  animation: idle-frames 4000ms steps(1, end) infinite;
+}
+
+@keyframes idle-frames {
+  0% {
+    background-position: 0 0;
+  }
+  75% {
+    background-position: calc(var(--frame) * -1) 0;
+  }
+  77.5% {
+    background-position: calc(var(--frame) * -2) 0;
+  }
+  80% {
+    background-position: calc(var(--frame) * -3) 0;
+  }
+  82.5% {
+    background-position: calc(var(--frame) * -4) 0;
+  }
+  85% {
+    background-position: calc(var(--frame) * -5) 0;
+  }
+  87.5% {
+    background-position: calc(var(--frame) * -6) 0;
+  }
+  90% {
+    background-position: calc(var(--frame) * -7) 0;
+  }
+  92.5% {
+    background-position: calc(var(--frame) * -8) 0;
+  }
+  95% {
+    background-position: calc(var(--frame) * -9) 0;
+  }
+  100% {
+    background-position: calc(var(--frame) * -9) 0;
+  }
 }
 
 /* === Media === */

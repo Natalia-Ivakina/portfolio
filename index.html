@@ -74,7 +74,9 @@
     <!-- Scripts -->
     <script type="module" src="js/switch_skill_scene.js"></script>
     <script type="module" src="js/skills-db-scene.js"></script>
+    <script src="js/switch_life_scene.js" defer></script>
     <script src="js/game_frame.js" defer></script>
+    <script src="js/game_animation.js" defer></script>
     <script src="js/switch_zones.js" defer></script>
     <script src="js/gototop_button.js" defer></script>
     <script src="js/scroll_hint_button.js" defer></script>
@@ -1021,10 +1023,23 @@
             <section class="ns-life-pane is-active" data-life-pane="games">
               <div class="life-canvas" id="game-action-container">
                 <svg class="pixel-svg" aria-hidden="true"></svg>
+
                 <div class="life-animation" id="game-content">
-                  <h3>Gaming</h3>
+                  <div id="bricks-top"></div>
+                  <div id="hero-container">
+                    <div id="stone-container"></div>
+                    <div class="hero-mover">
+                      <div id="hero" class="sprite runner"></div>
+                    </div>
+                    <div class="stop"></div>
+                    <div class="turn"></div>
+                    <div class="sword"></div>
+                    <div class="idle"></div>
+                  </div>                  
+                  <div id="bricks-bottom"></div>
                 </div>
               </div>
+
               <div class="life-codebox">
                 <small class="life-text">Gaming</small>
                 <pre class="life-code">Gaming</pre>
