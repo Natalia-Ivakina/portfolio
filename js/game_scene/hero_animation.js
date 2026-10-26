@@ -1,26 +1,32 @@
+import { buildAllBricks, brickImages } from "./wall_animation.js";
+
 const sprites = [
-  "../src/game-assets/Movement/run.png",
-  "../src/game-assets/Movement/stop.png",
-  "../src/game-assets/Movement/turn.png",
-  "../src/game-assets/Movement/sword.png",
-  "../src/game-assets/Movement/idle.png",
-  "../src/game-assets/torch/torch-ignite-sprites-1.png",
-  "../src/game-assets/torch/torch-burn-loop-sprites-2.png",
-  "../src/game-assets/pedestal.png",
-  "../src/game-assets/triangle/triangle-shine-sprites-1.png",
-  "../src/game-assets/triangle/triangle-ignite-sprites-2.png",
-  "../src/game-assets/triangle/triangle-glow-loop-sprites-3.png",
+  "./src/game-assets/Movement/run.png",
+  "./src/game-assets/Movement/stop.png",
+  "./src/game-assets/Movement/turn.png",
+  "./src/game-assets/Movement/sword.png",
+  "./src/game-assets/Movement/idle.png",
+  "./src/game-assets/torch/torch-ignite-sprites-1.png",
+  "./src/game-assets/torch/torch-burn-loop-sprites-2.png",
+  "./src/game-assets/pedestal.png",
+  "./src/game-assets/triangle/triangle-shine-sprites-1.png",
+  "./src/game-assets/triangle/triangle-ignite-sprites-2.png",
+  "./src/game-assets/triangle/triangle-glow-loop-sprites-3.png",
+  ...brickImages,
 ];
 
+const loaded = [];
+
 function preload(urls) {
-  return Promise.all(
-    urls.map(function (url) {
-      const img = new Image();
-      img.src = url;
-      return img.decode();
-    }),
-  );
+  urls.forEach(function (url) {
+    const img = new Image();
+    img.src = url;
+    img.decode().catch(function () {});
+    loaded.push(img);
+  });
 }
+
+preload(sprites);
 
 const container = document.querySelector("#game-content");
 
@@ -47,6 +53,11 @@ triangleSprite2.addEventListener("animationend", function (event) {
   multiTriangle.classList.add("is-active");
 });
 
+triangle.addEventListener("click", function () {
+  if (!triangle.classList.contains("is-idle")) return;
+  restartGame();
+});
+
 //torches
 const torches = document.querySelectorAll(".torch-container");
 torches.forEach(function (torch) {
@@ -63,7 +74,6 @@ torches.forEach(function (torch) {
 });
 
 //hero
-const loop = true;
 let current = 0;
 const heroScenes = [
   container.querySelector(".hero-mover"),
@@ -83,21 +93,23 @@ function showScene(index) {
 container.addEventListener("animationend", function (event) {
   if (event.target !== heroScenes[current]) return;
 
-  const next = current + 1;
-
-  if (next < heroScenes.length) {
-    showScene(next);
-  } else if (loop) {
-    showScene(0);
+  if (current + 1 < heroScenes.length) {
+    showScene(current + 1);
   }
 });
 
-function restartGame() {
+//start
+let runId = 0;
+
+async function restartGame() {
+  const myRun = ++runId;
+
+  // clean
   heroScenes.forEach(function (scene) {
     scene.classList.remove("is-active");
   });
-
   triangle.classList.remove("is-active");
+  triangle.classList.remove("is-idle");
   triangleMover.classList.remove("is-active");
   multiTriangle.classList.remove("is-active");
 
@@ -106,15 +118,18 @@ function restartGame() {
     torch.querySelector(".torch-stage2").classList.remove("is-active");
   });
 
-  void container.offsetWidth;
-  triangle.classList.add("is-active");
-  showScene(0);
+  // wait
+  await buildAllBricks();
+  if (myRun !== runId) return;
 
+  void container.offsetWidth;
+
+  triangle.classList.add("is-active");
   torches.forEach(function (torch) {
     torch.querySelector(".torch-stage1").classList.add("is-active");
   });
+
+  showScene(0);
 }
 
-preload(sprites)
-  .catch(function () {})
-  .then(restartGame);
+window.restartGame = restartGame;

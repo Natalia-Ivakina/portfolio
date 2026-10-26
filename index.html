@@ -72,11 +72,12 @@
     <link rel="canonical" href="https://nataiva.com/" />
 
     <!-- Scripts -->
-    <script type="module" src="js/switch_skill_scene.js"></script>
-    <script type="module" src="js/skills-db-scene.js"></script>
+    <script type="module" src="js/switch_skill_scene.js" defer></script>
+    <script type="module" src="js/skills-db-scene.js" defer></script>
     <script src="js/switch_life_scene.js" defer></script>
-    <script src="js/game_frame.js" defer></script>
-    <script src="js/game_animation.js" defer></script>
+    <script type="module" src="js/game_scene/hero_animation.js"></script>
+    <script type="module" src="js/game_scene/wall_animation.js" defer></script>
+    <script src="js/game_scene/game_frame.js" defer></script>
     <script src="js/switch_zones.js" defer></script>
     <script src="js/gototop_button.js" defer></script>
     <script src="js/scroll_hint_button.js" defer></script>
@@ -1043,26 +1044,28 @@
                     <div id="hero-container">
                       <div id="stone-container"></div>
 
-                      <div id="triangle-container">
+                      <div id="triangle-container" class="is-idle">
                         <div id="triangle-1"></div>
                       </div>
                       <div id="triangle-2-mover">
                         <div id="triangle-2"></div>
                       </div>
                       <div id="multi-triangle">
-                        <div id="triangle-3-mover-to-top">
-                          <div class="triangle-3-rotator">
-                            <div class="triangle-3"></div>
+                        <div id="triangle-3-mover">
+                          <div id="triangle-3-mover-to-top">
+                            <div class="triangle-3-rotator">
+                              <div class="triangle-3"></div>
+                            </div>
                           </div>
-                        </div>
-                        <div id="triangle-3-mover-to-left-bottom">
-                          <div class="triangle-3-rotator">
-                            <div class="triangle-3"></div>
+                          <div id="triangle-3-mover-to-left-bottom">
+                            <div class="triangle-3-rotator">
+                              <div class="triangle-3"></div>
+                            </div>
                           </div>
-                        </div>
-                        <div id="triangle-3-mover-to-right-bottom">
-                          <div class="triangle-3-rotator">
-                            <div class="triangle-3"></div>
+                          <div id="triangle-3-mover-to-right-bottom">
+                            <div class="triangle-3-rotator">
+                              <div class="triangle-3"></div>
+                            </div>
                           </div>
                         </div>
                       </div>

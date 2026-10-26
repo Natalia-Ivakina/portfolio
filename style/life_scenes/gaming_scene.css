@@ -83,6 +83,8 @@
   height: 100%;
   pointer-events: none;
   shape-rendering: crispEdges;
+  overflow: visible;
+  z-index: 2;
 }
 
 .pixel-svg rect {
@@ -104,13 +106,43 @@
   box-sizing: border-box;
 }
 
-#bricks-top,
+/* #bricks-top,
 #middle-scene-hero,
 #bricks-bottom {
   border: 1px solid red;
-}
+} */
 
 /* bricks animation*/
+#bricks-top,
+#bricks-bottom {
+  --radius: 8px;
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #14251f;
+
+  z-index: 1;
+}
+
+#bricks-top {
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+#bricks-bottom {
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+.brick {
+  position: absolute;
+  width: 45px;
+  height: 24px;
+  opacity: 1;
+  transform: none;
+  transform-origin: center;
+}
 
 /* middle animation*/
 #middle-scene-dungeon {
@@ -148,7 +180,7 @@
   background-size: calc(var(--frame) * 5) calc(var(--frame) * 4);
 
   animation:
-    torch1-x 300ms steps(5, jump-none) infinite,
+    torch1-x 375ms steps(5, jump-none) infinite,
     torch1-y 1500ms steps(4, jump-none) 1 forwards;
 }
 
@@ -186,8 +218,8 @@
   background-size: calc(var(--frame) * 6) calc(var(--frame) * 4);
 
   animation:
-    torch2-x 180s steps(6, jump-none) infinite,
-    torch2-y 900ms steps(4, jump-none) infinite;
+    torch2-x 450ms steps(6, jump-none) infinite,
+    torch2-y 1800ms steps(4, jump-none) infinite;
 }
 
 @keyframes torch2-x {
@@ -235,6 +267,28 @@
   animation: bounce 3s infinite;
 }
 
+#hero-container #triangle-container.is-idle {
+  opacity: 1;
+  animation: bounce 3s infinite;
+  cursor: pointer;
+}
+
+#triangle-2-mover:not(.is-active),
+#multi-triangle:not(.is-active),
+.hero-mover:not(.is-active),
+.stop:not(.is-active),
+.turn:not(.is-active),
+.sword:not(.is-active),
+.idle:not(.is-active) {
+  pointer-events: none;
+}
+
+#triangle-container.is-idle #triangle-1 {
+  animation:
+    triangle-1-x 800ms steps(8, jump-none) infinite,
+    triangle-1-y 2400ms steps(3, jump-none) infinite;
+}
+
 @keyframes bounce {
   0%,
   100% {
@@ -258,8 +312,8 @@
 
 #triangle-container.is-active #triangle-1 {
   animation:
-    triangle-1-x 500ms steps(8, jump-none) 15,
-    triangle-1-y 2250ms steps(3, jump-none) 5;
+    triangle-1-x 800ms steps(8, jump-none) 15,
+    triangle-1-y 2400ms steps(3, jump-none) 5;
 }
 
 @keyframes triangle-1-x {
@@ -299,7 +353,7 @@
 
 #triangle-2-mover.is-active {
   opacity: 1;
-  animation: triangle-to-top 3s forwards;
+  animation: triangle-to-top 3.6s forwards;
 }
 
 #triangle-2-mover:not(.is-active) {
@@ -311,7 +365,7 @@
     translate: 0 0;
   }
   to {
-    translate: 0 -50px;
+    translate: 0 -20px;
   }
 }
 
@@ -329,9 +383,8 @@
 
 #triangle-2-mover.is-active #triangle-2 {
   animation:
-    triangle-2-x 1200ms steps(8, jump-none) 2,
-    triangle-2-x-last 600ms 2400ms steps(4, jump-none) forwards,
-    triangle-2-y 3000ms steps(1, end) forwards;
+    triangle-2-x 1200ms steps(8, jump-none) 2.4375 forwards,
+    triangle-2-y 3600ms steps(3, jump-none) forwards;
 }
 
 @keyframes triangle-2-x {
@@ -343,26 +396,11 @@
   }
 }
 
-@keyframes triangle-2-x-last {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: calc(var(--frame) * -3);
-  }
-}
-
 @keyframes triangle-2-y {
-  0% {
+  from {
     background-position-y: 0;
   }
-  40% {
-    background-position-y: calc(var(--frame) * -1);
-  }
-  80% {
-    background-position-y: calc(var(--frame) * -2);
-  }
-  100% {
+  to {
     background-position-y: calc(var(--frame) * -2);
   }
 }
@@ -376,7 +414,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 150px;
+  bottom: 120px;
 
   width: 50px;
   height: 50px;
@@ -387,10 +425,26 @@
 
 #multi-triangle.is-active {
   opacity: 1;
+  animation: bounce-2 3s infinite;
+}
+
+@keyframes bounce-2 {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+#multi-triangle.is-active {
+  opacity: 1;
 }
 
 .triangle-3 {
   --frame: 50px;
+  --tick: 47ms;
 
   width: var(--frame);
   height: var(--frame);
@@ -405,25 +459,85 @@
 
 #multi-triangle.is-active .triangle-3 {
   animation:
-    triangle-3-x 500ms steps(8, jump-none) infinite,
-    triangle-3-y 2250ms steps(3, jump-none) infinite;
+    triangle-3-x calc(var(--tick) * 36) infinite,
+    triangle-3-y calc(var(--tick) * 36) steps(1, end) infinite;
 }
 
 @keyframes triangle-3-x {
-  from {
+  0% {
     background-position-x: 0;
+    animation-timing-function: steps(8, end);
   }
-  to {
-    background-position-x: calc(var(--frame) * -7);
+  22.2221% {
+    background-position-x: calc(var(--frame) * -8);
+  }
+  22.2222% {
+    background-position-x: 0;
+    animation-timing-function: steps(8, end);
+  }
+  44.4443% {
+    background-position-x: calc(var(--frame) * -8);
+  }
+  44.4444% {
+    background-position-x: 0;
+    animation-timing-function: steps(8, end);
+  }
+  66.6665% {
+    background-position-x: calc(var(--frame) * -8);
+  }
+  66.6667% {
+    background-position-x: 0;
+    animation-timing-function: steps(8, end);
+  }
+  88.8888% {
+    background-position-x: calc(var(--frame) * -8);
+  }
+  88.8889% {
+    background-position-x: 0;
+    animation-timing-function: steps(4, end);
+  }
+  100% {
+    background-position-x: calc(var(--frame) * -4);
   }
 }
 
 @keyframes triangle-3-y {
-  from {
+  0% {
     background-position-y: 0;
   }
-  to {
+  22.2222% {
+    background-position-y: calc(var(--frame) * -1);
+  }
+  44.4444% {
     background-position-y: calc(var(--frame) * -2);
+  }
+  66.6667% {
+    background-position-y: calc(var(--frame) * -3);
+  }
+  88.8889% {
+    background-position-y: calc(var(--frame) * -4);
+  }
+  100% {
+    background-position-y: calc(var(--frame) * -4);
+  }
+}
+
+#triangle-3-mover {
+  display: grid;
+  width: 50px;
+  height: 50px;
+}
+
+#multi-triangle.is-active #triangle-3-mover {
+  animation: triangle-3-mover 3.6s linear forwards;
+}
+
+@keyframes triangle-3-mover {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -10px;
   }
 }
 
@@ -435,7 +549,7 @@
 
 /* top */
 #multi-triangle.is-active #triangle-3-mover-to-top {
-  animation: triangle-3-to-top 3s forwards;
+  animation: triangle-3-to-top 5s forwards;
 }
 
 @keyframes triangle-3-to-top {
@@ -449,7 +563,7 @@
 
 /* left bottom */
 #multi-triangle.is-active #triangle-3-mover-to-left-bottom {
-  animation: triangle-3-to-left 3s forwards;
+  animation: triangle-3-to-left 5s forwards;
 }
 
 @keyframes triangle-3-to-left {
@@ -463,7 +577,7 @@
 
 /* right bottom */
 #multi-triangle.is-active #triangle-3-mover-to-right-bottom {
-  animation: triangle-3-to-right 3s forwards;
+  animation: triangle-3-to-right 5s forwards;
 }
 
 @keyframes triangle-3-to-right {
@@ -484,20 +598,22 @@
 }
 
 #multi-triangle.is-active .triangle-3-rotator {
-  animation: triangle-3-rotate 6s linear 3s infinite;
+  animation: triangle-3-rotate 18s infinite;
 }
 
 @keyframes triangle-3-rotate {
-  0% {
-    transform: perspective(300px) rotateY(0deg) rotateX(0deg);
+  0%,
+  27.78% {
+    transform: perspective(300px) rotateY(0deg);
+    animation-timing-function: ease-in-out;
   }
-
-  50% {
-    transform: perspective(300px) rotateY(360deg) rotateX(0deg);
+  50%,
+  77.78% {
+    transform: perspective(300px) rotateY(180deg);
+    animation-timing-function: ease-in-out;
   }
-
   100% {
-    transform: perspective(300px) rotateY(360deg) rotateX(360deg);
+    transform: perspective(300px) rotateY(360deg);
   }
 }
 
@@ -511,8 +627,8 @@
   width: 150px;
   height: 100%;
 
-  --shift-y: 16px;
-  translate: 0 var(--shift-y);
+  /* --shift-y: 16px;
+  translate: 0 var(--shift-y); */
 
   background-image: url("../../src/game-assets/pedestal.png");
   background-size: cover;
@@ -553,6 +669,10 @@
 .torch-stage2:not(.is-active),
 #triangle-container:not(.is-active) {
   animation: none;
+}
+
+.torch-stage2:not(.is-active) {
+  opacity: 0.01;
 }
 
 .hero-mover {
