@@ -1,0 +1,858 @@
+@font-face {
+  font-family: "ZeldaGames";
+  src: url("../../src/fonts/hylia-serif/HyliaSerif.ttf") format("truetype");
+}
+
+/* Zelda button */
+#life-zone .ns-life-button.theme-zelda {
+  position: relative;
+  border: 0;
+
+  background-image: url("../../src/game-assets/games-gold.svg");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  font-family: "ZeldaGames", Georgia, serif;
+  font-size: 30px;
+  line-height: 1;
+  text-align: center;
+}
+
+.shine-window {
+  position: absolute;
+  inset: 7px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.button-shine {
+  position: absolute;
+  top: -50%;
+  height: 200%;
+  width: 7%;
+  left: -45%;
+  transform: skewX(-15deg);
+  opacity: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #fff2ba99 20%,
+    #fff8dcba 50%,
+    #fff2ba99 80%,
+    transparent
+  );
+}
+
+.button-shine {
+  animation: button-shine 5200ms linear 800ms infinite;
+}
+
+@keyframes button-shine {
+  0%,
+  8% {
+    left: -45%;
+    opacity: 0;
+  }
+  9% {
+    opacity: 0.7;
+  }
+  24% {
+    left: 145%;
+    opacity: 0.7;
+  }
+  25%,
+  100% {
+    left: 145%;
+    opacity: 0;
+  }
+}
+
+/* game frame */
+#game-action-container {
+  position: relative;
+  border: none;
+  background: #78a88b64;
+}
+
+.pixel-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  shape-rendering: crispEdges;
+  overflow: visible;
+  z-index: 2;
+}
+
+.pixel-svg rect {
+  fill: #4f8a5f;
+}
+
+/* game container*/
+#game-content {
+  /* background-image: url("../../src/PM.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+  display: grid;
+  grid-template-rows: 1.1fr 3fr 1.3fr;
+  container-type: inline-size;
+
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* #bricks-top,
+#middle-scene-hero,
+#bricks-bottom {
+  border: 1px solid red;
+} */
+
+/* bricks animation*/
+#bricks-top,
+#bricks-bottom {
+  --radius: 8px;
+
+  position: relative;
+  width: 100%;
+  background: #000;
+
+  z-index: 1;
+}
+
+#bricks-top {
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  overflow: hidden;
+}
+
+#bricks-bottom {
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  clip-path: inset(-80px 0 0 0 round 0 0 var(--radius) var(--radius));
+}
+
+.brick {
+  position: absolute;
+  width: 45px;
+  height: 24px;
+  opacity: 1;
+  transform: none;
+  transform-origin: center;
+}
+
+/* middle animation*/
+#middle-scene-dungeon {
+  display: flex;
+  justify-content: center;
+  gap: 1.9em;
+  align-items: flex-end;
+  background-color: black;
+
+  z-index: 0;
+}
+
+/* torches animation*/
+.torch-container {
+  display: grid;
+  z-index: 0;
+  /* border: 1px solid yellow; */
+}
+
+.torch-stage1,
+.torch-stage2 {
+  grid-area: 1 / 1;
+  opacity: 0;
+
+  --frame: 120px;
+  width: var(--frame);
+  height: var(--frame);
+
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.torch-stage1 {
+  background-image: url("../../src/game-assets/torch/torch-ignite-sprites-1.png");
+  background-size: calc(var(--frame) * 5) calc(var(--frame) * 4);
+
+  animation:
+    torch1-x 375ms steps(5, jump-none) infinite,
+    torch1-y 1500ms steps(4, jump-none) 1 forwards;
+}
+
+.torch-start {
+  animation-delay: 100ms;
+}
+
+.torch-middle {
+  animation-delay: 1200ms;
+}
+.torch-end {
+  animation-delay: 2500ms;
+}
+
+.torch-right {
+  transform: scaleX(-1);
+}
+
+@keyframes torch1-x {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--frame) * -4);
+  }
+}
+
+@keyframes torch1-y {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: calc(var(--frame) * -3);
+  }
+}
+
+.torch-stage2 {
+  background-image: url("../../src/game-assets/torch/torch-burn-loop-sprites-2.png");
+  background-size: calc(var(--frame) * 6) calc(var(--frame) * 4);
+
+  animation:
+    torch2-x 450ms steps(6, jump-none) infinite,
+    torch2-y 1800ms steps(4, jump-none) infinite;
+}
+
+@keyframes torch2-x {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--frame) * -5);
+  }
+}
+
+@keyframes torch2-y {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: calc(var(--frame) * -3);
+  }
+}
+
+.torch-stage2:not(.is-active) {
+  opacity: 0.01;
+}
+
+/* hero animation*/
+#hero-container {
+  position: relative;
+  z-index: 0;
+  display: grid;
+}
+
+/* triangle */
+/* triangle stage 1 */
+#triangle-container {
+  grid-area: 1 / 1;
+  opacity: 0;
+
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100px;
+
+  width: 50px;
+  height: 50px;
+
+  /* border: 1px solid rgb(128, 0, 128); */
+  z-index: 1;
+
+  animation: bounce 3s infinite;
+}
+
+#hero-container #triangle-container.is-idle {
+  opacity: 1;
+  animation: bounce 3s infinite;
+  cursor: pointer;
+}
+
+#triangle-2-mover:not(.is-active),
+#multi-triangle:not(.is-active),
+.hero-mover:not(.is-active),
+.stop:not(.is-active),
+.turn:not(.is-active),
+.sword:not(.is-active),
+.idle:not(.is-active) {
+  pointer-events: none;
+}
+
+#triangle-container.is-idle #triangle-1 {
+  animation:
+    triangle-1-x 800ms steps(8, jump-none) infinite,
+    triangle-1-y 2400ms steps(3, jump-none) infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+#triangle-1 {
+  --frame: 50px;
+  width: var(--frame);
+  height: var(--frame);
+
+  background-image: url("../../src/game-assets/triangle/triangle-shine-sprites-1.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: calc(var(--frame) * 8) calc(var(--frame) * 4);
+}
+
+#triangle-container.is-active #triangle-1 {
+  animation:
+    triangle-1-x 800ms steps(8, jump-none) 15,
+    triangle-1-y 2400ms steps(3, jump-none) 5;
+}
+
+@keyframes triangle-1-x {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--frame) * -7);
+  }
+}
+
+@keyframes triangle-1-y {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: calc(var(--frame) * -2);
+  }
+}
+
+/* triangle stage 2 */
+#multi-triangle1 {
+  grid-area: 1 / 1;
+  display: grid;
+  opacity: 0;
+
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100px;
+
+  width: 50px;
+  height: 50px;
+
+  /* border: 1px solid rgb(128, 119, 0); */
+  z-index: 1;
+}
+
+#multi-triangle1.is-active {
+  opacity: 1;
+}
+
+.triangle-2 {
+  --frame: 50px;
+  --tick: 47ms;
+
+  width: var(--frame);
+  height: var(--frame);
+
+  background-image: url("../../src/game-assets/triangle/triangle-ignite-sprites-2.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  /* border: 1px solid rgb(128, 119, 0); */
+
+  background-size: calc(var(--frame) * 8) calc(var(--frame) * 3);
+}
+
+#multi-triangle1.is-active .triangle-2 {
+  animation:
+    triangle-2-x 1200ms steps(8, jump-none) 2.4375 forwards,
+    triangle-2-y 3600ms steps(3, jump-none) forwards;
+}
+
+
+@keyframes triangle-2-x {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--frame) * -7);
+  }
+}
+
+@keyframes triangle-2-y {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: calc(var(--frame) * -2);
+  }
+}
+
+#triangle-2-mover {
+  display: grid;
+  width: 50px;
+  height: 50px;
+}
+
+#multi-triangle1.is-active #triangle-2-mover {
+  animation: triangle-3-mover 3.6s linear forwards;
+}
+
+@keyframes triangle-2-mover {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -30px;
+  }
+}
+
+#triangle-2-mover-to-top,
+#triangle-2-mover-to-left-bottom,
+#triangle-2-mover-to-right-bottom {
+  grid-area: 1 / 1;
+}
+
+/* top */
+#multi-triangle1.is-active #triangle-2-mover-to-top {
+  animation: triangle-2-to-top 5s forwards;
+}
+
+@keyframes triangle-2-to-top {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -25px;
+  }
+}
+
+/* left bottom */
+#multi-triangle1.is-active #triangle-2-mover-to-left-bottom {
+  animation: triangle-2-to-left 5s forwards;
+}
+
+@keyframes triangle-2-to-left {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: -12.5px 0;
+  }
+}
+
+/* right bottom */
+#multi-triangle1.is-active #triangle-2-mover-to-right-bottom {
+  animation: triangle-2-to-right 5s forwards;
+}
+
+@keyframes triangle-2-to-right {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 12.5px 0;
+  }
+}
+
+/* triangle stage 3 */
+ #multi-triangle2 {
+  display: grid;
+  opacity: 0;
+
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 130px;
+
+  width: 50px;
+  height: 50px;
+
+  z-index: 1;
+  position: relative;
+}
+
+#multi-triangle2.is-active {
+  opacity: 1;
+  animation: bounce-2 3s infinite;
+}
+
+@keyframes bounce-2 {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+#multi-triangle2.is-active {
+  opacity: 1;
+}
+
+.triangle-3.top{
+
+}
+.triangle-3.bottom-right{
+  
+}
+.triangle-3.bottom-left{
+  
+}
+
+.triangle-3 {
+  --frame: 50px;
+  --tick: 47ms;
+
+  width: var(--frame);
+  height: var(--frame);
+
+  background-image: url("../../src/game-assets/triangle/triangle-glow-loop-sprites-3.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: calc(var(--frame) * 8) calc(var(--frame) * 5);
+}
+
+#multi-triangle.is-active .triangle-3 {
+  animation:
+    triangle-3-x calc(var(--tick) * 36) infinite,
+    triangle-3-y calc(var(--tick) * 36) steps(1, end) infinite;
+}
+
+@keyframes triangle-3-x {
+  0% {
+    background-position-x: 0;
+    animation-timing-function: steps(8, end);
+  }
+  22.2221% {
+    background-position-x: calc(var(--frame) * -8);
+  }
+  22.2222% {
+    background-position-x: 0;
+    animation-timing-function: steps(8, end);
+  }
+  44.4443% {
+    background-position-x: calc(var(--frame) * -8);
+  }
+  44.4444% {
+    background-position-x: 0;
+    animation-timing-function: steps(8, end);
+  }
+  66.6665% {
+    background-position-x: calc(var(--frame) * -8);
+  }
+  66.6667% {
+    background-position-x: 0;
+    animation-timing-function: steps(8, end);
+  }
+  88.8888% {
+    background-position-x: calc(var(--frame) * -8);
+  }
+  88.8889% {
+    background-position-x: 0;
+    animation-timing-function: steps(4, end);
+  }
+  100% {
+    background-position-x: calc(var(--frame) * -4);
+  }
+}
+
+@keyframes triangle-3-y {
+  0% {
+    background-position-y: 0;
+  }
+  22.2222% {
+    background-position-y: calc(var(--frame) * -1);
+  }
+  44.4444% {
+    background-position-y: calc(var(--frame) * -2);
+  }
+  66.6667% {
+    background-position-y: calc(var(--frame) * -3);
+  }
+  88.8889% {
+    background-position-y: calc(var(--frame) * -4);
+  }
+  100% {
+    background-position-y: calc(var(--frame) * -4);
+  }
+}
+
+.triangle-3-rotator {
+  width: 50px;
+  height: 50px;
+  transform-origin: center;
+}
+
+#multi-triangle.is-active .triangle-3-rotator {
+  animation: triangle-3-rotate 18s infinite;
+}
+
+@keyframes triangle-3-rotate {
+  0%,
+  27.78% {
+    transform: perspective(300px) rotateY(0deg);
+    animation-timing-function: ease-in-out;
+  }
+  50%,
+  77.78% {
+    transform: perspective(300px) rotateY(180deg);
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    transform: perspective(300px) rotateY(360deg);
+  }
+} 
+
+
+/* stone */
+#stone-container {
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6px;
+
+  width: 150px;
+  height: 100%;
+
+  --shift-y: 2px;
+  translate: 0 var(--shift-y);
+
+  background-image: url("../../src/game-assets/pedestal.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* border: 1px solid green; */
+  transition: opacity 1s ease;
+  z-index: 0;
+}
+
+#game-content:has(.torch-stage2.torch-last.is-active) #stone-container {
+  opacity: 1;
+}
+
+/* hero */
+.hero-mover,
+.stop,
+.turn,
+.sword,
+.idle {
+  grid-area: 1 / 1;
+  opacity: 0;
+}
+
+.hero-mover.is-active,
+.stop.is-active,
+.turn.is-active,
+.sword.is-active,
+.idle.is-active,
+.torch-stage1.is-active,
+.torch-stage2.is-active,
+#triangle-container.is-active {
+  opacity: 1;
+}
+
+.hero-mover:not(.is-active),
+.stop:not(.is-active),
+.turn:not(.is-active),
+.sword:not(.is-active),
+.idle:not(.is-active),
+.torch-stage1:not(.is-active),
+.torch-stage2:not(.is-active),
+#triangle-container:not(.is-active) {
+  animation: none;
+}
+
+.hero-mover {
+  animation: travel 5s linear 1 forwards;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes travel {
+  from {
+    transform: translateX(-49cqw);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.runner,
+.stop,
+.turn,
+.sword,
+.idle {
+  --frame: 120px;
+  width: var(--frame);
+  height: var(--frame);
+
+  --shift-x: -12px;
+  --shift-y: 16px;
+  translate: var(--shift-x) var(--shift-y);
+
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  position: relative;
+  z-index: 2;
+  /* border: 1px solid red; */
+}
+
+.runner {
+  background-image: url("../../src/game-assets/Movement/run.png");
+  background-size: calc(var(--frame) * 8) var(--frame);
+  animation: run-frames 640ms steps(8, jump-none) infinite;
+}
+
+@keyframes run-frames {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: calc(var(--frame) * -7) 0;
+  }
+}
+
+.stop {
+  background-image: url("../../src/game-assets/Movement/stop.png");
+  background-size: calc(var(--frame) * 10) var(--frame);
+  animation: stop-frames 1050ms steps(1, end) 1 forwards;
+}
+
+@keyframes stop-frames {
+  0% {
+    background-position: 0 0;
+  }
+  5.714286% {
+    background-position: calc(var(--frame) * -1) 0;
+  }
+  11.428571% {
+    background-position: calc(var(--frame) * -2) 0;
+  }
+  17.142857% {
+    background-position: calc(var(--frame) * -3) 0;
+  }
+  23.809524% {
+    background-position: calc(var(--frame) * -4) 0;
+  }
+  32.380952% {
+    background-position: calc(var(--frame) * -5) 0;
+  }
+  40.952381% {
+    background-position: calc(var(--frame) * -6) 0;
+  }
+  50.476190% {
+    background-position: calc(var(--frame) * -7) 0;
+  }
+  60% {
+    background-position: calc(var(--frame) * -8) 0;
+  }
+  71.428571% {
+    background-position: calc(var(--frame) * -9) 0;
+  }
+  100% {
+    background-position: calc(var(--frame) * -9) 0;
+  }
+}
+
+.turn {
+  background-image: url("../../src/game-assets/Movement/turn.png");
+  background-size: calc(var(--frame) * 8) var(--frame);
+  animation: turn-frames 940ms steps(8, jump-none) 1 forwards;
+  animation-delay: 1s;
+}
+
+@keyframes turn-frames {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: calc(var(--frame) * -7) 0;
+  }
+}
+
+.sword {
+  background-image: url("../../src/game-assets/Movement/sword.png");
+  background-size: calc(var(--frame) * 24) var(--frame);
+  animation: sword-frames 2430ms steps(24, jump-none) 1 forwards;
+  animation-delay: 1s;
+}
+
+@keyframes sword-frames {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: calc(var(--frame) * -23) 0;
+  }
+}
+
+.idle {
+  background-image: url("../../src/game-assets/Movement/idle.png");
+  background-size: calc(var(--frame) * 10) var(--frame);
+  animation: idle-frames 4000ms steps(1, end) infinite;
+}
+
+@keyframes idle-frames {
+  0% {
+    background-position: 0 0;
+  }
+  75% {
+    background-position: calc(var(--frame) * -1) 0;
+  }
+  77.5% {
+    background-position: calc(var(--frame) * -2) 0;
+  }
+  80% {
+    background-position: calc(var(--frame) * -3) 0;
+  }
+  82.5% {
+    background-position: calc(var(--frame) * -4) 0;
+  }
+  85% {
+    background-position: calc(var(--frame) * -5) 0;
+  }
+  87.5% {
+    background-position: calc(var(--frame) * -6) 0;
+  }
+  90% {
+    background-position: calc(var(--frame) * -7) 0;
+  }
+  92.5% {
+    background-position: calc(var(--frame) * -8) 0;
+  }
+  95% {
+    background-position: calc(var(--frame) * -9) 0;
+  }
+  100% {
+    background-position: calc(var(--frame) * -9) 0;
+  }
+}
+
+/* === Media === */
+@media (max-width: 768px) {
+  #life-zone .ns-life-button.theme-zelda {
+    font-size: 15px;
+  }
+}

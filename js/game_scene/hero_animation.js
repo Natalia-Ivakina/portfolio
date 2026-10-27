@@ -34,28 +34,23 @@ const container = document.querySelector("#game-content");
 const triangle = document.querySelector("#triangle-container");
 const triangleSprite = document.querySelector("#triangle-1");
 
-const triangleMover = document.querySelector("#triangle-2-mover");
-const triangleSprite2 = document.querySelector("#triangle-2");
+const multiTriangle1 = document.querySelector("#multi-triangle1");
+const triangleSprite2 = document.querySelector("#multi-triangle1 .triangle-2");
 
-const multiTriangle = document.querySelector("#multi-triangle");
+const multiTriangle2 = document.querySelector("#multi-triangle2");
 
 triangleSprite.addEventListener("animationend", function (event) {
   if (event.animationName !== "triangle-1-y") return;
 
   triangle.classList.remove("is-active");
-  triangleMover.classList.add("is-active");
+  multiTriangle1.classList.add("is-active");
 });
 
 triangleSprite2.addEventListener("animationend", function (event) {
   if (event.animationName !== "triangle-2-y") return;
 
-  triangleMover.classList.remove("is-active");
-  multiTriangle.classList.add("is-active");
-});
-
-triangle.addEventListener("click", function () {
-  if (!triangle.classList.contains("is-idle")) return;
-  restartGame();
+  multiTriangle1.classList.remove("is-active");
+  multiTriangle2.classList.add("is-active");
 });
 
 //torches
@@ -100,36 +95,52 @@ container.addEventListener("animationend", function (event) {
 
 //start
 let runId = 0;
+let busy = false;
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function restartGame() {
   const myRun = ++runId;
+  busy = true;
 
   // clean
   heroScenes.forEach(function (scene) {
     scene.classList.remove("is-active");
   });
+  multiTriangle1.classList.remove("is-active");
+  multiTriangle2.classList.remove("is-active");
   triangle.classList.remove("is-active");
-  triangle.classList.remove("is-idle");
-  triangleMover.classList.remove("is-active");
-  multiTriangle.classList.remove("is-active");
+  triangle.classList.add("is-idle");
 
   torches.forEach(function (torch) {
     torch.querySelector(".torch-stage1").classList.remove("is-active");
     torch.querySelector(".torch-stage2").classList.remove("is-active");
   });
 
+  document.querySelector("#bricks-top").replaceChildren();
+  document.querySelector("#bricks-bottom").replaceChildren();
+
+  await sleep(1000);
+  if (myRun !== runId) return;
+
   // wait
   await buildAllBricks();
   if (myRun !== runId) return;
 
-  void container.offsetWidth;
-
+  triangle.classList.remove("is-idle");
+  void triangle.offsetWidth;
   triangle.classList.add("is-active");
+
   torches.forEach(function (torch) {
     torch.querySelector(".torch-stage1").classList.add("is-active");
   });
 
   showScene(0);
+  busy = false;
 }
+
+triangle.addEventListener("click", function () {
+  if (busy || !triangle.classList.contains("is-idle")) return;
+  restartGame();
+});
 
 window.restartGame = restartGame;

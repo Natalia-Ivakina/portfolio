@@ -73,7 +73,7 @@
 #game-action-container {
   position: relative;
   border: none;
-  background: #78a88b64;
+  /* background: #78a88b64; */
 }
 
 .pixel-svg {
@@ -93,10 +93,6 @@
 
 /* game container*/
 #game-content {
-  /* background-image: url("../../src/PM.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
   display: grid;
   grid-template-rows: 1.1fr 3fr 1.3fr;
   container-type: inline-size;
@@ -104,13 +100,9 @@
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 !important;
 }
-
-/* #bricks-top,
-#middle-scene-hero,
-#bricks-bottom {
-  border: 1px solid red;
-} */
 
 /* bricks animation*/
 #bricks-top,
@@ -119,8 +111,7 @@
 
   position: relative;
   width: 100%;
-  overflow: hidden;
-  background: #14251f;
+  background: #000;
 
   z-index: 1;
 }
@@ -128,11 +119,13 @@
 #bricks-top {
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
+  overflow: hidden;
 }
 
 #bricks-bottom {
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
+  clip-path: inset(-80px 0 0 0 round 0 0 var(--radius) var(--radius));
 }
 
 .brick {
@@ -148,10 +141,9 @@
 #middle-scene-dungeon {
   display: flex;
   justify-content: center;
-  gap: 1em;
+  gap: 1.9em;
   align-items: flex-end;
   background-color: black;
-
   z-index: 0;
 }
 
@@ -159,7 +151,6 @@
 .torch-container {
   display: grid;
   z-index: 0;
-  /* border: 1px solid yellow; */
 }
 
 .torch-stage1,
@@ -193,6 +184,10 @@
 }
 .torch-end {
   animation-delay: 2500ms;
+}
+
+.torch-right {
+  transform: scaleX(-1);
 }
 
 @keyframes torch1-x {
@@ -240,6 +235,10 @@
   }
 }
 
+.torch-stage2:not(.is-active) {
+  opacity: 0.01;
+}
+
 /* hero animation*/
 #hero-container {
   position: relative;
@@ -274,7 +273,8 @@
 }
 
 #triangle-2-mover:not(.is-active),
-#multi-triangle:not(.is-active),
+#multi-triangle1:not(.is-active),
+#multi-triangle2:not(.is-active),
 .hero-mover:not(.is-active),
 .stop:not(.is-active),
 .turn:not(.is-active),
@@ -335,8 +335,9 @@
 }
 
 /* triangle stage 2 */
-#triangle-2-mover {
+#multi-triangle1 {
   grid-area: 1 / 1;
+  display: grid;
   opacity: 0;
 
   position: absolute;
@@ -347,41 +348,30 @@
   width: 50px;
   height: 50px;
 
-  /* border: 1px solid rgb(128, 0, 128); */
+  /* border: 1px solid rgb(128, 119, 0); */
   z-index: 1;
 }
 
-#triangle-2-mover.is-active {
+#multi-triangle1.is-active {
   opacity: 1;
-  animation: triangle-to-top 3.6s forwards;
 }
 
-#triangle-2-mover:not(.is-active) {
-  animation: none;
-}
-
-@keyframes triangle-to-top {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 -20px;
-  }
-}
-
-#triangle-2 {
+.triangle-2 {
   --frame: 50px;
+  --tick: 47ms;
+
   width: var(--frame);
   height: var(--frame);
 
   background-image: url("../../src/game-assets/triangle/triangle-ignite-sprites-2.png");
   background-repeat: no-repeat;
   background-position: 0 0;
+  /* border: 1px solid rgb(128, 119, 0); */
 
   background-size: calc(var(--frame) * 8) calc(var(--frame) * 3);
 }
 
-#triangle-2-mover.is-active #triangle-2 {
+#multi-triangle1.is-active .triangle-2 {
   animation:
     triangle-2-x 1200ms steps(8, jump-none) 2.4375 forwards,
     triangle-2-y 3600ms steps(3, jump-none) forwards;
@@ -405,25 +395,90 @@
   }
 }
 
-/* triangle stage 3 */
-#multi-triangle {
+#triangle-2-mover {
+  display: grid;
+  width: 50px;
+  height: 50px;
+}
+
+#multi-triangle1.is-active #triangle-2-mover {
+  animation: triangle-2-mover 3.6s linear forwards;
+}
+
+@keyframes triangle-2-mover {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -30px;
+  }
+}
+
+#triangle-2-mover-to-top,
+#triangle-2-mover-to-left-bottom,
+#triangle-2-mover-to-right-bottom {
   grid-area: 1 / 1;
+}
+
+/* top */
+#multi-triangle1.is-active #triangle-2-mover-to-top {
+  animation: triangle-2-to-top 3.6s forwards;
+}
+
+@keyframes triangle-2-to-top {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -25px;
+  }
+}
+
+/* left bottom */
+#multi-triangle1.is-active #triangle-2-mover-to-left-bottom {
+  animation: triangle-2-to-left 3.6s forwards;
+}
+
+@keyframes triangle-2-to-left {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: -12.5px 0;
+  }
+}
+
+/* right bottom */
+#multi-triangle1.is-active #triangle-2-mover-to-right-bottom {
+  animation: triangle-2-to-right 3.6s forwards;
+}
+
+@keyframes triangle-2-to-right {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 12.5px 0;
+  }
+}
+
+/* triangle stage 3 */
+#multi-triangle2 {
   display: grid;
   opacity: 0;
 
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 120px;
+  bottom: 130px;
 
   width: 50px;
   height: 50px;
 
-  /* border: 1px solid rgb(128, 119, 0); */
   z-index: 1;
 }
 
-#multi-triangle.is-active {
+#multi-triangle2.is-active {
   opacity: 1;
   animation: bounce-2 3s infinite;
 }
@@ -438,8 +493,25 @@
   }
 }
 
-#multi-triangle.is-active {
+#multi-triangle2.is-active {
   opacity: 1;
+}
+
+.triangle-3-rotator {
+  grid-area: 1 / 1;
+  width: 50px;
+  height: 50px;
+  transform-origin: center;
+}
+
+.triangle-3-rotator.top {
+  translate: 0 -25px;
+}
+.triangle-3-rotator.bottom-left {
+  translate: -12.5px 0;
+}
+.triangle-3-rotator.bottom-right {
+  translate: 12.5px 0;
 }
 
 .triangle-3 {
@@ -452,12 +524,10 @@
   background-image: url("../../src/game-assets/triangle/triangle-glow-loop-sprites-3.png");
   background-repeat: no-repeat;
   background-position: 0 0;
-  /* border: 1px solid rgb(128, 119, 0); */
-
   background-size: calc(var(--frame) * 8) calc(var(--frame) * 5);
 }
 
-#multi-triangle.is-active .triangle-3 {
+#multi-triangle2.is-active .triangle-3 {
   animation:
     triangle-3-x calc(var(--tick) * 36) infinite,
     triangle-3-y calc(var(--tick) * 36) steps(1, end) infinite;
@@ -522,82 +592,13 @@
   }
 }
 
-#triangle-3-mover {
-  display: grid;
-  width: 50px;
-  height: 50px;
-}
-
-#multi-triangle.is-active #triangle-3-mover {
-  animation: triangle-3-mover 3.6s linear forwards;
-}
-
-@keyframes triangle-3-mover {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 -10px;
-  }
-}
-
-#triangle-3-mover-to-top,
-#triangle-3-mover-to-left-bottom,
-#triangle-3-mover-to-right-bottom {
-  grid-area: 1 / 1;
-}
-
-/* top */
-#multi-triangle.is-active #triangle-3-mover-to-top {
-  animation: triangle-3-to-top 5s forwards;
-}
-
-@keyframes triangle-3-to-top {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 -25px;
-  }
-}
-
-/* left bottom */
-#multi-triangle.is-active #triangle-3-mover-to-left-bottom {
-  animation: triangle-3-to-left 5s forwards;
-}
-
-@keyframes triangle-3-to-left {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: -12.5px 0;
-  }
-}
-
-/* right bottom */
-#multi-triangle.is-active #triangle-3-mover-to-right-bottom {
-  animation: triangle-3-to-right 5s forwards;
-}
-
-@keyframes triangle-3-to-right {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 12.5px 0;
-  }
-}
-
-/* rotation */
-/* triangle 3 rotation */
 .triangle-3-rotator {
   width: 50px;
   height: 50px;
   transform-origin: center;
 }
 
-#multi-triangle.is-active .triangle-3-rotator {
+#multi-triangle2.is-active .triangle-3-rotator {
   animation: triangle-3-rotate 18s infinite;
 }
 
@@ -619,6 +620,7 @@
 
 /* stone */
 #stone-container {
+  opacity: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -627,8 +629,8 @@
   width: 150px;
   height: 100%;
 
-  /* --shift-y: 16px;
-  translate: 0 var(--shift-y); */
+  --shift-y: 2px;
+  translate: 0 var(--shift-y);
 
   background-image: url("../../src/game-assets/pedestal.png");
   background-size: cover;
@@ -636,7 +638,14 @@
   background-repeat: no-repeat;
 
   /* border: 1px solid green; */
-  z-index: 1;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+#game-content:has(:is(.torch-stage1, .torch-stage2).torch-last.is-active)
+  #stone-container {
+  opacity: 1;
+  transition: opacity 3s ease 3s;
 }
 
 /* hero */
@@ -671,10 +680,6 @@
   animation: none;
 }
 
-.torch-stage2:not(.is-active) {
-  opacity: 0.01;
-}
-
 .hero-mover {
   animation: travel 5s linear 1 forwards;
   position: relative;
@@ -683,7 +688,7 @@
 
 @keyframes travel {
   from {
-    transform: translateX(-50cqw);
+    transform: translateX(-52cqw);
   }
   to {
     transform: translateX(0);

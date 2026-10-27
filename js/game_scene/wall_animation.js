@@ -1,7 +1,7 @@
 const W = 45;
 const H = 24;
-const columnTime = 300;
-const fallTime = 700;
+const columnTime = 150;
+const fallTime = 450;
 
 const sceneTop = document.querySelector("#bricks-top");
 const sceneBottom = document.querySelector("#bricks-bottom");

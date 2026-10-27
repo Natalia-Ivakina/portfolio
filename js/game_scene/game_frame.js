@@ -5,13 +5,13 @@ function drawPixelFrame(canvas) {
 
   if (width === 0 || height === 0) return;
 
-  const size = 4;
+  const size = 2.5;
   let html = "";
 
   function addPixel(x, y, chance) {
     if (Math.random() > chance) return;
 
-    const opacity = (0.4 + Math.random() * 0.5).toFixed(2);
+    const opacity = (0.3 + Math.random() * 0.5).toFixed(2);
     html += `<rect x="${x}" y="${y}" width="${size}" height="${size}" opacity="${opacity}"/>`;
   }
 
@@ -27,9 +27,9 @@ function drawPixelFrame(canvas) {
     }
   }
 
-  addRing(-size, 0.2);   // outside
-  addRing(0, 0.5);       // middle
-  addRing(size, 0.7);    // inside
+  addRing(-size, 0.7);   // outside
+  addRing(0, 1);       // middle
+  addRing(size, 0.751); // inside
 
   svg.innerHTML = html;
 }
