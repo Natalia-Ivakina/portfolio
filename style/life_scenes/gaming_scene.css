@@ -4,11 +4,11 @@
 }
 
 /* Zelda button */
-#life-zone .ns-life-button.theme-zelda {
+#life-zone .ns-life-button#theme-zelda {
   position: relative;
   border: 0;
 
-  background-image: url("../../src/game-assets/games-gold.svg");
+  background-image: url("../../src/game-assets/BOTW.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -16,7 +16,11 @@
   font-family: "ZeldaGames", Georgia, serif;
   font-size: 30px;
   line-height: 1;
-  text-align: center;
+  align-items: center;
+}
+
+#life-zone .ns-life-button#theme-zelda:focus {
+  background-image: url("../../src/game-assets/BOTW_Press.png");
 }
 
 .shine-window {
@@ -72,7 +76,6 @@
 /* game frame */
 #game-action-container {
   position: relative;
-  border: none;
   /* background: #78a88b64; */
 }
 
@@ -93,6 +96,9 @@
 
 /* game container*/
 #game-content {
+  container-type: inline-size;
+  container-name: game;
+
   display: grid;
   grid-template-rows: 1.1fr 3fr 1.3fr;
   container-type: inline-size;
@@ -102,6 +108,7 @@
   box-sizing: border-box;
   overflow: hidden;
   padding: 0 !important;
+  border: none;
 }
 
 /* bricks animation*/
@@ -137,7 +144,7 @@
   transform-origin: center;
 }
 
-/* middle animation*/
+/* middle scene animation*/
 #middle-scene-dungeon {
   display: flex;
   justify-content: center;
@@ -262,7 +269,6 @@
 
   /* border: 1px solid rgb(128, 0, 128); */
   z-index: 1;
-
   animation: bounce 3s infinite;
 }
 
@@ -270,6 +276,20 @@
   opacity: 1;
   animation: bounce 3s infinite;
   cursor: pointer;
+
+  transition:
+    filter 0.2s ease,
+    scale 0.12s ease;
+}
+
+#hero-container #triangle-container.is-idle:hover {
+  filter: drop-shadow(0 0 6px #ffe27a) drop-shadow(0 0 14px #ffc83dcc);
+}
+
+#hero-container #triangle-container.is-idle:active {
+  scale: 0.95;
+  filter: brightness(1.25) drop-shadow(0 0 4px #fff2ba);
+  transition-duration: 0.05s;
 }
 
 #triangle-2-mover:not(.is-active),
@@ -847,9 +867,90 @@
   }
 }
 
-/* === Media === */
+/* media */
+@container game (max-width: 1100px) {
+  #middle-scene-dungeon {
+    gap: 1.5em;
+  }
+
+  .torch-stage1,
+  .torch-stage2 {
+    --frame: 110px;
+  }
+}
+
+/* media */
+@container game (max-width: 950px) {
+  .torch-stage1,
+  .torch-stage2 {
+    --frame: 105px;
+  }
+}
+
+@container game (max-width: 900px) {
+  .torch-container:has(.torch-start) {
+    display: none;
+  }
+
+  #middle-scene-dungeon {
+    gap: 3em;
+  }
+
+  .torch-stage1,
+  .torch-stage2 {
+    --frame: 120px;
+  }
+}
+
+@container game (max-width: 800px) {
+  #middle-scene-dungeon {
+    gap: 2em;
+  }
+
+  .torch-stage1,
+  .torch-stage2 {
+    --frame: 115px;
+  }
+}
+
+@container game (max-width: 700px) {
+  #middle-scene-dungeon {
+    gap: 1em;
+  }
+
+  .torch-stage1,
+  .torch-stage2 {
+    --frame: 110px;
+  }
+}
+
+@container game (max-width: 600px) {
+  .torch-container:has(.torch-middle) {
+    display: none;
+  }
+
+  #middle-scene-dungeon {
+    gap: 3em;
+  }
+
+  .torch-stage1,
+  .torch-stage2 {
+    --frame: 120px;
+  }
+}
+
+@container game (max-width: 500px) {
+  #middle-scene-dungeon {
+    gap: 2em;
+  }
+}
+
 @media (max-width: 768px) {
-  #life-zone .ns-life-button.theme-zelda {
+  #life-zone .ns-life-button#theme-zelda {
     font-size: 15px;
+  }
+
+  #hero-container #triangle-container.is-idle {
+    filter: drop-shadow(0 0 6px #ffe27a) drop-shadow(0 0 14px #ffc83dcc);
   }
 }

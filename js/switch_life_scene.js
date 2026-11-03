@@ -17,3 +17,4 @@ lifeButtons.forEach((button) => {
     }
   });
 });
+

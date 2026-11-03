@@ -25,24 +25,71 @@
 #life-zone .ns-life-button {
   display: flex;
   flex: 0 0 90px;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   flex-direction: column;
   width: 100%;
   min-height: 90px;
-  padding: 10px;
+  padding: 18px 10px;
+  text-align: left !important;
   box-sizing: border-box;
 
   cursor: pointer;
   border: 1px solid var(--ns-glass-line);
   border-radius: 16px;
+  font: inherit;
   color: inherit;
-  background-color: transparent;
-  transition: all 0.1s ease;
+  background: var(--glass-mid);
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+
+  transition: all 0.4s ease;
 }
 
-#life-zone .ns-life-button small {
+/* hover */
+#life-zone .ns-life-button:hover {
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 0 0 1px #a1cfe69e,
+    0 0 10px rgba(161, 214, 230, 0.454);
+}
+
+/* Pressing */
+#life-zone .ns-life-button:active {
+  transform: translateY(5px);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.3),
+    inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus */
+#life-zone .ns-life-button:focus {
+  background: var(--glass-front);
+  box-shadow:
+    inset 0 0 0 1px #a1cfe69e,
+    0 0 10px rgba(161, 214, 230, 0.454);
+}
+
+.ns-life-button .code-text {
+  font-family: "Fira Code", monospace;
+  font-size: 1em;
+  font-weight: 700;
+  display: inline-block;
+  color: #a8dcf0;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.ns-life-button small {
   display: block;
+  margin-top: 7px;
+  color: var(--ns-muted);
+  font-weight: 600;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 #life-zone .life-canvas {
@@ -56,8 +103,8 @@
 .life-canvas .life-animation {
   min-height: var(--ns-height);
   padding: 6px;
-  /* border: 1px solid var(--ns-glass-line); */
-  /* border-radius: 12px; */
+  border: 1px solid var(--ns-glass-line);
+  border-radius: 12px;
   background: var(--glass-mid);
   width: 100%;
 }
@@ -70,6 +117,7 @@
   border: 1px solid var(--ns-glass-line);
   border-radius: 9px;
 }
+
 .life-text {
   display: block;
   margin-bottom: 7px;
@@ -82,6 +130,14 @@
   font-size: 0.82rem;
   line-height: 1.5;
   min-height: 6em;
+}
+
+.temporary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
 }
 
 /* === Media === */
@@ -100,6 +156,7 @@
     min-width: 0;
     min-height: 80px;
     padding: 10px;
+    align-items: center;
   }
 
   .ns-life-button small {
@@ -109,6 +166,7 @@
 
 @media (max-width: 768px) {
   #life-zone .ns-life-button {
-    min-height: 56px;
+    min-height: 44px;
+    align-items: center;
   }
 }
