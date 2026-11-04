@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const pbClose = pb.querySelector(".project-image-close");
 
   function openImage(img) {
+    pbImg.removeAttribute("src");
+
     pbImg.src = img.dataset.full;
     pbImg.alt = img.alt || "";
 
@@ -57,6 +59,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === pb) {
       closeImage();
     }
+  });
+
+  pb.addEventListener("transitionend", (e) => {
+    if (e.target !== pb) return;
+    if (pb.classList.contains("is-open")) return;
+
+    pbImg.removeAttribute("src");
+    pbImg.alt = "";
   });
 
   document.addEventListener("keydown", (e) => {

@@ -98,11 +98,14 @@ let runId = 0;
 let busy = false;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-async function restartGame() {
-  const myRun = ++runId;
-  busy = true;
+// Resets the scene:
+// hides the hero,
+// torches and triangles,
+// removes the wall
+function clearScene() {
+  runId++;
+  busy = false;
 
-  // clean
   heroScenes.forEach(function (scene) {
     scene.classList.remove("is-active");
   });
@@ -118,11 +121,17 @@ async function restartGame() {
 
   document.querySelector("#bricks-top").replaceChildren();
   document.querySelector("#bricks-bottom").replaceChildren();
+}
+
+// Restarts the scene
+async function restartGame() {
+  clearScene();
+  const myRun = ++runId;
+  busy = true;
 
   await sleep(1000);
   if (myRun !== runId) return;
 
-  // wait
   await buildAllBricks();
   if (myRun !== runId) return;
 
@@ -138,8 +147,17 @@ async function restartGame() {
   busy = false;
 }
 
+let lastWidth = window.innerWidth;
+
+window.addEventListener("resize", function () {
+  if (window.innerWidth === lastWidth) return;
+  lastWidth = window.innerWidth;
+  clearScene();
+});
+
 triangle.addEventListener("click", function () {
   if (busy || !triangle.classList.contains("is-idle")) return;
+  document.dispatchEvent(new CustomEvent("game:restart-request"));
   restartGame();
 });
 

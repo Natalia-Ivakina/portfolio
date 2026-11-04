@@ -941,7 +941,25 @@
 
 @container game (max-width: 500px) {
   #middle-scene-dungeon {
-    gap: 2em;
+    gap: 1em;
+  }
+
+  .torch-stage1,
+  .torch-stage2 {
+    --frame: 110px;
+  }
+}
+
+@container game (max-width: 400px) {
+  #middle-scene-dungeon {
+    gap: 0em;
+  }
+}
+
+@container game (max-width: 350px) {
+  .torch-stage1,
+  .torch-stage2 {
+    --frame: 90px;
   }
 }
 

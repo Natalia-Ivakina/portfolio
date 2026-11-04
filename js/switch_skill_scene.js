@@ -1,5 +1,7 @@
 /* ======= SKILLS =============== */
-import { buildDbBoard } from "./skills-db-scene.js";
+import { buildDbBoard } from "./skills_db_scene.js";
+import { scrollStageIntoView } from "./scroll-stage.js";
+import { createTyper } from "./type_text.js";
 
 (function initSkillsStories() {
   "use strict";
@@ -20,8 +22,13 @@ import { buildDbBoard } from "./skills-db-scene.js";
   });
   root.querySelector(".ns-stage").appendChild(sharedCode);
 
+  //typer
+  const typer = createTyper({
+    label: sharedCode.querySelector(".ns-language"),
+    code: sharedCode.querySelector(".ns-code"),
+  });
+
   let timers = [];
-  let typingInterval = 0;
   let activeMode = "";
   let runningButton = null;
 
@@ -41,7 +48,7 @@ import { buildDbBoard } from "./skills-db-scene.js";
   function clearAnimationQueue() {
     timers.forEach(window.clearTimeout);
     timers = [];
-    window.clearInterval(typingInterval);
+    typer.stop();
   }
 
   //SQL
@@ -82,35 +89,6 @@ import { buildDbBoard } from "./skills-db-scene.js";
     get("deploy", ".ns-server").className = "ns-server";
     get("deploy", ".ns-live-site").className = "ns-live-site";
     get("deploy", ".ns-live-indicator").textContent = "Not published";
-  }
-
-  /* ----------- Code ----------- */
-  function typeCode(paneName, language, source, afterTyping) {
-    const languageLabel = get(paneName, ".ns-language");
-    const codeElement = get(paneName, ".ns-code");
-
-    languageLabel.textContent = language;
-    window.clearInterval(typingInterval);
-
-    if (reducedMotion) {
-      codeElement.textContent = source;
-      afterTyping();
-      return;
-    }
-
-    let visibleCharacters = 0;
-    codeElement.textContent = "";
-
-    typingInterval = window.setInterval(() => {
-      //long  line
-      visibleCharacters += Math.max(1, Math.ceil(source.length / 22));
-      codeElement.textContent = source.slice(0, visibleCharacters);
-
-      if (visibleCharacters >= source.length) {
-        window.clearInterval(typingInterval);
-        later(afterTyping, 250);
-      }
-    }, 35);
   }
 
   /* ---------------- Scenes --------------- */
@@ -368,7 +346,7 @@ import { buildDbBoard } from "./skills-db-scene.js";
       stages[nextMode].forEach(([language, source, action], index) => {
         later(
           () => {
-            typeCode(nextMode, language, source, action);
+            typer.type(language, source, action);
           },
           startDelay + index * stageDuration,
         );
@@ -406,24 +384,7 @@ import { buildDbBoard } from "./skills-db-scene.js";
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       startScene(button.dataset.mode, button);
-
-      //Scrollon mobile
-      if (window.innerWidth <= 768) {
-        const stage = root.querySelector(".ns-stage");
-
-        window.setTimeout(() => {
-          const y =
-            stage.getBoundingClientRect().top +
-            window.scrollY -
-            150 +
-            window.innerHeight * 0.05;
-
-          window.scrollTo({
-            top: y,
-            behavior: reducedMotion ? "auto" : "smooth",
-          });
-        }, 100);
-      }
+      scrollStageIntoView(root.querySelector(".ns-stage"));
     });
   });
 })();
